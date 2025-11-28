@@ -3,22 +3,30 @@
 ## Título do Projeto: Sane.AI
 ## Seleção da Trilha: Edge AI Application Track (Foco na implementação prática, otimização de código e inferência em hardware de baixo poder computacional).
 ## Descrição (Abstract):
-Este projeto propõe o desenvolvimento de um Sistema de Aprendizado de Máquina em Borda (Edge ML) otimizado para a detecção anômala de vazamentos em infraestruturas hidráulicas pressurizadas urbanas. A metodologia baseia-se na aquisição e análise espectral de assinaturas vibracionais do subsolo. Em contraste com os sistemas acústicos tradicionais, que dependem exclusivamente de limiares de amplitude (volume) ou da intervenção humana especializada, o modelo emprega uma arquitetura de Deep Learning para discernir a característica espectral de baixa frequência ("o ronco da terra") de um vazamento persistente contra ruídos urbanos complexos e transientes (tráfego, operações industriais, pedestres). O processamento da inferência é realizado integralmente e em tempo real em um microcontrolador de baixo custo e restrição de memória.
+Este projeto propõe o desenvolvimento de um Sistema de Aprendizado de Máquina em Borda (Edge ML) otimizado para a detecção anômala de vazamentos em infraestruturas hidráulicas pressurizadas urbanas. A metodologia baseia-se na aquisição e análise espectral de assinaturas vibracionais do subsolo. Em contraste com os sistemas acústicos tradicionais, que dependem exclusivamente de limiares de amplitude (volume) ou da intervenção humana especializada, o modelo emprega uma arquitetura de Deep Learning para discernir a característica espectral de baixa frequência ("o ronco da terra") de um vazamento persistente contra ruídos urbanos complexos e transientes (tráfego, operações industriais, pedestres). O processamento da inferência é realizado em um dispositivo Android. A fonte dos dados é primariamente os geofones modelos ECO300 e ECO5000 da Sanesoluti. 
 
 ## Caso de Uso e Contexto de Mercado: 
 A ineficiência hídrica é um desastre econômico e social no Brasil. Segundo o Estudo de Perdas de Água 2025 (Trata Brasil/GO Associados), o país desperdiça 40,31% de toda a água potável produzida nos sistemas de distribuição.
+Porem este não é um problema apenas local, mas sim o case global, vejamos o grafico abaixo 
+
+https://www.statista.com/chart/4528/some-cities-suffer-enormous-water-losses-every-year/
+
+Mesmo grandes cidades em paises desenvolvidos tem altas perdas de água como é o caso de Montreal
+
 ### O Problema:
 Diariamente, o Brasil joga fora o equivalente a 6.346 piscinas olímpicas de água tratada. Cerca de 60% desse volume corresponde a perdas físicas (vazamentos na rede) , que poderiam abastecer 50 milhões de brasileiros anualmente se recuperadas.
 ### A Falha Atual: 
-A detecção desses vazamentos em cenários urbanos ruidosos é imprecisa. Métodos acústicos tradicionais geram falsos positivos e equipamentos de ponta são financeiramente inviáveis para monitorar a extensa malha de cidades com restrições orçamentárias.
+A localização desses vazamentos em cenários urbanos ruidosos é imprecisa. Métodos acústicos tradicionais geram falsos positivos e equipamentos de ponta são financeiramente inviáveis para monitorar a extensa malha de cidades com restrições orçamentárias.
+Atualmente existem tecnologias para a deteccção de vazamentos, os mesmos em alguns casos podem até ser detectados por satélite, mas detectar o vazamento é diferente de localizar o vazamento e ai que o real desafio surge. Tecnologias como o Asterra (https://asterra.io/solutions/recover/) conseguem detectar a existência de vazamentos, mas as botas no chão para sair de um POI (Point of interest) para uma localização exata e o reparo do vazamento é crucial, os principais métodos atuais requerem operadores experientes e altamente capacitados, e mesmo esses operadores dependem apenas de seus ouviodos para localizar esses vazamentos. 
+
 ### A Solução Sane.AI: 
-Um dispositivo de Borda (Edge Device) de baixo custo que utiliza Deep Learning para "ouvir" o vazamento real em meio ao caos urbano, atacando a maior fatia do desperdício nacional.
-O sistema foca na confirmação da localização do vazamento combinado o uso de um modelo de ML com um geofone digital para captação de dados, o foco de aplicação similares anterios estava na detecção do vazamento, porém a exata localização continuava sendo feita por operadores humanos. Em muitos casos é relativamente facil detectar a existência de um vazamento, porem localiza-lo a partir dessa detecção é o grande desafio desse processo. 
-Justificativa Baseada em Dados (O Cenário Brasileiro): A relevância do Sane.AI é corroborada pelos dados do Estudo de Perdas de Água 2025, que evidenciam três pilares críticos para a implementação de hardware focado em perdas físicas:
+Um dispositivo de Borda (Edge Device) que utiliza modelos de Deep Learning, criados no Edge Impulse, para "ouvir" o vazamento real em meio ao caos urbano, atacando a maior fatia do desperdício no caso brasileiro.
+O sistema foca na confirmação da localização do vazamento combinado o uso de um modelo de ML com um geofone digital para captação de dados, os modelos funcionam como auxiliares capazes de orientar o usuário
+Justificativa Baseada em Dados (O Cenário Brasileiro): A relevância desse modelo é corroborada pelos dados do Estudo de Perdas de Água 2025, que evidenciam três pilares críticos para a implementação de hardware focado em perdas físicas:
 
 ### 1. A Predominância das Perdas Físicas (O Alvo do Projeto): 
 Ao contrário do senso comum de que as perdas se devem majoritariamente a fraudes, o estudo aponta que 60% do volume de água não faturada no Brasil corresponde a Perdas Físicas (Reais), ou seja, vazamentos na infraestrutura
-Implicação: O Sane.AI, ao utilizar análise vibracional, ataca a causa raiz da maior parte do desperdício, estimada em mais de 3 bilhões de m³ anuais.
+Implicação: O Sane.AI, ao utilizar redes neurais, ataca a causa raiz da maior parte do desperdício, estimada em mais de 3 bilhões de m³ anuais.
 ### 2. Heterogeneidade Regional e o Paradoxo dos Grandes Centros: 
 O Sane.AI é vital tanto para regiões não desenvolvidas quanto para grandes centros urbanos.
 Mercados Críticos (Norte/Nordeste): A solução é desenhada para escalar em regiões onde a infraestrutura é precária, como o Norte (49,78% de perdas) e Nordeste (46,25%). Casos extremos incluem Maceió (AL), que perde 71,73% de sua água , e Macapá (AP), com perdas superiores a 1.000 litros por ligação/dia.
@@ -28,8 +36,9 @@ Volume em São Paulo: Mesmo em estados mais eficientes como São Paulo (32,66% d
 Custo Direto de Produção (OPEX): As Perdas Físicas, foco exclusivo do Sane.AI, representam um custo de produção "jogado fora" de aproximadamente R$ 2,4 bilhões ao ano.
 Retorno: Cada vazamento detectado precocemente pelo dispositivo economiza diretamente R$ 0,79/m³ na conta de energia e insumos químicos da operadora.
 Redução do Custo de Detecção (A Lógica Econômica): Conforme o conceito de "Nível Econômico de Vazamento", a viabilidade de reparar um vazamento depende do custo para detectá-lo.
-Inovação: Atualmente, a detecção depende de equipamentos caros ou varredura humana lenta. Ao implementar um nó de borda (Edge Node) com microcontroladores acessíveis (Teensy), o Sane.AI reduz drasticamente o custo marginal de detecção, tornando economicamente viável a localização de micro vazamentos que hoje são ignorados por serem "caros demais" para encontrar.
-Racional (Justificativa Técnica): A escolha pela classificação de áudio baseada em Redes Neurais Convolucionais 1D (1D-CNN) foi motivada pela falha demonstrada na análise univariada de amplitude para distinguir eventos transitórios (picos de volume) de vazamentos genuínos e persistentes. A plataforma Edge Impulse foi selecionada como ferramenta de MLOps (Machine Learning Operations) em Borda, viabilizando a otimização e a quantização do modelo para restrições estritas de hardware (ex: consumo de potência ultra baixo e memória RAM ≤ 100 KB).
+Inovação: Atualmente, a detecção depende de equipamentos caros ou varredura humana lenta. Ao implementar uma detecção na borda, o Sane.AI reduz drasticamente o custo marginal de detecção, tornando economicamente viável a localização de micro vazamentos que hoje são ignorados por serem "caros demais" para encontrar.
+Racional (Justificativa Técnica): A escolha pela classificação de áudio baseada em Redes Neurais Convolucionais 1D (1D-CNN) foi motivada pela falha demonstrada na análise univariada de amplitude para distinguir eventos transitórios (picos de volume) de vazamentos genuínos e persistentes. A plataforma Edge Impulse foi selecionada como ferramenta de MLOps (Machine Learning Operations) em Borda, viabilizando a otimização e a quantização do modelo para restrições estritas de hardware (ex: consumo de potência ultra baixo e memória RAM limitada).
+Este é uma aplicação que precisa funcionar na borda, porque os operados andam por todos os locais das cidades, e dois fatores obrigam essa necessiadade, o primeiro a baixa latÊncia requerida e segundo a falta de cobertura celular em todos os locais que os vazamentos podem aparecer.
 
 ## 2. Detalhamento do Processo e Iteração (A Jornada de Desenvolvimento)
 O processo de engenharia e otimização do modelo (M.O.) foi iterativo, passando por quatro refatorações críticas baseadas na análise de métricas de desempenho e viés de dados (data bias).
@@ -75,7 +84,7 @@ A partir daí ficou claro que um sistema que dependa apenas de features isoladas
   
 No campo, temos o oposto: projeção em alta dimensão, sobreposição forte entre classes e mudanças constantes de cenário (tipo de solo, profundidade, material do tubo, tráfego etc.). É justamente nesse ponto que a aplicação de IA entra na jornada:
 
-Em vez de confiar em uma ou duas features “escolhidas na mão”, usamos redes neurais para aprender, a partir de milhares de exemplos, o manifold completo onde os vazamentos vivem – combinando informações espectrais, temporais e estatísticas que não são visíveis em 2D ou 3D.
+Em vez de confiar em uma ou duas features “escolhidas na mão”, usamos redes neurais para aprender, a partir de exemplos, o manifold completo onde os vazamentos vivem – combinando informações espectrais, temporais e estatísticas que não são visíveis em 2D ou 3D.
 
 **Assim, o caminho foi:**
 
@@ -86,7 +95,7 @@ Em vez de confiar em uma ou duas features “escolhidas na mão”, usamos redes
 ### Fase 2: A Barreira da Memória e a Solução 1D
 Tentativas iniciais com Redes Neurais 2D (Visão Computacional) falharam devido à exaustão de memória (Failed to allocate bytes) no microcontrolador.
 * **Solução Arquitetural:** Migramos para uma 1D-CNN (Convolução Unidimensional).
-* **O "Pulo do Gato" (Kernel Size):** Para compensar a simplicidade da rede e permitir que ela entendesse melhor o ronco da terra, aumentamos o Kernel Size para 7. Isso funcionou como uma "lente grande angular" temporal, elevando a detecção para 87%. Adicionamos tambem camadas de dropout para evitar que o modelo tivesse overfitting.
+* **O "Pulo do Gato" (Kernel Size):** Para compensar a simplicidade da rede e permitir que ela entendesse melhor o ronco da terra, aumentamos o Kernel Size. Isso funcionou como uma "lente grande angular" temporal, elevando a detecção para 87%. Adicionamos tambem camadas de dropout para evitar que o modelo tivesse overfitting.
 
 ![Pipeline do Sane.AI](./assets/image_10.png)
 
@@ -156,7 +165,7 @@ A validação da arquitetura híbrida (Fase 5) revelou um desafio final: embora 
 Os dados foram coletados em cenários de campo reais, utilizando um transdutor sísmico de banda larga (Geofone) com acoplamento mecânico adaptado para a captação de vibrações de solo.
 
 * **Classe LEAK:** Gravações de vazamentos reais em diversas pressões e materiais de tubulação.
-* **Classe NO_LEAK:** Conjunto robusto de gravações de ruídos ambientais urbanos, abrangendo tráfego veicular, vibrações estruturais, ruídos impulsivos (passos, vozes) e o silêncio operacional do sistema.
+* **Classe NO_LEAK:** Conjunto robusto de gravações de ruídos ambientais urbanos, abrangendo tráfego veicular, vibrações estruturais, ruídos impulsivos (passos, vozes) e o silêncio operacional do sistema, foram tambem adicionados audios do dataset Urbansound8k (https://urbansounddataset.weebly.com/)
 
 ### Representatividade e Ajustes ###
 
@@ -173,7 +182,7 @@ A representatividade foi assegurada pela diversidade da classe NO_LEAK, com foco
 </p>
 
 ### Hardware Utilizado 
-* **Sensor de Aquisição:** Geofone (transdutor sísmico de baixa frequência).
+* **Sensor de Aquisição:** Geofone Digital - ECO300/ECO5000 (transdutor sísmico de baixa frequência).
 * **Unidade de Processamento (Edge Host):** Samsung Galaxy Tab A9+ 5G.
 * **Especificação:** Equipado com o chipset Qualcomm Snapdragon 695 5G (CPU Octa-core Kryo 660 de até 2.2 GHz e GPU Adreno 619). O uso deste hardware permite não apenas a inferência do modelo de Deep Learning com latência insignificante (usando o Qualcomm AI Engine), mas também a visualização dos espectrogramas em tempo real e transmissão de alertas via rede 5G.
 * **Interface:** Conversor Analógico-Digital (ADC) Integrado de alta resolução e baixa latência.
