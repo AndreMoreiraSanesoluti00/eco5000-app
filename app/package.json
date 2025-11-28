@@ -1,0 +1,36 @@
+{
+  "name": "eco5000-app",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "build:android": "expo prebuild --platform android && cd android && ./gradlew assembleDebug",
+    "clean": "expo prebuild --clean"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^7.1.22",
+    "@react-navigation/native-stack": "^7.8.1",
+    "expo": "~54.0.25",
+    "expo-audio": "^1.0.15",
+    "expo-av": "^16.0.7",
+    "expo-constants": "^18.0.10",
+    "expo-document-picker": "~14.0.7",
+    "expo-file-system": "~19.0.19",
+    "expo-status-bar": "~3.0.8",
+    "nativewind": "^4.2.1",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-screens": "~4.16.0",
+    "tailwindcss": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.0",
+    "babel-preset-expo": "^54.0.7",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}
