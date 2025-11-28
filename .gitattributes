@@ -1,2 +1,15 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+node_modules/** linguist-vendored
+android/** linguist-vendored
+ios/** linguist-vendored
+web/** linguist-vendored
+dist/** linguist-vendored
+build/** linguist-vendored
+coverage/** linguist-vendored
+.expo/** linguist-vendored
+.env/** linguist-vendored
+.env.local/** linguist-vendored
+.env.development.local/** linguist-vendored
+.env.test.local/** linguist-vendored
+.env.production.local/** linguist-vendored
