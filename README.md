@@ -30,9 +30,10 @@ Retorno: Cada vazamento detectado precocemente pelo dispositivo economiza direta
 Redução do Custo de Detecção (A Lógica Econômica): Conforme o conceito de "Nível Econômico de Vazamento", a viabilidade de reparar um vazamento depende do custo para detectá-lo.
 Inovação: Atualmente, a detecção depende de equipamentos caros ou varredura humana lenta. Ao implementar um nó de borda (Edge Node) com microcontroladores acessíveis (Teensy), o Sane.AI reduz drasticamente o custo marginal de detecção, tornando economicamente viável a localização de micro vazamentos que hoje são ignorados por serem "caros demais" para encontrar.
 Racional (Justificativa Técnica): A escolha pela classificação de áudio baseada em Redes Neurais Convolucionais 1D (1D-CNN) foi motivada pela falha demonstrada na análise univariada de amplitude para distinguir eventos transitórios (picos de volume) de vazamentos genuínos e persistentes. A plataforma Edge Impulse foi selecionada como ferramenta de MLOps (Machine Learning Operations) em Borda, viabilizando a otimização e a quantização do modelo para restrições estritas de hardware (ex: consumo de potência ultra baixo e memória RAM ≤ 100 KB).
+
 ## 2. Detalhamento do Processo e Iteração (A Jornada de Desenvolvimento)
 O processo de engenharia e otimização do modelo (M.O.) foi iterativo, passando por quatro refatorações críticas baseadas na análise de métricas de desempenho e viés de dados (data bias).
-
+![Pipeline do Sane.AI](./assets/image_1.png)
 ### Fase 1: O Viés de Dados "Limpos" e a Ilusão da Acurácia
 Inicialmente, o treinamento foi realizado utilizando bibliotecas de áudio digitais e amostras coletadas na web. Estes dados representavam um cenário idealizado: áudios cristalinos, padronizados e sem interferências externas.
 Falha: O modelo atingiu alta acurácia (85-95%) no painel de controle, mas a Matriz de Confusão revelou a falha crítica. O modelo sofreu de Overfitting aos dados limpos da web, tornando-se "surdo" para vazamentos reais em campo (baixo Recall) e incapaz de lidar com a complexidade acústica real.
