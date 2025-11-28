@@ -1,236 +1,230 @@
 # Sane.AI via Edge Impulse 💧🔍
-## 1. Racional e Definição do Projeto
-## Título do Projeto: Sane.AI
-## Seleção da Trilha: Edge AI Application Track (Foco na implementação prática, otimização de código e inferência em hardware de baixo poder computacional).
-## Descrição (Abstract):
-Este projeto propõe o desenvolvimento de um Sistema de Aprendizado de Máquina em Borda (Edge ML) otimizado para a detecção anômala de vazamentos em infraestruturas hidráulicas pressurizadas urbanas. A metodologia baseia-se na aquisição e análise espectral de assinaturas vibracionais do subsolo. Em contraste com os sistemas acústicos tradicionais, que dependem exclusivamente de limiares de amplitude (volume) ou da intervenção humana especializada, o modelo emprega uma arquitetura de Deep Learning para discernir a característica espectral de baixa frequência ("o ronco da terra") de um vazamento persistente contra ruídos urbanos complexos e transientes (tráfego, operações industriais, pedestres). O processamento da inferência é realizado em um dispositivo Android. A fonte dos dados é primariamente os geofones modelos ECO300 e ECO5000 da Sanesoluti. 
+## 1. Project Rationale and Definition
+## Project Title: Sane.AI
+## Track Selection: Edge AI Application Track (Focus on practical implementation, code optimization, and inference on low-computing hardware).
+## Description (Abstract):
+This project proposes the development of an Edge Machine Learning (Edge ML) system optimized for anomalous leak detection in urban pressurized hydraulic infrastructures. The methodology is based on the acquisition and spectral analysis of vibrational signatures from the subsurface. In contrast to traditional acoustic systems, which rely exclusively on amplitude (volume) thresholds or specialized human intervention, the model employs a Deep Learning architecture to discern the low-frequency spectral characteristic ("the rumble of the earth") of a persistent leak against complex and transient urban noises (traffic, industrial operations, pedestrians). Inference processing is performed on an Android device. The data source is primarily the ECO300 and ECO5000 geophone models from Sanesoluti. 
 
-## Caso de Uso e Contexto de Mercado: 
-A ineficiência hídrica é um desastre econômico e social no Brasil. Segundo o Estudo de Perdas de Água 2025 (Trata Brasil/GO Associados), o país desperdiça 40,31% de toda a água potável produzida nos sistemas de distribuição.
-Porem este não é um problema apenas local, mas sim o case global, vejamos o grafico abaixo 
+## Use Case and Market Context:
+Water inefficiency is an economic and social disaster in Brazil. According to the 2025 Water Loss Study (Trata Brasil/GO Associados), the country wastes 40.31% of all potable water produced in its distribution systems. However, this is not just a local problem, but a global one, as shown in the graph below.
 
 <p align="center">
   <img src="./assets/image_table.jpeg" width="50%">
 </p>
 
-Mesmo grandes cidades em paises desenvolvidos tem altas perdas de água como é o caso de Montreal
+Even large cities in developed countries have high water losses, as is the case in Montreal.
 
-### O Problema:
-Diariamente, o Brasil joga fora o equivalente a 6.346 piscinas olímpicas de água tratada. Cerca de 60% desse volume corresponde a perdas físicas (vazamentos na rede) , que poderiam abastecer 50 milhões de brasileiros anualmente se recuperadas.
-### A Falha Atual: 
-A localização desses vazamentos em cenários urbanos ruidosos é imprecisa. Métodos acústicos tradicionais geram falsos positivos e equipamentos de ponta são financeiramente inviáveis para monitorar a extensa malha de cidades com restrições orçamentárias.
-Atualmente existem tecnologias para a deteccção de vazamentos, os mesmos em alguns casos podem até ser detectados por satélite, mas detectar o vazamento é diferente de localizar o vazamento e ai que o real desafio surge. Tecnologias como o Asterra (https://asterra.io/solutions/recover/) conseguem detectar a existência de vazamentos, mas as botas no chão para sair de um POI (Point of interest) para uma localização exata e o reparo do vazamento é crucial, os principais métodos atuais requerem operadores experientes e altamente capacitados, e mesmo esses operadores dependem apenas de seus ouviodos para localizar esses vazamentos. 
+### The Problem:
+Every day, Brazil wastes the equivalent of 6,346 Olympic-sized swimming pools of treated water. About 60% of this volume corresponds to physical losses (leaks in the network), which could supply 50 million Brazilians annually if recovered.
+### The Current Failure: 
+Locating leaks in noisy urban environments is imprecise. Traditional acoustic methods generate false positives, and cutting-edge equipment is financially unfeasible for monitoring the extensive network of cities with budget constraints. Currently, technologies exist for leak detection; in some cases, leaks can even be detected by satellite, but detecting a leak is different from locating it, and that's where the real challenge arises. Technologies like Asterra ( https://asterra.io/solutions/recover/ ) can detect the existence of leaks, but the work involved in moving from a POI (Point of Interest) to an exact location and repairing the leak is crucial. The main current methods require experienced and highly trained operators, and even these operators rely solely on their ears to locate the leaks.
 
-### A Solução Sane.AI: 
-Um dispositivo de Borda (Edge Device) que utiliza modelos de Deep Learning, criados no Edge Impulse, para "ouvir" o vazamento real em meio ao caos urbano, atacando a maior fatia do desperdício no caso brasileiro.
-O sistema foca na confirmação da localização do vazamento combinado o uso de um modelo de ML com um geofone digital para captação de dados, os modelos funcionam como auxiliares capazes de orientar o usuário
-Justificativa Baseada em Dados (O Cenário Brasileiro): A relevância desse modelo é corroborada pelos dados do Estudo de Perdas de Água 2025, que evidenciam três pilares críticos para a implementação de hardware focado em perdas físicas:
+### The Sane.AI Solution: 
+An Edge Device that uses Deep Learning models, created in Edge Impulse, to "listen" for real leaks amidst urban chaos, tackling the largest share of waste in the Brazilian case. The system focuses on confirming the leak's location by combining the use of a machine learning model with a digital geophone for data collection; the models act as assistants capable of guiding the user. Data-Based Justification (The Brazilian Scenario): The relevance of this model is corroborated by data from the 2025 Water Loss Study, which highlights three critical pillars for the implementation of hardware focused on physical losses:
 
-### 1. A Predominância das Perdas Físicas (O Alvo do Projeto): 
-Ao contrário do senso comum de que as perdas se devem majoritariamente a fraudes, o estudo aponta que 60% do volume de água não faturada no Brasil corresponde a Perdas Físicas (Reais), ou seja, vazamentos na infraestrutura
-Implicação: O Sane.AI, ao utilizar redes neurais, ataca a causa raiz da maior parte do desperdício, estimada em mais de 3 bilhões de m³ anuais.
-### 2. Heterogeneidade Regional e o Paradoxo dos Grandes Centros: 
-O Sane.AI é vital tanto para regiões não desenvolvidas quanto para grandes centros urbanos.
-Mercados Críticos (Norte/Nordeste): A solução é desenhada para escalar em regiões onde a infraestrutura é precária, como o Norte (49,78% de perdas) e Nordeste (46,25%). Casos extremos incluem Maceió (AL), que perde 71,73% de sua água , e Macapá (AP), com perdas superiores a 1.000 litros por ligação/dia.
-O Caso do Rio de Janeiro: O estado do RJ apresenta perda na distribuição de 52,23%. Sua capital lidera o ranking negativo entre as capitais, desperdiçando 1.292,59 litros por ligação/dia, evidenciando a necessidade de novas tecnologias para detecção de vazamentos em metrópoles densas.
-Volume em São Paulo: Mesmo em estados mais eficientes como São Paulo (32,66% de perdas), a densidade da malha exige tecnologia de precisão para reduzir o volume absoluto de desperdício.
-### 3. Impacto Econômico e Monetização (O Business Case): Financeiramente, a ineficiência drena recursos bilionários. O custo total anual com perdas supera R$ 13 bilhões.
-Custo Direto de Produção (OPEX): As Perdas Físicas, foco exclusivo do Sane.AI, representam um custo de produção "jogado fora" de aproximadamente R$ 2,4 bilhões ao ano.
-Retorno: Cada vazamento detectado precocemente pelo dispositivo economiza diretamente R$ 0,79/m³ na conta de energia e insumos químicos da operadora.
-Redução do Custo de Detecção (A Lógica Econômica): Conforme o conceito de "Nível Econômico de Vazamento", a viabilidade de reparar um vazamento depende do custo para detectá-lo.
-Inovação: Atualmente, a detecção depende de equipamentos caros ou varredura humana lenta. Ao implementar uma detecção na borda, o Sane.AI reduz drasticamente o custo marginal de detecção, tornando economicamente viável a localização de micro vazamentos que hoje são ignorados por serem "caros demais" para encontrar.
-Racional (Justificativa Técnica): A escolha pela classificação de áudio baseada em Redes Neurais Convolucionais 1D (1D-CNN) foi motivada pela falha demonstrada na análise univariada de amplitude para distinguir eventos transitórios (picos de volume) de vazamentos genuínos e persistentes. A plataforma Edge Impulse foi selecionada como ferramenta de MLOps (Machine Learning Operations) em Borda, viabilizando a otimização e a quantização do modelo para restrições estritas de hardware (ex: consumo de potência ultra baixo e memória RAM limitada).
-Este é uma aplicação que precisa funcionar na borda, porque os operados andam por todos os locais das cidades, e dois fatores obrigam essa necessiadade, o primeiro a baixa latÊncia requerida e segundo a falta de cobertura celular em todos os locais que os vazamentos podem aparecer.
+### 1. The Predominance of Physical Losses (The Project's Target): 
+Contrary to the common belief that losses are mostly due to fraud, the study points out that 60% of the volume of unaccounted-for water in Brazil corresponds to Physical (Real) Losses, i.e., leaks in the infrastructure. Implication: By using neural networks, Sane.AI attacks the root cause of most of the waste, estimated at more than 3 billion m³ annually.
+### 2. Regional Heterogeneity and the Paradox of Large Urban Centers:
+Sane.AI is vital for both underdeveloped regions and large urban centers. Critical Markets (North/Northeast): The solution is designed to scale in regions where infrastructure is precarious, such as the North (49.78% losses) and Northeast (46.25%). Extreme cases include Maceió (AL), which loses 71.73% of its water, and Macapá (AP), with losses exceeding 1,000 liters per connection/day. 
+The Case of Rio de Janeiro: The state of Rio de Janeiro presents a distribution loss of 52.23%. Its capital leads the negative ranking among capitals, wasting 1,292.59 liters per connection/day, highlighting the need for new technologies for leak detection in dense metropolises. 
+Volume in São Paulo: Even in more efficient states like São Paulo (32.66% losses), the density of the network requires precision technology to reduce the absolute volume of waste.
+### 3. Economic Impact and Monetization (The Business Case): Financially, inefficiency drains billions of reais. The total annual cost of losses exceeds R$ 13 billion.
+Direct Production Cost (OPEX): Physical losses, the exclusive focus of Sane.AI, represent a "wasteful" production cost of approximately R$ 2.4 billion per year. 
+Return: Each leak detected early by the device directly saves R$ 0.79/m³ on the operator's energy and chemical input bill. 
+Reduction of Detection Cost (The Economic Logic): According to the concept of "Economic Level of Leakage," the viability of repairing a leak depends on the cost to detect it. Innovation: Currently, detection depends on expensive equipment or slow human scanning. By implementing edge detection, Sane.AI drastically reduces the marginal cost of detection, making it economically viable to locate micro-leaks that are currently ignored because they are "too expensive" to find. 
+Rationale (Technical Justification): The choice of audio classification based on 1D Convolutional Neural Networks (1D-CNN) was motivated by the demonstrated failure of univariate amplitude analysis to distinguish transient events (volume peaks) from genuine and persistent leaks. The Edge Impulse platform was selected as the MLOps (Machine Learning Operations) tool at the edge, enabling the optimization and quantization of the model for strict hardware constraints (e.g., ultra-low power consumption and limited RAM). 
+This is an application that needs to work at the edge because operators move around the city, and two factors necessitate this: first, the low latency required, and second, the lack of cellular coverage in all locations where leaks may occur.
 
-## 2. Detalhamento do Processo e Iteração (A Jornada de Desenvolvimento)
-O processo de engenharia e otimização do modelo (M.O.) foi iterativo, passando por quatro refatorações críticas baseadas na análise de métricas de desempenho e viés de dados (data bias).
+## 2. Detailed Process and Iteration (The Development Journey)
+The model engineering and optimization (MO) process was iterative, going through four critical refactorings based on the analysis of performance metrics and data bias.
 
 ![Pipeline do Sane.AI](./assets/image_1.png)
 
-### Fase 1: O Viés de Dados "Limpos" e a Ilusão da Acurácia
-Inicialmente, o treinamento foi realizado utilizando bibliotecas de áudio digitais e amostras coletadas na web. Estes dados representavam um cenário idealizado: áudios cristalinos, padronizados e sem interferências externas.
-Falha: O modelo atingiu alta acurácia (85-95%) no painel de controle, mas a Matriz de Confusão revelou a falha crítica. O modelo sofreu de Overfitting aos dados limpos da web, tornando-se "surdo" para vazamentos reais em campo (baixo Recall) e incapaz de lidar com a complexidade acústica real.
-#### Contexto Crítico: A Expedição ao Rio de Janeiro e a Física
-Para corrigir a falta de sensibilidade gerada pelos dados artificiais, a equipe realizou uma **expedição técnica intensiva de uma semana no Estado do Rio de Janeiro**. O objetivo foi capturar a realidade acústica "suja" e não padronizada das tubulações urbanas.
+### Phase 1: Bias of "Clean" Data and the Illusion of Accuracy
+Initially, training was conducted using digital audio libraries and samples collected from the web. This data represented an idealized scenario: crystal-clear, standardized audio without external interference. 
+Failure: The model achieved high accuracy (85-95%) on the control panel, but the Confusion Matrix revealed a critical flaw. The model suffered from overfitting to clean web data, becoming "deaf" to real field leaks (low recall) and unable to handle real acoustic complexity.
 
-Utilizando um Geofone de alta sensibilidade, a equipe percorreu diversas localidades estratégicas — Xerém, Ilha do Governador, a capital Rio de Janeiro e a Lapa — coletando um dataset robusto de vazamentos reais e cenários de não-vazamento (ruídos ambientes).
+#### Critical Context: The Expedition to Rio de Janeiro and Physics
+To correct the lack of sensitivity generated by artificial data, the team carried out an **intensive week-long technical expedition in the State of Rio de Janeiro**. The objective was to capture the "dirty" and non-standardized acoustic reality of urban piping.
 
-O contraste com os áudios de laboratório e dos manuais foi imediato. No material de referência, o vazamento era descrito como um “chiado” agudo e bem definido; bastava olhar a energia em alta frequência e o problema estaria resolvido. Quando o sistema foi para a rua, a história mudou.
+Using a high-sensitivity geophone, the team surveyed several strategic locations — Xerém, Ilha do Governador, the capital Rio de Janeiro, and Lapa — collecting a robust dataset of real leaks and non-leak scenarios (ambient noise).
+
+The contrast with the laboratory audio recordings and manuals was immediate. In the reference material, the leak was described as a sharp, well-defined "hiss"; simply looking at the high-frequency energy would have solved the problem. When the system went into the street, the story changed.
 
 <img src="./assets/image_2.png" width="33%"> <img src="./assets/image_3.png" width="33%">
 
-**Ambiente real:** o erro da abordagem inicial
+**Real-world environment**: the error of the initial approach
 
-O ambiente urbano caótico – trânsito pesado, bombas de recalque, obras, interferências elétricas – expôs uma falha básica dessa visão clássica:
+The chaotic urban environment – ​​heavy traffic, pumping stations, construction, electrical interference – exposed a basic flaw in this classical view:
 
-* **Filtro físico do solo:** na prática, o solo, o revestimento do tubo e o próprio acoplamento do geofone funcionam como um filtro passa‑baixas natural. As medições mostraram que as componentes acima de ~1300 Hz são fortemente atenuadas.
-* Aquele “chiado” agudo dos exemplos da web simplesmente não chega ao sensor em campo. Ruído que insiste em aparecer: ao mesmo tempo, o mundo não some. Caminhões, ônibus, britadeiras e até vibrações de prédios vizinhos continuam entrando no sistema, muitas vezes na mesma faixa de frequência em que o vazamento vive agora (mais grave, mais “ronco” do que “chiado”).
+* **Physical soil filter:** in practice, the soil, the tube lining, and the geophone coupling itself act as a natural low-pass filter. Measurements showed that components above ~1300 Hz are strongly attenuated.
+* That high-pitched “hiss” from examples on the web simply doesn't reach the sensor in the field. The noise persists: at the same time, the world doesn't disappear. Trucks, buses, jackhammers, and even vibrations from neighboring buildings continue to enter the system, often in the same frequency range as the leak now (more serious, more of a “rumble” than a “hiss”).
 
-Ou seja: o solo filtra o vazamento, mas não filtra o caos urbano com a mesma eficiência. O resultado é um cenário em que nenhuma faixa isolada de frequência é “limpa” o suficiente para separar vazamento de não‑vazamento com regras simples.
+In other words: the soil filters the leak, but it doesn't filter urban chaos with the same efficiency. The result is a scenario where no single frequency band is "clean" enough to separate leakage from non-leakage using simple rules.
 
-**Novo foco:** não é uma frequência, é um padrão. A análise dos dados reais desta campanha mostrou que a assinatura do vazamento que sobrevive ao ambiente urbano não é um pico em um único bin de frequência. Ela aparece como:
+**New focus**: it's not a frequency, it's a pattern. Analysis of real data from this campaign showed that the leak signature that survives the urban environment is not a peak in a single frequency bin. It appears as:
 
-* Uma distribuição específica de energia ao longo do espectro, e
-* Uma notável constância temporal desse som, mesmo quando coberto por ruídos intermitentes.
+* A specific distribution of energy across the spectrum, and
+* A remarkable temporal constancy of this sound, even when covered by intermittent noises
   
-O “ronco da terra” é exatamente isso: um som grave, estável, quase escondido atrás dos ruídos cotidianos, mas que não desaparece. Ele não se revela em uma única feature simples; vive em um conjunto de relações sutis entre frequências e tempo.
+The “rumble of the earth” is exactly that: a deep, steady sound, almost hidden behind everyday noises, but which does not disappear. It does not reveal itself in a single simple feature; it lives in a set of subtle relationships between frequencies and time.
 
-**Por que modelos baseados em poucas features não bastam?**
+**Why are models based on few features not enough**
 
-A partir daí ficou claro que um sistema que dependa apenas de features isoladas – por exemplo, “energia entre 1–3 kHz” ou “RMS acima de X dB” – tende a funcionar bem no laboratório e falhar na aplicação real.
+From then on, it became clear that a system that relies solely on isolated features – for example, “energy between 1–3 kHz” or “RMS above X dB” – tends to work well in the laboratory and fail in real-world applications.
 
-**Essas features supõem:**
+**These features assume:**
 
-* Um espectro onde o vazamento está separado do ruído, e
-* Um ambiente relativamente estacionário.
+* A spectrum where the leakage is separated from the noise, and
+* A relatively stationary environment.
   
-No campo, temos o oposto: projeção em alta dimensão, sobreposição forte entre classes e mudanças constantes de cenário (tipo de solo, profundidade, material do tubo, tráfego etc.). É justamente nesse ponto que a aplicação de IA entra na jornada:
+In the field, we have the opposite: high-dimensional projection, strong overlap between classes, and constant changes in scenery (soil type, depth, pipe material, traffic, etc.). It is precisely at this point that the application of AI enters the journey:
 
-Em vez de confiar em uma ou duas features “escolhidas na mão”, usamos redes neurais para aprender, a partir de exemplos, o manifold completo onde os vazamentos vivem – combinando informações espectrais, temporais e estatísticas que não são visíveis em 2D ou 3D.
+Instead of relying on one or two “hand-picked” features, we use neural networks to learn, from examples, the entire manifold where leaks reside – combining spectral, temporal, and statistical information that is not visible in 2D or 3D.
 
-**Assim, o caminho foi:**
+**So, the route was:**
 
-* Seguir os manuais e reproduzir a lógica clássica baseada em alta frequência.
-* Descobrir, em campo, o filtro físico imposto pelo solo e o impacto do ruído urbano, que invalida essas premissas simples.
-* Migrar para uma abordagem orientada a dados (1D‑CNN + MFE, etc.), capaz de capturar o “ronco da terra” mesmo quando ele está projetado em um espaço de alta dimensão e misturado a todos os outros sons da cidade.
+* Follow the manuals and reproduce the classic high-frequency-based logic.
+* Discovering, in the field, the physical filter imposed by the soil and the impact of urban noise, which invalidates these simple assumptions.
+* Migrate to a data-driven approach (1D-CNN + MFE, etc.), capable of capturing the “rumble of the earth” even when it is projected into a high-dimensional space and mixed with all the other sounds of the city.
 
-### Fase 2: A Barreira da Memória e a Solução 1D
-Tentativas iniciais com Redes Neurais 2D (Visão Computacional) falharam devido à exaustão de memória (Failed to allocate bytes) no microcontrolador.
-* **Solução Arquitetural:** Migramos para uma 1D-CNN (Convolução Unidimensional).
-* **O "Pulo do Gato" (Kernel Size):** Para compensar a simplicidade da rede e permitir que ela entendesse melhor o ronco da terra, aumentamos o Kernel Size. Isso funcionou como uma "lente grande angular" temporal, elevando a detecção para 87%. Adicionamos tambem camadas de dropout para evitar que o modelo tivesse overfitting.
+### Phase 2: The Memory Barrier and the 1D Solution
+Initial attempts with 2D Neural Networks (Computer Vision) failed due to memory exhaustion (Failed to allocate bytes) in the microcontroller.
+* **Architectural Solution:** We migrated to a 1D-CNN (One-Dimensional Convolutional Kernel).
+* **The "Cutback" (Kernel Size):** To compensate for the network's simplicity and allow it to better understand the earth's rumble, we increased the Kernel Size. This acted as a temporal "wide-angle lens," raising the detection rate to 87%. We also added dropout layers to prevent the model from overfitting.
 
 ![Pipeline do Sane.AI](./assets/image_10.png)
 
-### Fase 3: A Aposta no Espectrograma e o Limite de Performance
-Guiados pelas análises iniciais do EON Tuner, implementamos uma arquitetura baseada em **Espectrogramas de Alta Resolução**. A hipótese era que a "visão computacional" aplicada ao som revelaria a textura sutil do vazamento.
+### Phase 3: Betting on the Spectrogram and the Performance Limit
+Guided by the initial analyses of the EON Tuner, we implemented an architecture based on **High-Resolution Spectrograms**. The hypothesis was that "computer vision" applied to sound would reveal the subtle texture of the leakage.
 
-* **O Teste:** Configuramos o DSP com FFT de 512 e treinamos uma CNN para analisar as imagens espectrais.
-* **O Resultado:** O modelo atingiu um platô de ~86% de acurácia. Embora fosse um bom resultado, ainda havia uma taxa residual de confusão entre ruídos complexos e vazamentos.
-* **O Gargalo:** Percebemos que, para aumentar a precisão, precisávamos de mais contexto temporal (analisar janelas de tempo maiores), mas o Espectrograma era "pesado" demais computacionalmente. Aumentar o tempo com essa técnica estouraria a memória do microcontrolador. Estávamos travados.
+* **The Test:** We configured the DSP with a 512 FFT and trained a CNN to analyze the spectral images.
+* **The Result:** The model reached a plateau of ~86% accuracy. Although this was a good result, there was still a residual rate of confusion between complex noises and leaks.
+* **The Bottleneck:** We realized that to increase precision, we needed more temporal context (analyzing larger time windows), but the Spectrogram was too computationally "heavy." Increasing the time frame with this technique would overflow the microcontroller's memory. We were stuck.
 
 <p align="center">
   <img src="./assets/image_11.png" width="45%">
 </p>
 
-### Fase 4: O Pivô Estratégico (Tempo > Resolução Visual)
+### Phase 4: The Strategic Pivot (Time > Visual Resolution)
 
-Decidimos mudar a abordagem. A diferença entre um carro passando e um vazamento não estava apenas no detalhe da frequência, mas na **persistência do som ao longo do tempo**.
+We decided to change our approach. The difference between a passing car and a leak wasn't just in the frequency, but in the **persistence of the sound over time**.
 
-* **A Mudança Radical:** Aumentamos a janela de amostragem de 2 segundos para 5 segundos (5000 ms). Isso permitiu que a IA "ouvisse" a história completa do som.
-* **O Retorno ao MFE:** Para processar 5 segundos de áudio sem travar o hardware, substituímos o Espectrograma pesado pelo MFE (Mel-Filterbank Energy).
-* **O Ganho:** O MFE comprime a informação de frequência de forma eficiente. Ao combiná-lo com a janela de 5 segundos, conseguimos processar um contexto temporal 2,5x maior.
-* **Resultado:** Essa alteração simples, mas estratégica, nos deu o ganho crítico de +2% de acurácia imediata e, mais importante, eliminou a instabilidade nas detecções.
+* **The Radical Change:** We increased the sampling window from 2 seconds to 5 seconds (5000 ms). This allowed the AI ​​to "hear" the complete story of the sound.
+* **Returning to MFE:** To process 5 seconds of audio without crashing the hardware, we replaced the heavy Spectrogram with MFE (Mel-Filterbank Energy).
+* **The Gain:** MFE compresses frequency information efficiently. By combining it with the 5-second window, we can process a temporal context 2.5 times larger.
+* **Result:** This simple but strategic change gave us a critical gain of +2% in immediate accuracy and, more importantly, eliminated instability in detections.
 
-### Fase 5: A Solução Híbrida (Feature Fusion) e a Identificação do Overfitting
+### Phase 5: The Hybrid Solution (Feature Fusion) and the Identification of Overfitting
 
-Com a entrada de dados otimizada (Janela de 5s + MFE), refinamos o "cérebro" do sistema para uma arquitetura de **Fusão de Características** (Feature Fusion). Em vez de confiar em apenas um fluxo de dados, criamos uma estrutura robusta de entrada combinada:
+With optimized data input (5s Window + MFE), we refined the system's "brain" into a **Feature Fusion** architecture . Instead of relying on just one data stream, we created a robust combined input framework:
 
-* **Entrada Dupla:** O sistema processa simultaneamente o **MFE** (a assinatura auditiva humana) e as **Spectral Features** (estatística matemática bruta do sinal).
-* **Arquitetura Neural Híbrida:** Implementamos dois classificadores distintos operando em paralelo:
-   * **Visual:** Uma 1D-CNN processando o MFE para identificar texturas.
-   * **Estatístico:** Um MLP (Multilayer Perceptron) processando as Spectral Features para validar a energia do sinal.
-**A Lógica de Segurança (Porta AND):** Para mitigar erros, a decisão final foi projetada seguindo uma lógica de porta **AND**, o sistema só deveria disparar um alerta se ambos os modelos detectassem a classe alvo simultaneamente.Essa redundância algorítmica visava reduzir drasticamente a taxa de falsos positivos, cruciais para evitar custos operacionais desnecessários com escavações.
+* **Dual Input:** The system simultaneously processes the **MFE** (the human auditory signature) and the **Spectral Features** (raw mathematical statistics of the signal).
+* **Hybrid Neural Architecture:** We implemented two distinct classifiers operating in parallel:
+   * **Visual:** A 1D-CNN processing the MFE to identify textures.
+   * **Statistical:** An MLP (Multilayer Perceptron) processing the Spectral Features to validate the signal energy.
+**Safety Logic (AND Gate):** To mitigate errors, the final decision was designed following an AND gate logic ; the system should only trigger an alert if both models detect the target class simultaneously. This algorithmic redundancy aimed to drastically reduce the false positive rate, crucial for avoiding unnecessary operational costs with excavations.
 
-A importancia de manter-se ambos os modelos se dá quando olhamos a validação:
+The importance of maintaining both models becomes clear when we look at the validation:
 
 <p align="center">
   <img src="./assets/image_12.png" >
 </p>
 
-A validação parece idêntica, porem quando analisamos os resultados individualmente:
+The validation appears identical, however when we analyze the results individually:
 
 <p align="center">
   <img src="./assets/image_13.png" width="50%">
 </p>
 
-**O Diagnóstico de Overfitting:** Os resultados preliminares desta fase atingiram o que parecia ser o "Santo Graal": **100% de Recall** na detecção de vazamentos. No entanto, uma análise detalhada da validação cruzada revelou um problema de **Overfitting**. Embora o modelo não perdesse nenhum vazamento, ele demonstrou uma sensibilidade excessiva ("paranoia") em dados novos não vistos durante o treino, gerando incertezas e falsos positivos que a lógica "AND" sozinha não conseguia filtrar totalmente. O modelo estava **"decorando"** padrões de ruído específicos do conjunto de treino.
+**Overfitting Diagnosis:** Preliminary results from this phase achieved what seemed to be the "Holy Grail": **100% recall** in leak detection. However, a detailed cross-validation analysis revealed an **overfitting problem**. Although the model did not miss any leaks, it demonstrated excessive sensitivity ("paranoia") to new data not seen during training, generating uncertainties and false positives that "AND" logic alone could not fully filter out. The model was "**memorizing**" specific noise patterns from the training set.
 
-### Fase 6: O Ajuste Final e a Generalização (Resultados Finais)
+### Phase 6: Final Adjustment and Generalization (Final Results)
 
-A validação da arquitetura híbrida (Fase 5) revelou um desafio final: embora o modelo tivesse alta sensibilidade, a taxa de falsos positivos em ambientes ruidosos ainda oscilava entre 4% e 19% dependendo do algoritmo usado (CNN vs. Wavelet).
+Validation of the hybrid architecture (Phase 5) revealed a final challenge: although the model had high sensitivity, the false positive rate in noisy environments still fluctuated between 4% and 19% depending on the algorithm used (CNN vs. Wavelet).
 
-**A Solução de Engenharia** (Lógica de Persistência): Entendemos que a IA não precisava ser perfeita a cada milissegundo, ela precisava ser perfeita no diagnóstico final. Implementamos uma camada de pós-processamento no firmware (C++) que atua como um "juiz temporal":
+**The Engineering Solution** (Persistence Logic): We understood that AI didn't need to be perfect every millisecond; it needed to be perfect in the final diagnosis. We implemented a post-processing layer in the firmware (C++) that acts as a "temporal judge":
 
-* **Filtro de Consenso:** O sistema não dispara o alarme no primeiro sinal positivo.
-* **Janela de Confirmação:** O modelo 1D-CNN (que provou ser superior com 88.5% de precisão base) precisa sustentar a detecção de "Vazamento" por **3 janelas consecutivas (15 segundos)**.
+* **Consensus Filter:** The system does not trigger the alarm on the first positive signal.
+* **Confirmation Window: The 1D-CNN model (which has proven superior with 88.5% baseline accuracy) needs to sustain "Leak" detection for **3 consecutive windows (15 seconds)**.
 
-**Resultado Consolidado:** Essa lógica simples eliminou estatisticamente os falsos positivos causados por ruídos transientes (como uma moto passando, que dura apenas 1 ou 2 janelas). O sistema final, rodando no Galaxy Tab A9+, atingiu a estabilidade operacional necessária para o campo, com uma taxa de detecção real virtualmente de 100% para vazamentos contínuos e zero falsos alarmes para ruídos urbanos comuns.
+**Consolidated Result:** This simple logic statistically eliminated false positives caused by transient noises (such as a passing motorcycle, which lasts only 1 or 2 windows). The final system, running on the Galaxy Tab A9+, achieved the operational stability required for the field, with a virtually 100% real detection rate for continuous leaks and zero false alarms for common urban noises.
 
 <p align="center">
   <img src="./assets/image_14.png" width="50%">
 </p>
 
-# 3. Qualidade e Uso do Conjunto de Dados
+## 3. Quality and Use of the Dataset
 
-**Documentação do Dataset**
+**Dataset Documentation**
 
-Os dados foram coletados em cenários de campo reais, utilizando um transdutor sísmico de banda larga (Geofone) com acoplamento mecânico adaptado para a captação de vibrações de solo.
+The data were collected in real-world field scenarios using a broadband seismic transducer (Geophone) with mechanical coupling adapted for capturing ground vibrations.
 
-* **Classe LEAK:** Gravações de vazamentos reais em diversas pressões e materiais de tubulação.
-* **Classe NO_LEAK:** Conjunto robusto de gravações de ruídos ambientais urbanos, abrangendo tráfego veicular, vibrações estruturais, ruídos impulsivos (passos, vozes) e o silêncio operacional do sistema, foram tambem adicionados audios do dataset Urbansound8k (https://urbansounddataset.weebly.com/)
+* **LEAK Class:** Recordings of actual leaks at various pressures and in piping materials.
+* **NO_LEAK Class:** Robust set of recordings of urban environmental noises, encompassing vehicular traffic, structural vibrations, impulsive noises (footsteps, voices) and the operational silence of the system; audio from the Urbansound8k dataset ( https://urbansounddataset.weebly.com/ ) was also added.
 
-### Representatividade e Ajustes ###
+### Representativeness and Adjustments
 
-A representatividade foi assegurada pela diversidade da classe NO_LEAK, com foco em mitigar o risco de data bias. Foi realizada uma coleta proposital de áudios contendo ruídos impulsivos de alta amplitude (ex: motocicletas passando) para treinar explicitamente a IA a distinguir que a Alta Amplitude é ortogonal à classificação de Vazamento, forçando-a a focar na assinatura de frequência persistente.
+Representativeness was ensured by the diversity of the NO_LEAK class, focusing on mitigating the risk of data bias. A purposeful collection of audio containing high-amplitude impulsive noises (e.g., passing motorcycles) was carried out to explicitly train the AI ​​to distinguish that High Amplitude is orthogonal to the Leakage classification, forcing it to focus on the persistent frequency signature.
 
-**Abertura e Licença:** O dataset foi curado para anonimização de informações sensíveis (remoção de vozes identificáveis) e será disponibilizado sob licença permissiva (MIT/Apache) para validação e reprodução.
+**Openness and License:** The dataset has been curated to anonymize sensitive information (removal of identifiable voices) and will be made available under a permissive license (MIT/Apache) for validation and reproduction.
 
-**Link para o Dataset:** https://studio.edgeimpulse.com/public/833695
+**Link to the Dataset:** https://studio.edgeimpulse.com/public/833695
 
-# 4. Componentes de Hardware e Reprodutibilidade
+# 4. Hardware Components and Reproducibility
 
 <p align="center">
   <img src="./assets/image_15.png" width="50%">
 </p>
 
-### Hardware Utilizado 
-* **Sensor de Aquisição:** Geofone Digital - ECO300/ECO5000 (transdutor sísmico de baixa frequência).
-* **Unidade de Processamento (Edge Host):** Samsung Galaxy Tab A9+ 5G.
-* **Especificação:** Equipado com o chipset Qualcomm Snapdragon 695 5G (CPU Octa-core Kryo 660 de até 2.2 GHz e GPU Adreno 619). O uso deste hardware permite não apenas a inferência do modelo de Deep Learning com latência insignificante (usando o Qualcomm AI Engine), mas também a visualização dos espectrogramas em tempo real e transmissão de alertas via rede 5G.
-* **Interface:** Conversor Analógico-Digital (ADC) Integrado de alta resolução e baixa latência.
+### Hardware Used
+* **Acquisition Sensor:** Digital Geophone - ECO300/ECO5000 (low-frequency seismic transducer).
+* **Processing Unit (Edge Host):** Samsung Galaxy Tab A9+ 5G.
+* **Specification:** Equipped with the Qualcomm Snapdragon 695 5G chipset (Octa-core Kryo 660 CPU up to 2.2 GHz and Adreno 619 GPU). The use of this hardware allows not only the inference of the Deep Learning model with negligible latency (using the Qualcomm AI Engine), but also the visualization of spectrograms in real time and transmission of alerts via 5G network.
+* **Interface:** Integrated high-resolution, low-latency Analog-to-Digital Converter (ADC).
 
 <p align="center">
   <img src="./assets/image_geofone.jpeg" width="45%">
 </p>
 
-### Diagrama de Fluxo (Pipeline Híbrido de Edge ML)
- O fluxo de dados foi desenhado para processamento paralelo no microcontrolador:
+### Flow Diagram (Hybrid Edge ML Pipeline)
+The data flow was designed for parallel processing on the microcontroller:
  
 ![Pipeline do Sane.AI](./assets/image_16.png)
 
-1. **Aquisição:** Captura de vibração a 48 kHz em janelas de 5 segundos.
-2. **Pré-processamento Paralelo (Dual DSP):**
-   * **Via A:** Geração de Espectrograma (FFT 128) para análise visual.
-   * **Via B:** Extração de Características Espectrais (Spectral Features) para análise estatística.
-3. **Inferência Simultânea:**
-   * A CNN processa o Espectrograma buscando padrões de textura.
-   * A Rede Densa processa as estatísticas buscando anomalias de energia.
-4. **Fusão de Decisão:** O firmware avalia as saídas dos dois modelos. A classificação final de "Vazamento" é resultado da combinação inteligente dessas duas inteligências distintas.
+1. **Acquisition:** Vibration capture at 48 kHz in 5-second windows.
+2. **Parallel Preprocessing (Dual DSP):**
+   * **Route A:** Spectrogram generation (FFT 128) for visual analysis.
+   * **Route B:** Extraction of Spectral Features for statistical analysis.
+3. **Simultaneous Inference:**
+   * CNN processes the spectrogram looking for texture patterns.
+   * The Dense Network processes statistics looking for energy anomalies.
+4. **Decision Fusion:** The firmware evaluates the outputs of the two models. The final "Leak" classification is the result of the intelligent combination of these two distinct intelligences.
 
-### Código e Repositório 
+### Code and Repository
 
-Todo o código fonte da aplicação, incluindo a biblioteca otimizada exportada do Edge Impulse e a lógica de aplicação de Pós-processamento em C++ (main.cpp), está versionado:
+All the application's source code, including the optimized library exported from Edge Impulse and the C++ post-processing application logic (main.cpp), is versioned:
 
 **GitHub:** https://github.com/Sanesoluti-dev/Cod_teensy
 
-### Protocolo de Reprodução Deste Projeto
-* **Clone o Projeto: Acessar e clonar o projeto público na plataforma Edge Impulse:** https://studio.edgeimpulse.com/studio/833889
-* **Exportação do Modelo:** Exportar o modelo treinado como uma biblioteca C++ otimizada para Edge.
-* **Compilação:** Utilizar o código-fonte de aplicação fornecido no repositório GitHub para compilar o firmware para o hardware alvo (Teensy 4.1).
-* **Teste de Validação:** Utilizar um gerador de ruído branco de baixa frequência para simular a assinatura de vazamento e inputs impulsivos (ex: toque ou batida no sensor) para simular eventos de "Não Vazamento", validando a robustez do classificador.
+### Reproduction Protocol for this Project
+* **Clone the Project: Access and clone the public project on the Edge Impulse platform:** https://studio.edgeimpulse.com/studio/833889
+* **Exporting the Model:** Export the trained model as an Edge-optimized C++ library.
+* **Application Build & Deployment:** Use the source code provided in the GitHub repository to build the Android application package (APK) and install it on the target device (Samsung Galaxy Tab A9+ 5G).
+* **Validation Test:** Use a low-frequency white noise generator to simulate the leak signature and impulsive inputs (e.g., touching or hitting the sensor) to simulate "No Leak" events, validating the classifier's robustness.
 
-# 5. Conclusão do Projeto
+## 5. Project Conclusion
 
-O **Sane.AI** inova ao trazer para a borda (Edge) uma complexidade geralmente reservada à nuvem: a inferência **multi-modelo**.
+**Sane.AI** innovates by bringing to the edge a complexity usually reserved for the cloud: **multi-model inference**.
 
-Chegar a este resultado exigiu uma jornada exaustiva de engenharia e validação. Testamos uma ampla diversidade de arquiteturas — desde Redes Neurais Densas (MLP) até CNNs 1D e 2D — combinadas com diferentes técnicas de processamento de sinal (MFE, Espectrograma, Wavelet). Durante esse processo, enfrentamos desafios críticos, onde diversos modelos que pareciam promissores no laboratório falharam na validação devido a um **overfitting severo**, "decorando" ruídos específicos em vez de aprender a assinatura real do vazamento.
+Reaching this result required an exhaustive journey of engineering and validation. We tested a wide variety of architectures—from Dense Neural Networks (MLP) to 1D and 2D CNNs—combined with different signal processing techniques (MFE, Spectrogram, Wavelet). During this process, we faced critical challenges, where several models that seemed promising in the lab failed validation due to **severe overfitting**, "memorizing" specific noises instead of learning the actual signature of the leak.
 
-Nossa conclusão técnica é que a robustez necessária para o ambiente urbano caótico não vem de um único "algoritmo mágico", mas da orquestração de diferentes técnicas para mitigar esses vieses. Ao combinar a visão computacional (CNN sobre Espectrograma/MFE) com a análise estatística espectral (Spectral Features) na mesma janela temporal de 2 segundos, criamos um dispositivo que possui, efetivamente, "dois cérebros".
+Our technical conclusion is that the robustness needed for the chaotic urban environment does not come from a single "magic algorithm," but from the orchestration of different techniques to mitigate these biases. By combining computer vision (CNN over Spectrogram/MFE) with spectral statistical analysis (Spectral Features) in the same 2-second time window, we created a device that effectively has "two brains."
 
-O resultado é um sensor que não apenas escuta, mas valida o que ouviu, garantindo a precisão necessária para combater o desperdício de água no planeta. A experiência prévia da nossa equipe no desenvolvimento de geofones e na localização física de vazamentos foi fundamental para guiar a Inteligência Artificial através desses desafios e alcançar os resultados aqui apresentados. 
+The result is a sensor that not only listens but validates what it hears, ensuring the precision needed to combat water waste on the planet. Our team's prior experience in developing geophones and physically locating leaks was fundamental in guiding the Artificial Intelligence through these challenges and achieving the results presented here. 
 
-# 6. Referências de Pesquisa e Fontes
-### [1] Ministério das Cidades and Secretaria Nacional de Saneamento, "Relatório SINISA: Diagnóstico dos Serviços de Água e Esgotos 2024 (Ano-base 2023)," Brasília, Brazil, 2024. [Online]. Available: https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/sinisa/resultados-sinisa/copy_of_RELATORIO_SINISA_ABASTECIMENTO_DE_AGUA_2024.pdf
+## 6. Research References and Sources
+### [1] Ministry of Cities and National Secretariat of Sanitation, "SINISA Report: Diagnosis of Water and Sewage Services 2024 (Base Year 2023)," Brasília, Brazil, 2024. [Online]. Available: https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/sinisa/resultados-sinisa/copy_of_RELATORIO_SINISA_ABASTECIMENTO_DE_AGUA_2024.pdf
 ### [2] Instituto Trata Brasil and GO Associados, "Estudo de Perdas de Água 2025 (SNIS 2023 base year): Desafios para a Universalização do Saneamento," São Paulo, Brazil, 2025. [Online]. Available: https://tratabrasil.org.br/
 ### [3] Edge Impulse Inc., "Audio Classification with MFE and Spectral Features on Edge Devices," Edge Impulse Documentation, 2024. [Online]. Available: https://docs.edgeimpulse.com/docs/tutorials/audio-classification
 ### [4] Consultancy-me.com, "Leakage in water infrastructure exacerbating water scarcity," Middle East, 2023. [Online]. Available: https://www.consultancy-me.com/news/6706/leakage-in-water-infrastructure-exacerbating-water-scarcity
