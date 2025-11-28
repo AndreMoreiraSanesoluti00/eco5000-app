@@ -9,7 +9,9 @@ Este projeto propõe o desenvolvimento de um Sistema de Aprendizado de Máquina 
 A ineficiência hídrica é um desastre econômico e social no Brasil. Segundo o Estudo de Perdas de Água 2025 (Trata Brasil/GO Associados), o país desperdiça 40,31% de toda a água potável produzida nos sistemas de distribuição.
 Porem este não é um problema apenas local, mas sim o case global, vejamos o grafico abaixo 
 
-https://www.statista.com/chart/4528/some-cities-suffer-enormous-water-losses-every-year/
+<p align="center">
+  <img src="./assets/image_table.jpeg" width="50%">
+</p>
 
 Mesmo grandes cidades em paises desenvolvidos tem altas perdas de água como é o caso de Montreal
 
@@ -55,7 +57,7 @@ Utilizando um Geofone de alta sensibilidade, a equipe percorreu diversas localid
 
 O contraste com os áudios de laboratório e dos manuais foi imediato. No material de referência, o vazamento era descrito como um “chiado” agudo e bem definido; bastava olhar a energia em alta frequência e o problema estaria resolvido. Quando o sistema foi para a rua, a história mudou.
 
-<img src="./assets/image_2.png" width="45%"> <img src="./assets/image_3.png" width="45%">
+<img src="./assets/image_2.png" width="33%"> <img src="./assets/image_3.png" width="33%">
 
 **Ambiente real:** o erro da abordagem inicial
 
@@ -186,7 +188,11 @@ A representatividade foi assegurada pela diversidade da classe NO_LEAK, com foco
 * **Unidade de Processamento (Edge Host):** Samsung Galaxy Tab A9+ 5G.
 * **Especificação:** Equipado com o chipset Qualcomm Snapdragon 695 5G (CPU Octa-core Kryo 660 de até 2.2 GHz e GPU Adreno 619). O uso deste hardware permite não apenas a inferência do modelo de Deep Learning com latência insignificante (usando o Qualcomm AI Engine), mas também a visualização dos espectrogramas em tempo real e transmissão de alertas via rede 5G.
 * **Interface:** Conversor Analógico-Digital (ADC) Integrado de alta resolução e baixa latência.
-  
+
+<p align="center">
+  <img src="./assets/image_geofone.jpeg" width="45%">
+</p>
+
 ### Diagrama de Fluxo (Pipeline Híbrido de Edge ML)
  O fluxo de dados foi desenhado para processamento paralelo no microcontrolador:
  
@@ -227,8 +233,9 @@ O resultado é um sensor que não apenas escuta, mas valida o que ouviu, garanti
 ### [1] Ministério das Cidades and Secretaria Nacional de Saneamento, "Relatório SINISA: Diagnóstico dos Serviços de Água e Esgotos 2024 (Ano-base 2023)," Brasília, Brazil, 2024. [Online]. Available: https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/sinisa/resultados-sinisa/copy_of_RELATORIO_SINISA_ABASTECIMENTO_DE_AGUA_2024.pdf
 ### [2] Instituto Trata Brasil and GO Associados, "Estudo de Perdas de Água 2025 (SNIS 2023 base year): Desafios para a Universalização do Saneamento," São Paulo, Brazil, 2025. [Online]. Available: https://tratabrasil.org.br/
 ### [3] Edge Impulse Inc., "Audio Classification with MFE and Spectral Features on Edge Devices," Edge Impulse Documentation, 2024. [Online]. Available: https://docs.edgeimpulse.com/docs/tutorials/audio-classification
-
-
+### [4] Consultancy-me.com, "Leakage in water infrastructure exacerbating water scarcity," Middle East, 2023. [Online]. Available: https://www.consultancy-me.com/news/6706/leakage-in-water-infrastructure-exacerbating-water-scarcity
+### [5] J. Salamon, C. Jacoby and J. P. Bello, "Urban Sound Datasets: UrbanSound8K," New York University (NYU), New York, USA, 2014. [Online]. Available: https://urbansounddataset.weebly.com/
+### [6] ASTERRA, "Recover: Satellite-based Infrastructure Monitoring and Leak Detection," Israel, 2024. [Online]. Available: https://asterra.io/solutions/recover/
 
         	
 
