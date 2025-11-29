@@ -1,11 +1,11 @@
 import { SlidingWindowConfig } from '../types';
 
 // Default configuration for sliding window analysis
-// Window of 500ms with 250ms step (50% overlap)
-// Example: 0-500ms, 250-750ms, 500-1000ms, ...
+// Window of 2000ms (2s) with 1000ms step (50% overlap)
+// Example: 0-2s, 1-3s, 2-4s, 3-5s, ...
 export const DEFAULT_SLIDING_WINDOW_CONFIG: SlidingWindowConfig = {
-  windowDurationMs: 500,    // 500ms window for model analysis
-  stepDurationMs: 250,      // 250ms step between windows (50% overlap)
+  windowDurationMs: 2000,   // 2000ms (2s) window for model analysis
+  stepDurationMs: 1000,     // 1000ms (1s) step between windows (50% overlap)
   sampleRate: 48000,        // 48kHz sample rate
 };
 
@@ -21,22 +21,19 @@ export interface AudioSegment {
 /**
  * Segments audio data using a sliding window approach with overlap.
  *
- * The audio is divided into overlapping segments. Each window is 500ms
- * and the step is 250ms, creating 50% overlap between consecutive windows.
+ * The audio is divided into overlapping segments. Each window is 2 seconds
+ * and the step is 1 second, creating 50% overlap between consecutive windows.
  *
- * Example with 2s audio at 48kHz:
- * - Total samples: 96,000
- * - Step size: 250ms = 12,000 samples
- * - Window size: 500ms = 24,000 samples
+ * Example with 5s audio at 48kHz:
+ * - Total samples: 240,000
+ * - Step size: 1000ms = 48,000 samples
+ * - Window size: 2000ms = 96,000 samples
  *
  * Windows:
- * - Window 0: 0ms-500ms
- * - Window 1: 250ms-750ms
- * - Window 2: 500ms-1000ms
- * - Window 3: 750ms-1250ms
- * - Window 4: 1000ms-1500ms
- * - Window 5: 1250ms-1750ms
- * - Window 6: 1500ms-2000ms
+ * - Window 0: 0s - 2s
+ * - Window 1: 1s - 3s
+ * - Window 2: 2s - 4s
+ * - Window 3: 3s - 5s
  *
  * @param audioData - Full audio samples array
  * @param config - Sliding window configuration

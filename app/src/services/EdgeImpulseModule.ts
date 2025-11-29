@@ -48,7 +48,7 @@ const mockModel1Info: ModelInfo = {
   projectId: 839509,
   labels: ['Leak', 'No_leak'],
   frequency: 48000,
-  threshold: 0.7,
+  threshold: 0.6,
 };
 
 const mockModel2Info: ModelInfo = {
@@ -57,7 +57,7 @@ const mockModel2Info: ModelInfo = {
   projectId: 839504,
   labels: ['Leak', 'No_leak'],
   frequency: 48000,
-  threshold: 0.9,
+  threshold: 0.6,
 };
 
 function createMockInferenceResult(): InferenceResult {

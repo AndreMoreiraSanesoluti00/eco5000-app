@@ -36,8 +36,8 @@ export interface WindowResult {
 }
 
 export interface SlidingWindowConfig {
-  windowDurationMs: number;    // Duration of each analysis window (500ms)
-  stepDurationMs: number;      // Step between windows (250ms = 50% overlap)
+  windowDurationMs: number;    // Duration of each analysis window (2000ms = 2s)
+  stepDurationMs: number;      // Step between windows (1000ms = 50% overlap)
   sampleRate: number;          // Audio sample rate (48000 Hz)
 }
 
