@@ -12,7 +12,7 @@ Water inefficiency is an economic and social disaster in Brazil. According to th
   <img src="./assets/image_table.jpeg" width="50%">
 </p>
 
-Even large cities in developed countries have high water losses, as is the case in Montreal.
+Even large cities in developed countries have high water losses, as is the case in Italy.
 
 ### The Problem:
 Every day, Brazil wastes the equivalent of 6,346 Olympic-sized swimming pools of treated water. About 60% of this volume corresponds to physical losses (leaks in the network), which could supply 50 million Brazilians annually if recovered.
@@ -88,10 +88,10 @@ Instead of relying on one or two “hand-picked” features, we use neural netwo
 * Discovering, in the field, the physical filter imposed by the soil and the impact of urban noise, which invalidates these simple assumptions.
 * Migrate to a data-driven approach (1D-CNN + MFE, etc.), capable of capturing the “rumble of the earth” even when it is projected into a high-dimensional space and mixed with all the other sounds of the city.
 
-### Phase 2: The Memory Barrier (Teensy 4.1) and the 1D Solution
-At this specific stage of development, the target hardware was the **Teensy 4.1 microcontroller**. Initial attempts with 2D Neural Networks (Computer Vision) failed due to memory exhaustion ("Failed to allocate bytes") inherent to the MCU's limited RAM.
+### Phase 2: The Memory Barrier (microcontroller) and the 1D Solution
+At this specific stage of development, the target hardware was the **microcontroller**. Initial attempts with 2D Neural Networks (Computer Vision) failed due to memory exhaustion ("Failed to allocate bytes") inherent to the MCU's limited RAM.
 
-* **Architectural Solution:** Forced by the Teensy's constraints, we migrated to a **1D-CNN (One-Dimensional Convolutional Kernel)**.
+* **Architectural Solution:** Forced by the microcontroller constraints, we migrated to a **1D-CNN (One-Dimensional Convolutional Kernel)**.
 * **The "Cutback" (Kernel Size):** To compensate for the network's simplicity and allow it to better understand the earth's rumble, we increased the **Kernel Size**. This acted as a temporal "wide-angle lens," raising the detection rate to 87%. We also added dropout layers to prevent the model from overfitting.
 
 ![Pipeline do Sane.AI](./assets/image_10.png)
@@ -206,7 +206,7 @@ The data flow was designed for parallel processing on the microcontroller:
 
 All the application's source code, including the optimized library exported from Edge Impulse and the C++ post-processing application logic (main.cpp), is versioned:
 
-**GitHub:** https://github.com/Sanesoluti-dev/Cod_teensy
+**GitHub:** https://github.com/AndreMoreiraSanesoluti00/eco5000-app
 
 ### Reproduction Protocol for this Project
 * **Clone the Project: Access and clone the public project on the Edge Impulse platform:** https://studio.edgeimpulse.com/studio/833889
@@ -222,14 +222,14 @@ Reaching this result required an exhaustive journey of engineering and validatio
 
 Our technical conclusion is that the robustness needed for the chaotic urban environment does not come from a single "magic algorithm," but from the orchestration of different techniques to mitigate these biases. By combining computer vision (CNN over Spectrogram/MFE) with spectral statistical analysis (Spectral Features) in the same 2-second time window, we created a device that effectively has "two brains."
 
-Furthermore, a pivotal decision in this project was the hardware transition from the Teensy microcontroller to a Tablet-based architecture. The primary driver for this shift was to enable **remote data collection for continuous retraining**.
+Furthermore, a pivotal decision in this project was the hardware transition from the microcontroller to a Tablet-based architecture. The primary driver for this shift was to enable **remote data collection for continuous retraining**.
 
 During the hackathon, we developed a dedicated Android application to facilitate this **Active Learning** cycle. Unlike the isolated microcontroller, this application allows us to capture, tag, and upload real-world audio directly from the field back to the training pipeline. This connectivity ensures that every inference contributes to making the model smarter. Additionally, this migration resolved the memory constraints encountered in earlier phases, providing the computational headroom needed for the future implementation of more complex models while solving the global water loss crisis. 
 
 ## 6. Future Roadmap & Next Steps
 
 ### 6.1. Unlocking 2D Architectures (The Hardware Leap)
-The transition from a microcontroller-based architecture (Teensy) to a robust Android Edge Host (Galaxy Tab A9+) has effectively removed the strict memory constraints that previously limited our model design.
+The transition from a microcontroller-based architecture to a robust Android Edge Host (Galaxy Tab A9+) has effectively removed the strict memory constraints that previously limited our model design.
 
 With gigabytes of available RAM—opposed to the kilobytes available on the initial MCU the "memory barrier" that prevented the deployment of **2D Computer Vision models**no longer exists.
 
