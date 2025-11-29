@@ -88,10 +88,11 @@ Instead of relying on one or two “hand-picked” features, we use neural netwo
 * Discovering, in the field, the physical filter imposed by the soil and the impact of urban noise, which invalidates these simple assumptions.
 * Migrate to a data-driven approach (1D-CNN + MFE, etc.), capable of capturing the “rumble of the earth” even when it is projected into a high-dimensional space and mixed with all the other sounds of the city.
 
-### Phase 2: The Memory Barrier and the 1D Solution
-Initial attempts with 2D Neural Networks (Computer Vision) failed due to memory exhaustion (Failed to allocate bytes) in the microcontroller.
-* **Architectural Solution:** We migrated to a 1D-CNN (One-Dimensional Convolutional Kernel).
-* **The "Cutback" (Kernel Size):** To compensate for the network's simplicity and allow it to better understand the earth's rumble, we increased the Kernel Size. This acted as a temporal "wide-angle lens," raising the detection rate to 87%. We also added dropout layers to prevent the model from overfitting.
+### Phase 2: The Memory Barrier (Teensy 4.1) and the 1D Solution
+At this specific stage of development, the target hardware was the **Teensy 4.1 microcontroller**. Initial attempts with 2D Neural Networks (Computer Vision) failed due to memory exhaustion ("Failed to allocate bytes") inherent to the MCU's limited RAM.
+
+* **Architectural Solution:** Forced by the Teensy's constraints, we migrated to a **1D-CNN (One-Dimensional Convolutional Kernel)**.
+* **The "Cutback" (Kernel Size):** To compensate for the network's simplicity and allow it to better understand the earth's rumble, we increased the **Kernel Size**. This acted as a temporal "wide-angle lens," raising the detection rate to 87%. We also added dropout layers to prevent the model from overfitting.
 
 ![Pipeline do Sane.AI](./assets/image_10.png)
 
@@ -110,14 +111,14 @@ Guided by the initial analyses of the EON Tuner, we implemented an architecture 
 
 We decided to change our approach. The difference between a passing car and a leak wasn't just in the frequency, but in the **persistence of the sound over time**.
 
-* **The Radical Change:** We increased the sampling window from 2 seconds to 5 seconds (5000 ms). This allowed the AI ​​to "hear" the complete story of the sound.
+* **The Radical Change:** We set the sampling window to **2 seconds (2000 ms)**. This allowed the AI ​​to "hear" the complete story of the sound.
 * **Returning to MFE:** To process 5 seconds of audio without crashing the hardware, we replaced the heavy Spectrogram with MFE (Mel-Filterbank Energy).
 * **The Gain:** MFE compresses frequency information efficiently. By combining it with the 5-second window, we can process a temporal context 2.5 times larger.
 * **Result:** This simple but strategic change gave us a critical gain of +2% in immediate accuracy and, more importantly, eliminated instability in detections.
 
 ### Phase 5: The Hybrid Solution (Feature Fusion) and the Identification of Overfitting
 
-With optimized data input (5s Window + MFE), we refined the system's "brain" into a **Feature Fusion** architecture . Instead of relying on just one data stream, we created a robust combined input framework:
+With optimized data input (2s Window + MFE), we refined the system's "brain" into a **Feature Fusion** architecture . Instead of relying on just one data stream, we created a robust combined input framework:
 
 * **Dual Input:** The system simultaneously processes the **MFE** (the human auditory signature) and the **Spectral Features** (raw mathematical statistics of the signal).
 * **Hybrid Neural Architecture:** We implemented two distinct classifiers operating in parallel:
@@ -141,12 +142,12 @@ The validation appears identical, however when we analyze the results individual
 
 ### Phase 6: Final Adjustment and Generalization (Final Results)
 
-Validation of the hybrid architecture (Phase 5) revealed a final challenge: although the model had high sensitivity, the false positive rate in noisy environments still fluctuated between 4% and 19% depending on the algorithm used (CNN vs. Wavelet).
+Validation of the hybrid architecture (Phase 5) revealed a final challenge. As evidenced by the confusion matrix below, while the primary **1D-CNN** model proved robust (achieving **92.3%** accuracy on leaks), the secondary statistical model (Wavelet) exhibited greater instability, with misclassification rates reaching **15.4%** for leaks.
 
-**The Engineering Solution** (Persistence Logic): We understood that AI didn't need to be perfect every millisecond; it needed to be perfect in the final diagnosis. We implemented a post-processing layer in the firmware (C++) that acts as a "temporal judge":
+**The Engineering Solution (Persistence Logic):** We understood that AI didn't need to be perfect every millisecond; it needed to be perfect in the final diagnosis. We implemented a post-processing layer in the application that acts as a "temporal judge":
 
 * **Consensus Filter:** The system does not trigger the alarm on the first positive signal.
-* **Confirmation Window: The 1D-CNN model (which has proven superior with 88.5% baseline accuracy) needs to sustain "Leak" detection for **3 consecutive windows (15 seconds)**.
+* **Confirmation Window:** The 1D-CNN model (which demonstrated superior performance with **~87.7%** overall accuracy) needs to sustain "Leak" detection for **3 consecutive windows (6 seconds)**.
 
 **Consolidated Result:** This simple logic statistically eliminated false positives caused by transient noises (such as a passing motorcycle, which lasts only 1 or 2 windows). The final system, running on the Galaxy Tab A9+, achieved the operational stability required for the field, with a virtually 100% real detection rate for continuous leaks and zero false alarms for common urban noises.
 
@@ -221,9 +222,28 @@ Reaching this result required an exhaustive journey of engineering and validatio
 
 Our technical conclusion is that the robustness needed for the chaotic urban environment does not come from a single "magic algorithm," but from the orchestration of different techniques to mitigate these biases. By combining computer vision (CNN over Spectrogram/MFE) with spectral statistical analysis (Spectral Features) in the same 2-second time window, we created a device that effectively has "two brains."
 
-The result is a sensor that not only listens but validates what it hears, ensuring the precision needed to combat water waste on the planet. Our team's prior experience in developing geophones and physically locating leaks was fundamental in guiding the Artificial Intelligence through these challenges and achieving the results presented here. 
+Furthermore, a pivotal decision in this project was the hardware transition from the Teensy microcontroller to a Tablet-based architecture. The primary driver for this shift was to enable **remote data collection for continuous retraining**.
 
-## 6. Research References and Sources
+During the hackathon, we developed a dedicated Android application to facilitate this **Active Learning** cycle. Unlike the isolated microcontroller, this application allows us to capture, tag, and upload real-world audio directly from the field back to the training pipeline. This connectivity ensures that every inference contributes to making the model smarter. Additionally, this migration resolved the memory constraints encountered in earlier phases, providing the computational headroom needed for the future implementation of more complex models while solving the global water loss crisis. 
+
+## 6. Future Roadmap & Next Steps
+
+### 6.1. Unlocking 2D Architectures (The Hardware Leap)
+The transition from a microcontroller-based architecture (Teensy) to a robust Android Edge Host (Galaxy Tab A9+) has effectively removed the strict memory constraints that previously limited our model design.
+
+With gigabytes of available RAM—opposed to the kilobytes available on the initial MCU the "memory barrier" that prevented the deployment of **2D Computer Vision models**no longer exists.
+
+* **The Next Frontier:** We are now studying the implementation of deeper **2D Convolutional Neural Networks (2D-CNNs)** to analyze high-resolution spectrograms directly.
+* **The Goal:** By leveraging this new processing power to capture even more subtle texture details in the audio, we aim to achieve unprecedented classification precision. This evolution is a decisive step toward our ultimate vision: solving the global water loss crisis once and for all.
+While the current version of Sane.AI successfully demonstrates the power of Edge ML for leak localization using a handheld device (Galaxy Tab A9+ coupled with a Geophone), the project roadmap envisions evolving from a "Lift and Shift" tool to a continuous monitoring ecosystem.
+
+### 6.2. Dataset Expansion and User-Driven Retraining
+The robustness of an AI model is directly proportional to the diversity of its training data. To reach the next level of generalization, our roadmap includes:
+
+* **New Field Expeditions:** We recognize that further technical visits to the field are necessary. We plan to capture an even broader range of soil types, pipe materials, and varying urban noise profiles to ensure the model is battle-tested against any scenario.
+* **The Data Flywheel (Active Learning):** Once the device is deployed to end-users, it will not just consume intelligence but create it. The application is designed to allow operators to upload anonymized audio samples from their daily operations back to our cloud. This continuous influx of new real-world data will establish a feedback loop, allowing us to constantly retrain and fine-tune the model. Effectively, Sane.AI will get smarter with every leak detected by its users.
+
+## 7. Research References and Sources
 ### [1] Ministry of Cities and National Secretariat of Sanitation, "SINISA Report: Diagnosis of Water and Sewage Services 2024 (Base Year 2023)," Brasília, Brazil, 2024. [Online]. Available: https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/sinisa/resultados-sinisa/copy_of_RELATORIO_SINISA_ABASTECIMENTO_DE_AGUA_2024.pdf
 ### [2] Instituto Trata Brasil and GO Associados, "Estudo de Perdas de Água 2025 (SNIS 2023 base year): Desafios para a Universalização do Saneamento," São Paulo, Brazil, 2025. [Online]. Available: https://tratabrasil.org.br/
 ### [3] Edge Impulse Inc., "Audio Classification with MFE and Spectral Features on Edge Devices," Edge Impulse Documentation, 2024. [Online]. Available: https://docs.edgeimpulse.com/docs/tutorials/audio-classification
