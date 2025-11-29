@@ -64,7 +64,12 @@ Using a high-sensitivity geophone, the team surveyed several strategic locations
 
 The contrast with the laboratory audio recordings and manuals was immediate. In the reference material, the leak was described as a sharp, well-defined "hiss"; simply looking at the high-frequency energy would have solved the problem. When the system went into the street, the story changed.
 
-<img src="./assets/image_2.png" width="33%"> <img src="./assets/image_3.png" width="33%"> <img src="./assets/image_maps.png" width="33%">
+<p align="center">
+  <img src="./assets/image_2.png" width="45%"> <img src="./assets/image_3.png" width="45%">
+</p>
+<p align="center">
+<img src="./assets/image_maps.png" width="70%">
+</p>
 
 **Real-world environment**: the error of the initial approach
 
