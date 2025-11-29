@@ -3,15 +3,23 @@ import { edgeImpulseService } from '../services/EdgeImpulseModule';
 import { InferenceResult, ModelInfo, WindowResult, AggregatedResult, SlidingWindowConfig } from '../types';
 import { segmentAudio, validateAudioForSegmentation, DEFAULT_SLIDING_WINDOW_CONFIG } from '../utils/audioSegmentation';
 
-// Function to log comparative uncertainty analysis between both models
+/**
+ * Logs comparative uncertainty analysis between both models
+ *
+ * Model 1 (Cético/Skeptic): MFE DSP, threshold 0.6
+ * Model 2 (Paranoico/Paranoid): Wavelet DSP, threshold 0.4
+ *
+ * ⚠️ NOTE: Currently Model 2 uses same pipeline as Model 1 in native code,
+ * so results may be identical/very similar. See KNOWN_ISSUES.md
+ */
 function logComparativeUncertainty(
   model1Result: InferenceResult,
   model2Result: InferenceResult,
   model1Info: ModelInfo | null,
   model2Info: ModelInfo | null
 ): void {
-  const model1Threshold = model1Info?.threshold ?? 0.7;
-  const model2Threshold = model2Info?.threshold ?? 0.9;
+  const model1Threshold = model1Info?.threshold ?? 0.6;
+  const model2Threshold = model2Info?.threshold ?? 0.4;
 
   const model1Uncertainty = 1 - model1Result.confidence;
   const model2Uncertainty = 1 - model2Result.confidence;

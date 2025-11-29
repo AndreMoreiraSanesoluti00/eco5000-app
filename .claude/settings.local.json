@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npx tailwindcss init)",
-      "Bash(npx expo prebuild:*)"
+      "Bash(npx expo prebuild:*)",
+      "Bash(./gradlew assembleDebug:*)",
+      "Bash(tee:*)"
     ],
     "deny": [],
     "ask": []

@@ -30,6 +30,30 @@ if (!isExpoGo) {
   console.log('[EdgeImpulse] Native module available:', Object.keys(EdgeImpulseNativeModule || {}));
 }
 
+/**
+ * Edge Impulse Service Interface
+ *
+ * Manages two AI models for leak detection:
+ *
+ * MODEL 1 - "Cético" (Skeptic):
+ *   - Project: 840911
+ *   - DSP: MFE (Mel-Frequency Energy)
+ *   - Threshold: 0.6 (60%)
+ *   - Characteristics: More conservative, requires higher confidence
+ *   - Output Features: 1560
+ *
+ * MODEL 2 - "Paranoico" (Paranoid):
+ *   - Project: 840915
+ *   - DSP: Spectral Analysis with Wavelet (bior3.1)
+ *   - Threshold: 0.4 (40%)
+ *   - Characteristics: More sensitive, detects with lower confidence
+ *   - Output Features: 98
+ *
+ * The two models complement each other:
+ * - When both agree with high confidence → Very reliable result
+ * - When they disagree → Requires further investigation
+ * - When Model 2 detects but Model 1 doesn't → Potential leak (lower confidence)
+ */
 export interface EdgeImpulseInterface {
   initializeModel1(): Promise<boolean>;
   initializeModel2(): Promise<boolean>;
@@ -42,22 +66,23 @@ export interface EdgeImpulseInterface {
 }
 
 // Mock data for Expo Go testing
+// These values mirror the actual model configurations in the native C++ code
 const mockModel1Info: ModelInfo = {
   id: 'model1',
-  name: 'Sane.AI.Final.separafo',
-  projectId: 839509,
+  name: 'Sane.AI.MFE',
+  projectId: 840911,
   labels: ['Leak', 'No_leak'],
   frequency: 48000,
-  threshold: 0.6,
+  threshold: 0.6, // Skeptic model requires 60% confidence
 };
 
 const mockModel2Info: ModelInfo = {
   id: 'model2',
-  name: 'Sane.AI.Final',
-  projectId: 839504,
+  name: 'Sane.AI.WAVELET',
+  projectId: 840915,
   labels: ['Leak', 'No_leak'],
   frequency: 48000,
-  threshold: 0.6,
+  threshold: 0.4, // Paranoid model requires only 40% confidence
 };
 
 function createMockInferenceResult(): InferenceResult {

@@ -1,0 +1,758 @@
+› Building app...
+Configuration on demand is an incubating feature.
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes UP-TO-DATE
+> Task :expo-module-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :
+[32m[ExpoRootProject][0m Using the following versions:
+  - buildTools:  [32m36.0.0[0m
+  - minSdk:      [32m24[0m
+  - compileSdk:  [32m36[0m
+  - targetSdk:   [32m36[0m
+  - ndk:         [32m27.1.12297006[0m
+  - kotlin:      [32m2.1.20[0m
+  - ksp:         [32m2.1.20-2.0.1[0m
+
+> Configure project :expo
+
+Using expo modules
+  - [32mexpo-constants[0m (18.0.10)
+  - [32mexpo-modules-core[0m (3.0.26)
+  - [33m[?][0m [32mexpo-asset[0m (12.0.10)
+  - [33m[?][0m [32mexpo-audio[0m (1.0.15)
+  - [33m[?][0m [32mexpo-av[0m (16.0.7)
+  - [33m[?][0m [32mexpo-document-picker[0m (14.0.7)
+  - [33m[?][0m [32mexpo-file-system[0m (19.0.19)
+  - [33m[?][0m [32mexpo-font[0m (14.0.9)
+  - [33m[?][0m [32mexpo-keep-awake[0m (15.0.7)
+
+
+> Task :react-native-safe-area-context:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-svg:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-screens:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :app:generateAutolinkingNewArchitectureFiles UP-TO-DATE
+> Task :expo-modules-core:preBuild UP-TO-DATE
+> Task :react-native-safe-area-context:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :expo-modules-core:preDebugBuild UP-TO-DATE
+> Task :expo:generatePackagesList UP-TO-DATE
+> Task :expo:preBuild UP-TO-DATE
+> Task :expo:preDebugBuild UP-TO-DATE
+> Task :expo-modules-core:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-screens:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-svg:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-screens:preBuild UP-TO-DATE
+> Task :react-native-screens:preDebugBuild UP-TO-DATE
+> Task :react-native-svg:preBuild UP-TO-DATE
+> Task :react-native-safe-area-context:preBuild UP-TO-DATE
+> Task :react-native-svg:preDebugBuild UP-TO-DATE
+> Task :react-native-safe-area-context:preDebugBuild UP-TO-DATE
+> Task :expo:writeDebugAarMetadata UP-TO-DATE
+> Task :app:generateAutolinkingPackageList UP-TO-DATE
+> Task :react-native-screens:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-svg:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugResValues UP-TO-DATE
+> Task :expo-modules-core:generateDebugResValues UP-TO-DATE
+> Task :react-native-screens:generateDebugResValues UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugResources UP-TO-DATE
+> Task :expo-modules-core:generateDebugResources UP-TO-DATE
+> Task :react-native-screens:generateDebugResources UP-TO-DATE
+> Task :expo:generateDebugResValues UP-TO-DATE
+> Task :expo-modules-core:packageDebugResources UP-TO-DATE
+> Task :react-native-safe-area-context:packageDebugResources UP-TO-DATE
+> Task :expo:generateDebugResources UP-TO-DATE
+> Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+> Task :react-native-svg:generateDebugResValues UP-TO-DATE
+> Task :expo-modules-core:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-screens:packageDebugResources UP-TO-DATE
+> Task :react-native-safe-area-context:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-svg:generateDebugResources UP-TO-DATE
+> Task :expo-modules-core:processDebugManifest UP-TO-DATE
+> Task :react-native-safe-area-context:processDebugManifest UP-TO-DATE
+> Task :app:generateCodegenArtifactsFromSchema SKIPPED
+> Task :react-native-screens:extractDeepLinksDebug UP-TO-DATE
+> Task :expo-modules-core:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-svg:packageDebugResources UP-TO-DATE
+> Task :react-native-screens:processDebugManifest UP-TO-DATE
+> Task :app:generateReactNativeEntryPoint UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
+> Task :react-native-svg:extractDeepLinksDebug UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :react-native-safe-area-context:compileDebugLibraryResources UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-modules-core:parseDebugLocalResources UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :react-native-safe-area-context:parseDebugLocalResources UP-TO-DATE
+> Task :expo:packageDebugResources UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :expo-modules-core:generateDebugRFile UP-TO-DATE
+> Task :expo:extractDeepLinksDebug UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugRFile UP-TO-DATE
+> Task :expo-modules-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-screens:compileDebugLibraryResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-screens:parseDebugLocalResources UP-TO-DATE
+> Task :expo-modules-core:generateDebugBuildConfig UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-safe-area-context:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:processDebugManifest UP-TO-DATE
+> Task :react-native-safe-area-context:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-screens:generateDebugRFile UP-TO-DATE
+> Task :react-native-screens:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-screens:generateDebugBuildConfig UP-TO-DATE
+> Task :expo:parseDebugLocalResources UP-TO-DATE
+> Task :expo:generateDebugRFile UP-TO-DATE
+> Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-svg:processDebugManifest UP-TO-DATE
+> Task :expo:generateDebugBuildConfig UP-TO-DATE
+> Task :expo:javaPreCompileDebug UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :react-native-svg:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-svg:parseDebugLocalResources UP-TO-DATE
+> Task :expo:mergeDebugShaders UP-TO-DATE
+> Task :expo:compileDebugShaders NO-SOURCE
+> Task :expo:generateDebugAssets UP-TO-DATE
+> Task :react-native-svg:generateDebugRFile UP-TO-DATE
+> Task :react-native-safe-area-context:compileDebugKotlin UP-TO-DATE
+> Task :react-native-safe-area-context:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-svg:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-svg:javaPreCompileDebug UP-TO-DATE
+> Task :expo:mergeDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :react-native-safe-area-context:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-safe-area-context:mergeDebugShaders UP-TO-DATE
+> Task :react-native-safe-area-context:compileDebugShaders NO-SOURCE
+> Task :react-native-safe-area-context:generateDebugAssets UP-TO-DATE
+> Task :react-native-safe-area-context:mergeDebugAssets UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-screens:compileDebugKotlin UP-TO-DATE
+> Task :react-native-screens:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-safe-area-context:processDebugJavaRes UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-screens:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-screens:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :expo:mergeDebugJniLibFolders UP-TO-DATE
+> Task :expo:mergeDebugNativeLibs NO-SOURCE
+> Task :react-native-screens:mergeDebugShaders UP-TO-DATE
+> Task :react-native-screens:compileDebugShaders NO-SOURCE
+> Task :react-native-screens:generateDebugAssets UP-TO-DATE
+> Task :expo:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-safe-area-context:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-screens:mergeDebugAssets UP-TO-DATE
+> Task :react-native-safe-area-context:mergeDebugNativeLibs NO-SOURCE
+> Task :react-native-screens:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-svg:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-safe-area-context:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-screens:processDebugJavaRes UP-TO-DATE
+> Task :react-native-screens:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-svg:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :expo-modules-core:compileDebugKotlin UP-TO-DATE
+> Task :expo-modules-core:javaPreCompileDebug UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :react-native-svg:mergeDebugShaders UP-TO-DATE
+> Task :react-native-svg:compileDebugShaders NO-SOURCE
+> Task :react-native-svg:generateDebugAssets UP-TO-DATE
+> Task :expo-modules-core:compileDebugJavaWithJavac UP-TO-DATE
+> Task :expo-modules-core:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :expo-modules-core:mergeDebugShaders UP-TO-DATE
+> Task :expo-modules-core:compileDebugShaders NO-SOURCE
+> Task :expo-modules-core:generateDebugAssets UP-TO-DATE
+> Task :expo-modules-core:mergeDebugAssets UP-TO-DATE
+> Task :expo-modules-core:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-screens:configureCMakeDebug[arm64-v8a]
+> Task :react-native-svg:mergeDebugAssets UP-TO-DATE
+> Task :react-native-svg:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-svg:processDebugJavaRes NO-SOURCE
+> Task :react-native-svg:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :expo-modules-core:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :react-native-svg:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-svg:mergeDebugNativeLibs NO-SOURCE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-svg:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :expo-modules-core:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-worklets:assertMinimalReactNativeVersionTask
+> Task :react-native-worklets:assertNewArchitectureEnabledTask SKIPPED
+> Task :expo-modules-core:configureCMakeDebug[arm64-v8a]
+> Task :react-native-worklets:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-worklets:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-worklets:prepareWorkletsHeadersForPrefabs UP-TO-DATE
+> Task :react-native-worklets:preBuild
+> Task :react-native-worklets:preDebugBuild
+> Task :react-native-worklets:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-worklets:generateDebugResValues UP-TO-DATE
+> Task :react-native-worklets:generateDebugResources UP-TO-DATE
+> Task :react-native-worklets:packageDebugResources UP-TO-DATE
+> Task :react-native-worklets:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-reanimated:assertMinimalReactNativeVersionTask
+> Task :react-native-reanimated:assertNewArchitectureEnabledTask SKIPPED
+> Task :react-native-worklets:processDebugManifest UP-TO-DATE
+> Task :react-native-worklets:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-worklets:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-worklets:generateDebugRFile UP-TO-DATE
+> Task :react-native-worklets:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-worklets:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-screens:buildCMakeDebug[arm64-v8a]
+> Task :react-native-worklets:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-worklets:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-worklets:mergeDebugShaders UP-TO-DATE
+> Task :react-native-worklets:compileDebugShaders NO-SOURCE
+> Task :react-native-worklets:generateDebugAssets UP-TO-DATE
+> Task :react-native-worklets:mergeDebugAssets UP-TO-DATE
+> Task :react-native-worklets:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-worklets:processDebugJavaRes NO-SOURCE
+> Task :react-native-worklets:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :expo-constants:createExpoConfig
+> Task :expo-constants:preBuild
+> Task :expo-constants:preDebugBuild
+> Task :expo-constants:writeDebugAarMetadata UP-TO-DATE
+> Task :expo-constants:generateDebugResValues UP-TO-DATE
+> Task :expo-constants:generateDebugResources UP-TO-DATE
+> Task :react-native-screens:configureCMakeDebug[armeabi-v7a]
+> Task :expo-constants:packageDebugResources UP-TO-DATE
+> Task :expo-constants:extractDeepLinksDebug UP-TO-DATE
+> Task :expo-constants:processDebugManifest UP-TO-DATE
+> Task :expo-constants:compileDebugLibraryResources UP-TO-DATE
+> Task :expo-constants:parseDebugLocalResources UP-TO-DATE
+> Task :expo-constants:generateDebugRFile UP-TO-DATE
+> Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:generateDebugBuildConfig UP-TO-DATE
+> Task :expo-modules-core:buildCMakeDebug[arm64-v8a]
+> Task :expo-modules-core:configureCMakeDebug[armeabi-v7a]
+> Task :expo-constants:compileDebugKotlin UP-TO-DATE
+> Task :expo-constants:javaPreCompileDebug UP-TO-DATE
+> Task :expo-constants:compileDebugJavaWithJavac UP-TO-DATE
+> Task :expo-constants:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :expo-constants:mergeDebugShaders UP-TO-DATE
+> Task :expo-constants:compileDebugShaders NO-SOURCE
+> Task :expo-constants:generateDebugAssets UP-TO-DATE
+> Task :expo-constants:mergeDebugAssets UP-TO-DATE
+> Task :expo-constants:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :expo-constants:processDebugJavaRes UP-TO-DATE
+> Task :expo-constants:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :expo-constants:mergeDebugJniLibFolders UP-TO-DATE
+> Task :expo-constants:mergeDebugNativeLibs NO-SOURCE
+> Task :expo-constants:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-screens:buildCMakeDebug[armeabi-v7a]
+> Task :react-native-screens:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-screens:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-screens:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-reanimated:assertWorkletsVersionTask
+> Task :react-native-reanimated:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-reanimated:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-reanimated:prepareReanimatedHeadersForPrefabs UP-TO-DATE
+> Task :react-native-reanimated:preBuild
+> Task :react-native-reanimated:preDebugBuild
+> Task :react-native-reanimated:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-reanimated:generateDebugResValues UP-TO-DATE
+> Task :react-native-reanimated:generateDebugResources UP-TO-DATE
+> Task :expo-modules-core:buildCMakeDebug[armeabi-v7a]
+> Task :react-native-reanimated:packageDebugResources UP-TO-DATE
+> Task :expo-modules-core:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :react-native-reanimated:extractDeepLinksDebug UP-TO-DATE
+> Task :expo-modules-core:mergeDebugNativeLibs UP-TO-DATE
+> Task :expo-modules-core:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-reanimated:processDebugManifest UP-TO-DATE
+> Task :react-native-worklets:configureCMakeDebug[arm64-v8a]
+> Task :react-native-reanimated:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-reanimated:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-reanimated:generateDebugRFile UP-TO-DATE
+> Task :react-native-reanimated:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-reanimated:javaPreCompileDebug UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :expo:compileDebugKotlin UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :react-native-reanimated:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :react-native-reanimated:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugShaders UP-TO-DATE
+> Task :react-native-reanimated:compileDebugShaders NO-SOURCE
+> Task :react-native-reanimated:generateDebugAssets UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugAssets UP-TO-DATE
+> Task :react-native-reanimated:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :react-native-reanimated:processDebugJavaRes NO-SOURCE
+> Task :react-native-reanimated:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugJniLibFolders UP-TO-DATE
+> Task :expo:compileDebugJavaWithJavac UP-TO-DATE
+> Task :expo:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :expo:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :expo:processDebugJavaRes UP-TO-DATE
+> Task :expo:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:dexBuilderDebug UP-TO-DATE
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeProjectDexDebug UP-TO-DATE
+> Task :react-native-worklets:configureCMakeDebug[armeabi-v7a]
+> Task :react-native-worklets:generateJsonModelDebug
+> Task :react-native-worklets:prefabDebugConfigurePackage UP-TO-DATE
+> Task :react-native-worklets:buildCMakeDebug[arm64-v8a][worklets]
+> Task :react-native-worklets:buildCMakeDebug[armeabi-v7a][worklets]
+> Task :react-native-worklets:externalNativeBuildDebug
+> Task :react-native-worklets:prefabDebugPackage UP-TO-DATE
+> Task :react-native-worklets:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-worklets:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-worklets:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-reanimated:configureCMakeDebug[arm64-v8a]
+> Task :react-native-reanimated:configureCMakeDebug[armeabi-v7a]
+> Task :react-native-reanimated:generateJsonModelDebug
+> Task :react-native-reanimated:prefabDebugConfigurePackage UP-TO-DATE
+> Task :react-native-reanimated:buildCMakeDebug[arm64-v8a][reanimated]
+> Task :react-native-reanimated:buildCMakeDebug[armeabi-v7a][reanimated]
+> Task :react-native-reanimated:externalNativeBuildDebug
+> Task :react-native-reanimated:prefabDebugPackage UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-reanimated:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :app:configureCMakeDebug[arm64-v8a]
+
+> Task :app:buildCMakeDebug[arm64-v8a]
+C/C++: ninja: Entering directory `C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\android\app\.cxx\Debug\s5g1o6n2\arm64-v8a'
+C/C++: C:\Users\andre\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android24 --sysroot=C:/Users/andre/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DEIDSP_USE_CMSIS_DSP=0 -DEI_CLASSIFIER_ALLOCATION_STATIC=0 -DEI_CLASSIFIER_TFLITE_ENABLE_ESP_NN=0 -DEI_PORTING_ANDROID=1 -DNDEBUG -D__ANDROID__ -Dedge_impulse_jni_EXPORTS -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1 -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/model-parameters -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/tflite-model -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/classifier -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/dsp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/dsp/kissfft -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/porting -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/tensorflow -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party/flatbuffers/include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party/gemmlowp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party/ruy -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/DSP/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/NN/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2 -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/tflite-model -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/classifier -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/dsp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/dsp/kissfft -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/porting -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/tensorflow -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party/flatbuffers/include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party/gemmlowp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party/ruy -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/CMSIS/Core/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/CMSIS/DSP/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/CMSIS/NN/Include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D__BIONIC_NO_PAGE_SIZE_MACRO -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -fexceptions -frtti -O2 -DNDEBUG -DEI_CLASSIFIER_TFLITE_ENABLE_ESP_NN=0 -fno-limit-debug-info  -fPIC -std=c++17 -MD -MT CMakeFiles/edge_impulse_jni.dir/modelo2_variables.cpp.o -MF CMakeFiles\edge_impulse_jni.dir\modelo2_variables.cpp.o.d -o CMakeFiles/edge_impulse_jni.dir/modelo2_variables.cpp.o -c C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2_variables.cpp
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2_variables.cpp:11:
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:45:
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/classifier/ei_model_types.h:42:
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/dsp/numpy.hpp:97:
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/DSP/Include/dsp/statistics_functions.h:30:
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/DSP/Include/arm_math_types.h:82:
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_compiler.h:54:
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:46: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                                              ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:15: note: use constraint modifier "w"
+C/C++:   299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |               ^~
+C/C++:       |               %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:77: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                                                                             ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:19: note: use constraint modifier "w"
+C/C++:   299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                   ^~
+C/C++:       |                   %w1
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:48: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                                                ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:17: note: use constraint modifier "w"
+C/C++:   315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                 ^~
+C/C++:       |                 %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:79: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                                                                               ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:21: note: use constraint modifier "w"
+C/C++:   315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                     ^~
+C/C++:       |                     %w1
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:48: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                                                ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:17: note: use constraint modifier "w"
+C/C++:   333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                 ^~
+C/C++:       |                 %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:79: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                                                                               ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:21: note: use constraint modifier "w"
+C/C++:   333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+C/C++:       |                     ^~
+C/C++:       |                     %w1
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:981:45: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:   981 |   __ASM volatile ("MRS %0, control" : "=r" (result) );
+C/C++:       |                                             ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:981:24: note: use constraint modifier "w"
+C/C++:   981 |   __ASM volatile ("MRS %0, control" : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1009:46: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1009 |   __ASM volatile ("MSR control, %0" : : "r" (control) : "memory");
+C/C++:       |                                              ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1009:33: note: use constraint modifier "w"
+C/C++:  1009 |   __ASM volatile ("MSR control, %0" : : "r" (control) : "memory");
+C/C++:       |                                 ^~
+C/C++:       |                                 %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1037:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1037 |   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
+C/C++:       |                                          ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1037:24: note: use constraint modifier "w"
+C/C++:  1037 |   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1051:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1051 |   __ASM volatile ("MRS %0, apsr" : "=r" (result) );
+C/C++:       |                                          ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1051:24: note: use constraint modifier "w"
+C/C++:  1051 |   __ASM volatile ("MRS %0, apsr" : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1065:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1065 |   __ASM volatile ("MRS %0, xpsr" : "=r" (result) );
+C/C++:       |                                          ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1065:24: note: use constraint modifier "w"
+C/C++:  1065 |   __ASM volatile ("MRS %0, xpsr" : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1079:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1079 |   __ASM volatile ("MRS %0, psp"  : "=r" (result) );
+C/C++:       |                                          ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1079:24: note: use constraint modifier "w"
+C/C++:  1079 |   __ASM volatile ("MRS %0, psp"  : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1107:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1107 |   __ASM volatile ("MSR psp, %0" : : "r" (topOfProcStack) : );
+C/C++:       |                                          ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1107:29: note: use constraint modifier "w"
+C/C++:  1107 |   __ASM volatile ("MSR psp, %0" : : "r" (topOfProcStack) : );
+C/C++:       |                             ^~
+C/C++:       |                             %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1133:41: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1133 |   __ASM volatile ("MRS %0, msp" : "=r" (result) );
+C/C++:       |                                         ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1133:24: note: use constraint modifier "w"
+C/C++:  1133 |   __ASM volatile ("MRS %0, msp" : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1161:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1161 |   __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
+C/C++:       |                                          ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1161:29: note: use constraint modifier "w"
+C/C++:  1161 |   __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
+C/C++:       |                             ^~
+C/C++:       |                             %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1214:45: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1214 |   __ASM volatile ("MRS %0, primask" : "=r" (result) );
+C/C++:       |                                             ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1214:24: note: use constraint modifier "w"
+C/C++:  1214 |   __ASM volatile ("MRS %0, primask" : "=r" (result) );
+C/C++:       |                        ^~
+C/C++:       |                        %w0
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1242:46: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+C/C++:  1242 |   __ASM volatile ("MSR primask, %0" : : "r" (priMask) : "memory");
+C/C++:       |                                              ^
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1242:33: note: use constraint modifier "w"
+C/C++:  1242 |   __ASM volatile ("MSR primask, %0" : : "r" (priMask) : "memory");
+C/C++:       |                                 ^~
+C/C++:       |                                 %w0
+C/C++: In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2_variables.cpp:11:
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:258: error: constant expression evaluates to 5311474196165411000 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                  ^~~~~~~~~~~~~~~~~~~
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:258: note: insert an explicit cast to silence this issue
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                  ^~~~~~~~~~~~~~~~~~~
+C/C++:       |                                                                                                                                                                                                                                                                  static_cast<float>()
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:532: error: constant expression evaluates to 1325110280263020000 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^~~~~~~~~~~~~~~~~~~
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:532: note: insert an explicit cast to silence this issue
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^~~~~~~~~~~~~~~~~~~
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    static_cast<float>()
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:814: error: constant expression evaluates to 431045813916788350 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^~~~~~~~~~~~~~~~~~
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:814: note: insert an explicit cast to silence this issue
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^~~~~~~~~~~~~~~~~~
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              static_cast<float>( )
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1089: error: constant expression evaluates to 61397003250091620 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^~~~~~~~~~~~~~~~~
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1089: note: insert an explicit cast to silence this issue
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^~~~~~~~~~~~~~~~~
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 static_cast<float>( )
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1366: error: constant expression evaluates to 4613344013575192 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^~~~~~~~~~~~~~~~
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1366: note: insert an explicit cast to silence this issue
+C/C++:    77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^~~~~~~~~~~~~~~~
+C/C++:       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      static_cast<float>( )
+C/C++: C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:92:6: error: use of undeclared identifier 'data_normalization_standard_scaler'
+C/C++:    92 |     &data_normalization_standard_scaler // exec func
+C/C++:       |      ^
+C/C++: 17 warnings and 6 errors generated.
+
+> Task :app:buildCMakeDebug[arm64-v8a] FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:buildCMakeDebug[arm64-v8a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\android\app\.cxx\Debug\s5g1o6n2\arm64-v8a'
+  [1/2] Building CXX object CMakeFiles/edge_impulse_jni.dir/modelo2_variables.cpp.o
+  FAILED: CMakeFiles/edge_impulse_jni.dir/modelo2_variables.cpp.o 
+  C:\Users\andre\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android24 --sysroot=C:/Users/andre/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DEIDSP_USE_CMSIS_DSP=0 -DEI_CLASSIFIER_ALLOCATION_STATIC=0 -DEI_CLASSIFIER_TFLITE_ENABLE_ESP_NN=0 -DEI_PORTING_ANDROID=1 -DNDEBUG -D__ANDROID__ -Dedge_impulse_jni_EXPORTS -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1 -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/model-parameters -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/tflite-model -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/classifier -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/dsp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/dsp/kissfft -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/porting -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/tensorflow -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party/flatbuffers/include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party/gemmlowp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/third_party/ruy -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/DSP/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/NN/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2 -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/tflite-model -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/classifier -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/dsp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/dsp/kissfft -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/porting -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/tensorflow -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party/flatbuffers/include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party/gemmlowp -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/third_party/ruy -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/CMSIS/Core/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/CMSIS/DSP/Include -IC:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/edge-impulse-sdk/CMSIS/NN/Include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D__BIONIC_NO_PAGE_SIZE_MACRO -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -fexceptions -frtti -O2 -DNDEBUG -DEI_CLASSIFIER_TFLITE_ENABLE_ESP_NN=0 -fno-limit-debug-info  -fPIC -std=c++17 -MD -MT CMakeFiles/edge_impulse_jni.dir/modelo2_variables.cpp.o -MF CMakeFiles\edge_impulse_jni.dir\modelo2_variables.cpp.o.d -o CMakeFiles/edge_impulse_jni.dir/modelo2_variables.cpp.o -c C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2_variables.cpp
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2_variables.cpp:11:
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:45:
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/classifier/ei_model_types.h:42:
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/dsp/numpy.hpp:97:
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/DSP/Include/dsp/statistics_functions.h:30:
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/DSP/Include/arm_math_types.h:82:
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_compiler.h:54:
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:46: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                                              ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:15: note: use constraint modifier "w"
+    299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |               ^~
+        |               %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:77: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                                                                             ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:299:19: note: use constraint modifier "w"
+    299 |   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                   ^~
+        |                   %w1
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:48: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                                                ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:17: note: use constraint modifier "w"
+    315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                 ^~
+        |                 %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:79: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                                                                               ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:315:21: note: use constraint modifier "w"
+    315 |   __ASM ("rev16 %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                     ^~
+        |                     %w1
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:48: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                                                ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:17: note: use constraint modifier "w"
+    333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                 ^~
+        |                 %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:79: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                                                                               ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:333:21: note: use constraint modifier "w"
+    333 |   __ASM ("revsh %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
+        |                     ^~
+        |                     %w1
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:981:45: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+    981 |   __ASM volatile ("MRS %0, control" : "=r" (result) );
+        |                                             ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:981:24: note: use constraint modifier "w"
+    981 |   __ASM volatile ("MRS %0, control" : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1009:46: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1009 |   __ASM volatile ("MSR control, %0" : : "r" (control) : "memory");
+        |                                              ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1009:33: note: use constraint modifier "w"
+   1009 |   __ASM volatile ("MSR control, %0" : : "r" (control) : "memory");
+        |                                 ^~
+        |                                 %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1037:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1037 |   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
+        |                                          ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1037:24: note: use constraint modifier "w"
+   1037 |   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1051:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1051 |   __ASM volatile ("MRS %0, apsr" : "=r" (result) );
+        |                                          ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1051:24: note: use constraint modifier "w"
+   1051 |   __ASM volatile ("MRS %0, apsr" : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1065:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1065 |   __ASM volatile ("MRS %0, xpsr" : "=r" (result) );
+        |                                          ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1065:24: note: use constraint modifier "w"
+   1065 |   __ASM volatile ("MRS %0, xpsr" : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1079:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1079 |   __ASM volatile ("MRS %0, psp"  : "=r" (result) );
+        |                                          ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1079:24: note: use constraint modifier "w"
+   1079 |   __ASM volatile ("MRS %0, psp"  : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1107:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1107 |   __ASM volatile ("MSR psp, %0" : : "r" (topOfProcStack) : );
+        |                                          ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1107:29: note: use constraint modifier "w"
+   1107 |   __ASM volatile ("MSR psp, %0" : : "r" (topOfProcStack) : );
+        |                             ^~
+        |                             %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1133:41: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1133 |   __ASM volatile ("MRS %0, msp" : "=r" (result) );
+        |                                         ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1133:24: note: use constraint modifier "w"
+   1133 |   __ASM volatile ("MRS %0, msp" : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1161:42: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1161 |   __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
+        |                                          ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1161:29: note: use constraint modifier "w"
+   1161 |   __ASM volatile ("MSR msp, %0" : : "r" (topOfMainStack) : );
+        |                             ^~
+        |                             %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1214:45: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1214 |   __ASM volatile ("MRS %0, primask" : "=r" (result) );
+        |                                             ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1214:24: note: use constraint modifier "w"
+   1214 |   __ASM volatile ("MRS %0, primask" : "=r" (result) );
+        |                        ^~
+        |                        %w0
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1242:46: warning: value size does not match register size specified by the constraint and modifier [-Wasm-operand-widths]
+   1242 |   __ASM volatile ("MSR primask, %0" : : "r" (priMask) : "memory");
+        |                                              ^
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo1/edge-impulse-sdk/CMSIS/Core/Include/cmsis_gcc.h:1242:33: note: use constraint modifier "w"
+   1242 |   __ASM volatile ("MSR primask, %0" : : "r" (priMask) : "memory");
+        |                                 ^~
+        |                                 %w0
+  In file included from C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2_variables.cpp:11:
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:258: error: constant expression evaluates to 5311474196165411000 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                  ^~~~~~~~~~~~~~~~~~~
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:258: note: insert an explicit cast to silence this issue
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                  ^~~~~~~~~~~~~~~~~~~
+        |                                                                                                                                                                                                                                                                  static_cast<float>()
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:532: error: constant expression evaluates to 1325110280263020000 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^~~~~~~~~~~~~~~~~~~
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:532: note: insert an explicit cast to silence this issue
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^~~~~~~~~~~~~~~~~~~
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    static_cast<float>()
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:814: error: constant expression evaluates to 431045813916788350 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^~~~~~~~~~~~~~~~~~
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:814: note: insert an explicit cast to silence this issue
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^~~~~~~~~~~~~~~~~~
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              static_cast<float>( )
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1089: error: constant expression evaluates to 61397003250091620 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^~~~~~~~~~~~~~~~~
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1089: note: insert an explicit cast to silence this issue
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^~~~~~~~~~~~~~~~~
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 static_cast<float>( )
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1366: error: constant expression evaluates to 4613344013575192 which cannot be narrowed to type 'float' [-Wc++11-narrowing]
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^~~~~~~~~~~~~~~~
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:77:1366: note: insert an explicit cast to silence this issue
+     77 | const float ei_dn_standard_scaler_var_840915_76[98] = { 0.6591456396545113, 0.003200139841570865, 0.0042034193598617505, 1432322026.2621665, 136275070.2192233, 137216326.91006276, 1417237998.558459, 443237.3327857958, 172246.47231802554, 568802392.0077658, 5311474196165411000, 568888209.8267239, 36.1348059713388, 10583.602157620133, 0.4264222156505605, 0.00442308564711987, 0.005385756168477429, 731461408.9042559, 58370429.19605272, 59259943.61519709, 734577656.2581081, 623048.0334891053, 1544365.695436074, 275459798.6553007, 1325110280263020000, 276424084.1687624, 10.411994547064555, 3749.8334398456313, 0.35041690302753425, 0.007069980393759902, 0.007980890141955516, 378952624.3283912, 41286717.038358375, 41718073.294394545, 383814039.8035922, 231295.62648272488, 297594.2914668923, 137991011.04093817, 431045813916788350, 138143828.3194804, 3.2230947084002928, 1755.3996480328694, 0.424385776666987, 0.0144549319270559, 0.01594642406462898, 169268348.5686311, 20331978.068292797, 19686200.163048364, 170199613.96386185, 50305.39390217875, 91645.98725136508, 60593254.35587761, 61397003250091620, 60649807.020144716, 10.979789546028242, 15436.240932269731, 0.4623271988781048, 0.018133563318113246, 0.019070497616908016, 47721159.519224994, 6644817.612002913, 6546445.27925159, 48047534.52084246, 12857.562517623868, 9060.28917028875, 18042693.095170856, 4613344013575192, 18047619.83821501, 20.01122673765573, 64507.83624899671, 0.49029693081833475, 0.010964830274854476, 0.011258877986394165, 5530763.806039455, 977125.6743534728, 981415.5812541301, 5537796.947737485, 1114.8727358464325, 794.9656240152225, 2140173.9459385714, 73278826629944.34, 2140741.1580818007, 19.072366355525034, 100727.83685858916, 0.5307837083065531, 0.022792594413698908, 0.022825285374171424, 452009.81861732324, 86281.49469869307, 86806.61010943745, 452129.38880943536, 13.465818804959403, 0.22345866463113218, 174538.3786729498, 765642805786.2328, 174538.53949778152, 17.17664645816385, 158333.47324405567 };
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^~~~~~~~~~~~~~~~
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      static_cast<float>( )
+  C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/android/app/src/main/cpp/modelo2/model-parameters/model_variables.h:92:6: error: use of undeclared identifier 'data_normalization_standard_scaler'
+     92 |     &data_normalization_standard_scaler // exec func
+        |      ^
+  17 warnings and 6 errors generated.
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\andre\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\Users\\andre\\OneDrive\\Documentos\\GitHub\\eco5000-app\\app\\android\\app\\.cxx\\Debug\\s5g1o6n2\\arm64-v8a" ^
+        edge_impulse_jni
+    from C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\android\app
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 38s
+267 actionable tasks: 24 executed, 243 up-to-date
+Error: C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\android\gradlew.bat app:assembleDebug -x lint -x test --configure-on-demand --build-cache -PreactNativeDevServerPort=8081 -PreactNativeArchitectures=arm64-v8a,armeabi-v7a exited with non-zero code: 1
+Error: C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\android\gradlew.bat app:assembleDebug -x lint -x test --configure-on-demand --build-cache -PreactNativeDevServerPort=8081 -PreactNativeArchitectures=arm64-v8a,armeabi-v7a exited with non-zero code: 1
+    at ChildProcess.completionListener (C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\node_modules\@expo\spawn-async\src\spawnAsync.ts:67:13)
+    at Object.onceWrapper (node:events:623:26)
+    at ChildProcess.emit (node:events:508:28)
+    at ChildProcess.cp.emit (C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\node_modules\cross-spawn\lib\enoent.js:34:29)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:305:5)
+    ...
+    at spawnAsync (C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\node_modules\@expo\spawn-async\src\spawnAsync.ts:28:21)
+    at spawnGradleAsync (C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\node_modules\expo\node_modules\@expo\cli\src\start\platforms\android\gradle.ts:134:28)
+    at assembleAsync (C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\node_modules\expo\node_modules\@expo\cli\src\start\platforms\android\gradle.ts:83:16)
+    at runAndroidAsync (C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\node_modules\expo\node_modules\@expo\cli\src\run\android\runAndroidAsync.ts:62:24)
