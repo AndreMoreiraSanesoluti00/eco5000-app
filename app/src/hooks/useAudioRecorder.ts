@@ -32,6 +32,9 @@ export function useAudioRecorder(): UseAudioRecorderResult {
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: true,
         playsInSilentModeIOS: true,
+        staysActiveInBackground: false,
+        shouldDuckAndroid: false,
+        playThroughEarpieceAndroid: false,
       });
 
       const { recording } = await Audio.Recording.createAsync({

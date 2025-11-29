@@ -1,7 +1,7 @@
 
 # Edge Impulse library for Sane.AI.Final
 
-This is a C++ library that lets you run the impulse for "Sane.AI.Final" (https://studio.edgeimpulse.com/studio/839504) on any device. It consists of the Edge Impulse inferencing SDK - with implementations of both processing and learning blocks - and your model. You will need to include this library in your project to run your impulse locally.
+This is a C++ library that lets you run the impulse for "Sane.AI.Final" (https://studio.edgeimpulse.com/studio/840223) on any device. It consists of the Edge Impulse inferencing SDK - with implementations of both processing and learning blocks - and your model. You will need to include this library in your project to run your impulse locally.
 
 ## Getting Started
 

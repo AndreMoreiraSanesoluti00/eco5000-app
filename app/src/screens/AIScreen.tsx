@@ -5,48 +5,65 @@ import {
   ScrollView,
   Alert,
   StyleSheet,
-  Image,
   TouchableOpacity,
-  Dimensions,
-  Modal,
   Animated,
+  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as DocumentPicker from 'expo-document-picker';
-import { File } from 'expo-file-system';
-import { ResultCard } from '../components';
+import { Video, ResizeMode, AVPlaybackStatus, Audio } from 'expo-av';
+import { ResultCard, WaveformCard, WaterDropIndicator } from '../components';
 import { useEdgeImpulse } from '../hooks/useEdgeImpulse';
 import { InferenceResult } from '../types';
+import {
+  parseAudioFile,
+  isSupportedAudioFormat,
+  getSupportedFormatsString,
+  AUDIO_MIME_TYPES,
+} from '../utils/audioParser';
 
 const logoAI = require('../assets/logo_AI.png');
-const waterSplash = require('../assets/Water Splash.gif');
+const waveProgressVideo = require('../assets/Wave Progress.mp4');
 const robo1 = require('../assets/robo1.png');
 const robo2 = require('../assets/robo2.png');
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export function AIScreen() {
   const [model1Result, setModel1Result] = useState<InferenceResult | null>(null);
   const [model2Result, setModel2Result] = useState<InferenceResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [showAnimation, setShowAnimation] = useState(false);
-  const [animationPhase, setAnimationPhase] = useState<'splash' | 'cover' | 'reveal' | 'done'>('done');
+  const [showVideo, setShowVideo] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [audioSamples, setAudioSamples] = useState<number[]>([]);
+  const [audioFileName, setAudioFileName] = useState<string>('');
 
-  // Animation values using React Native Animated
-  const splashScale = useRef(new Animated.Value(0)).current;
-  const splashOpacity = useRef(new Animated.Value(0)).current;
-  const logoScale = useRef(new Animated.Value(0)).current;
-  const logoOpacity = useRef(new Animated.Value(0)).current;
-  const coverOpacity = useRef(new Animated.Value(0)).current;
-  const coverScale = useRef(new Animated.Value(0)).current;
-  const revealOpacity = useRef(new Animated.Value(0)).current;
-  const revealTranslateY = useRef(new Animated.Value(50)).current;
+  // Animation values
+  const card1Opacity = useRef(new Animated.Value(1)).current;
+  const card1Scale = useRef(new Animated.Value(1)).current;
+  const card2Opacity = useRef(new Animated.Value(1)).current;
+  const card2Scale = useRef(new Animated.Value(1)).current;
+  const spectralCardOpacity = useRef(new Animated.Value(0)).current;
+  const spectralCardScale = useRef(new Animated.Value(0.8)).current;
+  const waterDropOpacity = useRef(new Animated.Value(0)).current;
+  const waterDropScale = useRef(new Animated.Value(0.8)).current;
+
+  // Logo animation values
+  const logoTranslateY = useRef(new Animated.Value(0)).current;
+  const logoScale = useRef(new Animated.Value(1)).current;
+  const overlayOpacity = useRef(new Animated.Value(0)).current;
+
+  // Video ref using expo-av
+  const videoRef = useRef<Video>(null);
 
   // Store results temporarily during animation
   const pendingResults = useRef<{
     model1: InferenceResult | null;
     model2: InferenceResult | null;
   } | null>(null);
+
+  // Guard to prevent multiple calls to completeAnimationAfterVideo
+  const isCompletingAnimation = useRef(false);
 
   const {
     isInitialized,
@@ -66,206 +83,184 @@ export function AIScreen() {
     }
   }, [modelError]);
 
-  const finishAnimation = useCallback(() => {
-    if (pendingResults.current) {
-      setModel1Result(pendingResults.current.model1);
-      setModel2Result(pendingResults.current.model2);
-      pendingResults.current = null;
+  // Handle video playback status - use a ref to avoid dependency chain issues
+  const handleVideoPlaybackStatus = useCallback((status: AVPlaybackStatus) => {
+    console.log('[AIScreen] Video status:', status.isLoaded ? 'loaded' : 'not loaded', status);
+
+    // Only handle the didJustFinish event, ignore unload events
+    if (!status.isLoaded) {
+      return;
     }
-    setShowAnimation(false);
-    setAnimationPhase('done');
+
+    if (status.didJustFinish) {
+      // Guard against multiple calls
+      if (isCompletingAnimation.current) {
+        console.log('[AIScreen] completeAnimationAfterVideo already in progress, skipping');
+        return;
+      }
+      isCompletingAnimation.current = true;
+      console.log('[AIScreen] Video finished, starting completion animation');
+
+      // Use InteractionManager to ensure we're outside the callback stack
+      setTimeout(() => {
+        // Hide video
+        setShowVideo(false);
+
+        // Animate logo back
+        Animated.parallel([
+          Animated.timing(logoTranslateY, { toValue: 0, duration: 500, useNativeDriver: true }),
+          Animated.timing(logoScale, { toValue: 1, duration: 500, useNativeDriver: true }),
+          Animated.timing(overlayOpacity, { toValue: 0, duration: 500, useNativeDriver: true }),
+        ]).start(() => {
+          // Set the results
+          if (pendingResults.current) {
+            setModel1Result(pendingResults.current.model1);
+            setModel2Result(pendingResults.current.model2);
+            pendingResults.current = null;
+          }
+
+          // Animate cards appearing with stagger
+          setTimeout(() => {
+            Animated.stagger(100, [
+              Animated.parallel([
+                Animated.timing(waterDropOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+                Animated.spring(waterDropScale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+              ]),
+              Animated.parallel([
+                Animated.timing(card1Opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+                Animated.spring(card1Scale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+              ]),
+              Animated.parallel([
+                Animated.timing(card2Opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+                Animated.spring(card2Scale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+              ]),
+              Animated.parallel([
+                Animated.timing(spectralCardOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+                Animated.spring(spectralCardScale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+              ]),
+            ]).start(() => {
+              setIsAnimating(false);
+            });
+          }, 50);
+        });
+      }, 50);
+    }
+  }, [logoTranslateY, logoScale, overlayOpacity, waterDropOpacity, waterDropScale, card1Opacity, card1Scale, card2Opacity, card2Scale, spectralCardOpacity, spectralCardScale]);
+
+  // Calculate the Y distance to move logo to center of screen
+  const calculateCenterOffset = useCallback(() => {
+    // Logo starts at top: 91px, needs to move to center of screen
+    // Center of screen is SCREEN_HEIGHT / 2, logo is 120px so center it by subtracting 60
+    const logoStartY = 91; // matches animatedLogoContainer top
+    const targetY = SCREEN_HEIGHT / 2 - 60; // center of screen minus half logo height
+    return targetY - logoStartY;
   }, []);
 
-  const startRevealPhase = useCallback(() => {
-    setAnimationPhase('reveal');
-
-    Animated.parallel([
-      Animated.timing(revealOpacity, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-      }),
-      Animated.timing(revealTranslateY, {
-        toValue: 0,
-        duration: 800,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setTimeout(finishAnimation, 1500);
+  // Start the processing animation (logo moves to center, then video plays)
+  const startProcessingAnimation = useCallback(async () => {
+    // Configure audio mode to NOT duck other audio
+    await Audio.setAudioModeAsync({
+      playsInSilentModeIOS: true,
+      staysActiveInBackground: false,
+      shouldDuckAndroid: false,
+      playThroughEarpieceAndroid: false,
     });
-  }, [revealOpacity, revealTranslateY, finishAnimation]);
 
-  const startCoverPhase = useCallback(() => {
-    setAnimationPhase('cover');
+    // Reset the animation completion guard
+    isCompletingAnimation.current = false;
 
+    setIsAnimating(true);
+
+    // Reset card animations (hide them initially)
+    card1Opacity.setValue(0);
+    card1Scale.setValue(0.8);
+    card2Opacity.setValue(0);
+    card2Scale.setValue(0.8);
+    spectralCardOpacity.setValue(0);
+    spectralCardScale.setValue(0.8);
+    waterDropOpacity.setValue(0);
+    waterDropScale.setValue(0.8);
+
+    // Reset logo position
+    logoTranslateY.setValue(0);
+    logoScale.setValue(1);
+    overlayOpacity.setValue(0);
+
+    const centerOffset = calculateCenterOffset();
+
+    // Phase 1: Show overlay and move logo to center
     Animated.parallel([
-      Animated.timing(splashOpacity, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(logoOpacity, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(coverScale, {
+      Animated.timing(overlayOpacity, {
         toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(logoTranslateY, {
+        toValue: centerOffset,
         duration: 600,
         useNativeDriver: true,
       }),
-      Animated.timing(coverOpacity, {
-        toValue: 1,
-        duration: 400,
+      Animated.timing(logoScale, {
+        toValue: 1.3,
+        duration: 600,
         useNativeDriver: true,
       }),
     ]).start(() => {
-      startRevealPhase();
+      // When logo reaches center, start video
+      console.log('[AIScreen] Logo reached center, starting video');
+      setShowVideo(true);
     });
-  }, [splashOpacity, logoOpacity, coverScale, coverOpacity, startRevealPhase]);
+  }, [calculateCenterOffset, logoTranslateY, logoScale, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale]);
 
-  const runAnalysisAnimation = useCallback((results: { model1Result: InferenceResult | null; model2Result: InferenceResult | null }) => {
+  // Store results when analysis is complete (video is already playing)
+  const runAnalysisAnimation = useCallback(async (results: { model1Result: InferenceResult | null; model2Result: InferenceResult | null }) => {
+    console.log('[AIScreen] runAnalysisAnimation called, storing results');
     pendingResults.current = { model1: results.model1Result, model2: results.model2Result };
-    setShowAnimation(true);
-    setAnimationPhase('splash');
-
-    // Reset animation values
-    splashScale.setValue(0);
-    splashOpacity.setValue(0);
-    logoScale.setValue(0);
-    logoOpacity.setValue(0);
-    coverOpacity.setValue(0);
-    coverScale.setValue(0);
-    revealOpacity.setValue(0);
-    revealTranslateY.setValue(50);
-
-    // Phase 1: Splash animation with logo
-    Animated.parallel([
-      Animated.timing(splashOpacity, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-      Animated.sequence([
-        Animated.spring(splashScale, {
-          toValue: 1.2,
-          tension: 50,
-          friction: 7,
-          useNativeDriver: true,
-        }),
-        Animated.timing(splashScale, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-      ]),
-      Animated.sequence([
-        Animated.delay(200),
-        Animated.timing(logoOpacity, {
-          toValue: 1,
-          duration: 400,
-          useNativeDriver: true,
-        }),
-      ]),
-      Animated.sequence([
-        Animated.delay(200),
-        Animated.spring(logoScale, {
-          toValue: 1,
-          tension: 50,
-          friction: 5,
-          useNativeDriver: true,
-        }),
-      ]),
-    ]).start();
-
-    // Wait for splash animation then start cover phase
-    setTimeout(() => {
-      startCoverPhase();
-    }, 1500);
-  }, [splashScale, splashOpacity, logoScale, logoOpacity, coverOpacity, coverScale, revealOpacity, revealTranslateY, startCoverPhase]);
-
-  const parseWavFile = async (uri: string): Promise<number[]> => {
-    const file = new File(uri);
-    const arrayBuffer = await file.arrayBuffer();
-    const bytes = new Uint8Array(arrayBuffer);
-
-    const dataView = new DataView(bytes.buffer);
-
-    // Verify WAV header
-    const riff = String.fromCharCode(bytes[0], bytes[1], bytes[2], bytes[3]);
-    const wave = String.fromCharCode(bytes[8], bytes[9], bytes[10], bytes[11]);
-
-    if (riff !== 'RIFF' || wave !== 'WAVE') {
-      throw new Error('Arquivo nao e um WAV valido');
-    }
-
-    // Get audio format info
-    const numChannels = dataView.getUint16(22, true);
-    const bitsPerSample = dataView.getUint16(34, true);
-
-    // Find data chunk
-    let dataOffset = 12;
-    while (dataOffset < bytes.length - 8) {
-      const chunkId = String.fromCharCode(
-        bytes[dataOffset],
-        bytes[dataOffset + 1],
-        bytes[dataOffset + 2],
-        bytes[dataOffset + 3]
-      );
-      const chunkSize = dataView.getUint32(dataOffset + 4, true);
-
-      if (chunkId === 'data') {
-        dataOffset += 8;
-        break;
-      }
-      dataOffset += 8 + chunkSize;
-    }
-
-    // Extract audio samples
-    const audioData: number[] = [];
-    const bytesPerSample = bitsPerSample / 8;
-
-    for (let i = dataOffset; i < bytes.length; i += bytesPerSample * numChannels) {
-      let sample: number;
-
-      if (bitsPerSample === 16) {
-        sample = dataView.getInt16(i, true) / 32768;
-      } else if (bitsPerSample === 8) {
-        sample = (bytes[i] - 128) / 128;
-      } else {
-        sample = dataView.getInt16(i, true) / 32768;
-      }
-
-      audioData.push(sample);
-    }
-
-    return audioData;
-  };
+    // Video is already playing from startProcessingAnimation
+    // Results will be shown when video finishes (in handleVideoPlaybackStatus)
+  }, []);
 
   const handleSelectAudio = useCallback(async () => {
     try {
+      console.log('[AIScreen] Abrindo seletor de arquivos...');
+
       const result = await DocumentPicker.getDocumentAsync({
-        type: 'audio/wav',
+        type: AUDIO_MIME_TYPES,
         copyToCacheDirectory: true,
       });
 
+      console.log('[AIScreen] Resultado do picker:', JSON.stringify(result));
+
       if (result.canceled) {
+        console.log('[AIScreen] Seleção cancelada pelo usuário');
         return;
       }
 
       const file = result.assets[0];
+      console.log('[AIScreen] Arquivo selecionado:', file.name, 'URI:', file.uri);
 
-      if (!file.name.toLowerCase().endsWith('.wav')) {
-        Alert.alert('Formato Invalido', 'Por favor, selecione um arquivo .wav');
+      if (!isSupportedAudioFormat(file.name)) {
+        Alert.alert(
+          'Formato Invalido',
+          `Por favor, selecione um arquivo de áudio suportado.\n\nFormatos aceitos: ${getSupportedFormatsString()}`
+        );
         return;
       }
 
       setModel1Result(null);
       setModel2Result(null);
+      setAudioSamples([]);
+      setAudioFileName(file.name);
       setIsProcessing(true);
 
+      // Start animation immediately when file is selected
+      startProcessingAnimation();
+
       try {
-        const audioData = await parseWavFile(file.uri);
+        const audioData = await parseAudioFile(file.uri, file.name);
+
+        // Store audio samples for spectral visualization
+        setAudioSamples(audioData);
 
         if (!isInitialized) {
           throw new Error('Modelos nao inicializados');
@@ -273,11 +268,28 @@ export function AIScreen() {
 
         const results = await runInference(audioData);
 
-        // Start animation with results
         setIsProcessing(false);
         runAnalysisAnimation(results);
       } catch (err) {
         setIsProcessing(false);
+        setIsAnimating(false);
+        setShowVideo(false);
+        setAudioSamples([]);
+        setAudioFileName('');
+        // Reset animation guard
+        isCompletingAnimation.current = false;
+        // Reset logo position on error
+        logoTranslateY.setValue(0);
+        logoScale.setValue(1);
+        overlayOpacity.setValue(0);
+        card1Opacity.setValue(1);
+        card1Scale.setValue(1);
+        card2Opacity.setValue(1);
+        card2Scale.setValue(1);
+        spectralCardOpacity.setValue(0);
+        spectralCardScale.setValue(0.8);
+        waterDropOpacity.setValue(0);
+        waterDropScale.setValue(0.8);
         Alert.alert(
           'Erro de Processamento',
           err instanceof Error ? err.message : 'Erro desconhecido ao processar o arquivo'
@@ -289,141 +301,197 @@ export function AIScreen() {
         err instanceof Error ? err.message : 'Erro ao selecionar arquivo'
       );
     }
-  }, [isInitialized, runInference, runAnalysisAnimation]);
+  }, [isInitialized, runInference, runAnalysisAnimation, startProcessingAnimation, logoTranslateY, logoScale, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale]);
 
-  const isButtonDisabled = !isInitialized || isModelLoading || isProcessing || showAnimation;
+  const isButtonDisabled = !isInitialized || isModelLoading || isProcessing || isAnimating;
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        {/* Logo */}
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        scrollEnabled={!isAnimating}
+      >
+        {/* Logo Container */}
         <View style={styles.logoContainer}>
-          <Image source={logoAI} style={styles.logo} resizeMode="contain" />
+          {/* Logo only shows here when not animating */}
+          {!isAnimating && (
+            <Animated.Image
+              source={logoAI}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+          )}
         </View>
 
         {/* Loading State */}
-        {isModelLoading && (
+        {isModelLoading && !isAnimating && (
           <View style={styles.loadingContainer}>
             <Text style={styles.loadingText}>Inicializando modelos de IA...</Text>
           </View>
         )}
 
-        {/* Results Cards */}
-        <ResultCard
-          title="Cético"
-          result={model1Result}
-          isLoading={isProcessing}
-          icon={robo1}
-        />
+        {/* Water Drop Indicator - appears after classification */}
+        {(model1Result || model2Result) && (
+          <Animated.View
+            style={[
+              styles.waterDropWrapper,
+              {
+                opacity: waterDropOpacity,
+                transform: [{ scale: waterDropScale }],
+              },
+            ]}
+          >
+            <WaterDropIndicator
+              percentage={(() => {
+                // Calculate leak percentage: 100% if Leak, 0% if No_leak
+                // Based on average of both models
+                const getLeakPercentage = (result: InferenceResult | null) => {
+                  if (!result) return null;
+                  // If label is "Leak", use confidence as leak percentage
+                  // If label is "No_leak", leak percentage is (1 - confidence)
+                  return result.label === 'Leak'
+                    ? result.confidence * 100
+                    : (1 - result.confidence) * 100;
+                };
 
-        <ResultCard
-          title="Paranoico"
-          result={model2Result}
-          isLoading={isProcessing}
-          icon={robo2}
-        />
+                const leak1 = getLeakPercentage(model1Result);
+                const leak2 = getLeakPercentage(model2Result);
 
-        {/* Select Audio Button */}
-        <TouchableOpacity
-          style={[styles.selectButton, isButtonDisabled && styles.selectButtonDisabled]}
-          onPress={handleSelectAudio}
-          disabled={isButtonDisabled}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.selectButtonText}>
-            {isProcessing ? 'Processando...' : 'Selecionar Áudio'}
-          </Text>
-        </TouchableOpacity>
-
-        {/* Footer */}
-        <View style={styles.footer}>
-          <Text style={styles.footerBrand}>Sanesoluti</Text>
-        </View>
-      </ScrollView>
-
-      {/* Animation Modal */}
-      <Modal
-        visible={showAnimation}
-        transparent
-        animationType="none"
-        statusBarTranslucent
-      >
-        <View style={styles.animationContainer}>
-          {/* Phase 1 & 2: Splash with Logo */}
-          {(animationPhase === 'splash' || animationPhase === 'cover') && (
-            <View style={styles.splashContainer}>
-              <Animated.Image
-                source={waterSplash}
-                style={[
-                  styles.splashImage,
-                  {
-                    transform: [{ scale: splashScale }],
-                    opacity: splashOpacity,
-                  },
-                ]}
-                resizeMode="contain"
-              />
-              <Animated.Image
-                source={logoAI}
-                style={[
-                  styles.splashLogo,
-                  {
-                    transform: [{ scale: logoScale }],
-                    opacity: logoOpacity,
-                  },
-                ]}
-                resizeMode="contain"
-              />
-            </View>
-          )}
-
-          {/* Phase 2: Blue Cover */}
-          {animationPhase === 'cover' && (
-            <Animated.View
-              style={[
-                styles.blueCover,
-                {
-                  opacity: coverOpacity,
-                  transform: [{ scale: coverScale }],
-                },
-              ]}
+                if (leak1 !== null && leak2 !== null) {
+                  return (leak1 + leak2) / 2;
+                } else if (leak1 !== null) {
+                  return leak1;
+                } else if (leak2 !== null) {
+                  return leak2;
+                }
+                return 0;
+              })()}
             />
-          )}
+          </Animated.View>
+        )}
 
-          {/* Phase 3: Reveal Results */}
-          {animationPhase === 'reveal' && (
+        {/* Results Cards with Animation */}
+        <View style={styles.cardsContainer}>
+          <Animated.View
+            style={[
+              styles.cardWrapper,
+              {
+                opacity: card1Opacity,
+                transform: [{ scale: card1Scale }],
+              },
+            ]}
+          >
+            <ResultCard
+              title="Cético"
+              result={model1Result}
+              isLoading={isProcessing && !isAnimating}
+              icon={robo1}
+            />
+          </Animated.View>
+
+          <Animated.View
+            style={[
+              styles.cardWrapper,
+              {
+                opacity: card2Opacity,
+                transform: [{ scale: card2Scale }],
+              },
+            ]}
+          >
+            <ResultCard
+              title="Paranoico"
+              result={model2Result}
+              isLoading={isProcessing && !isAnimating}
+              icon={robo2}
+            />
+          </Animated.View>
+
+          {/* Waveform Card - appears after classification */}
+          {audioSamples.length > 0 && (model1Result || model2Result) && (
             <Animated.View
               style={[
-                styles.revealContainer,
+                styles.cardWrapper,
                 {
-                  opacity: revealOpacity,
-                  transform: [{ translateY: revealTranslateY }],
+                  opacity: spectralCardOpacity,
+                  transform: [{ scale: spectralCardScale }],
                 },
               ]}
             >
-              <View style={styles.revealContent}>
-                <Image source={logoAI} style={styles.revealLogo} resizeMode="contain" />
-                <Text style={styles.revealTitle}>Análise Concluída!</Text>
-
-                <View style={styles.revealCards}>
-                  <ResultCard
-                    title="Cético"
-                    result={pendingResults.current?.model1 || null}
-                    isLoading={false}
-                    icon={robo1}
-                  />
-                  <ResultCard
-                    title="Paranoico"
-                    result={pendingResults.current?.model2 || null}
-                    isLoading={false}
-                    icon={robo2}
-                  />
-                </View>
-              </View>
+              <WaveformCard audioData={audioSamples} fileName={audioFileName} />
             </Animated.View>
           )}
         </View>
-      </Modal>
+
+        {/* Select Audio Button */}
+        {!isAnimating && (
+          <TouchableOpacity
+            style={[styles.selectButton, isButtonDisabled && styles.selectButtonDisabled]}
+            onPress={handleSelectAudio}
+            disabled={isButtonDisabled}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.selectButtonText}>
+              {isProcessing ? 'Processando...' : 'Selecionar Áudio'}
+            </Text>
+          </TouchableOpacity>
+        )}
+
+        {/* Footer */}
+        {!isAnimating && (
+          <View style={styles.footer}>
+            <Text style={styles.footerBrand}>Sanesoluti</Text>
+          </View>
+        )}
+      </ScrollView>
+
+      {/* Animation Overlay - covers everything */}
+      {isAnimating && (
+        <Animated.View
+          style={[
+            styles.animationOverlay,
+            { opacity: overlayOpacity },
+          ]}
+          pointerEvents="none"
+        />
+      )}
+
+      {/* Animated Logo - above everything */}
+      {isAnimating && (
+        <Animated.View
+          style={[
+            styles.animatedLogoContainer,
+            {
+              transform: [
+                { translateY: logoTranslateY },
+                { scale: logoScale },
+              ],
+            },
+          ]}
+          pointerEvents="none"
+        >
+          <Animated.Image
+            source={logoAI}
+            style={styles.animatedLogo}
+            resizeMode="contain"
+          />
+        </Animated.View>
+      )}
+
+      {/* Full screen video animation */}
+      {showVideo && (
+        <View style={styles.videoContainer}>
+          <Video
+            ref={videoRef}
+            source={waveProgressVideo}
+            style={styles.fullScreenVideo}
+            resizeMode={ResizeMode.COVER}
+            shouldPlay
+            isLooping={false}
+            onPlaybackStatusUpdate={handleVideoPlaybackStatus}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -441,11 +509,40 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 24,
+    height: 150,
   },
   logo: {
     width: 120,
     height: 120,
+  },
+  animationOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#000000',
+    zIndex: 50,
+  },
+  animatedLogoContainer: {
+    position: 'absolute',
+    top: 91,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 300, // Above video (zIndex: 200)
+  },
+  animatedLogo: {
+    width: 120,
+    height: 120,
+  },
+  videoContainer: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 200,
+  },
+  fullScreenVideo: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   loadingContainer: {
     backgroundColor: '#e6f7f5',
@@ -456,6 +553,16 @@ const styles = StyleSheet.create({
   loadingText: {
     color: '#027368',
     textAlign: 'center',
+  },
+  waterDropWrapper: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  cardsContainer: {
+    position: 'relative',
+  },
+  cardWrapper: {
+    marginBottom: 0,
   },
   selectButton: {
     backgroundColor: '#F28322',
@@ -481,62 +588,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     color: '#027368',
-  },
-  // Animation styles
-  animationContainer: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  splashContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
-  },
-  splashImage: {
-    width: SCREEN_WIDTH * 0.8,
-    height: SCREEN_WIDTH * 0.8,
-    position: 'absolute',
-  },
-  splashLogo: {
-    width: 100,
-    height: 100,
-    position: 'absolute',
-  },
-  blueCover: {
-    position: 'absolute',
-    width: SCREEN_WIDTH * 2,
-    height: SCREEN_HEIGHT * 2,
-    backgroundColor: '#03A696',
-    borderRadius: SCREEN_WIDTH,
-  },
-  revealContainer: {
-    flex: 1,
-    backgroundColor: '#03A696',
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  revealContent: {
-    width: '100%',
-    paddingHorizontal: 16,
-    alignItems: 'center',
-  },
-  revealLogo: {
-    width: 80,
-    height: 80,
-    marginBottom: 16,
-  },
-  revealTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 24,
-  },
-  revealCards: {
-    width: '100%',
   },
 });

@@ -29,8 +29,8 @@
  * permissions, disclaimers and limitations under the License.
  */
 
-#ifndef _EI_CLASSIFIER_TFLITE_LEARN_839509_110_H_
-#define _EI_CLASSIFIER_TFLITE_LEARN_839509_110_H_
+#ifndef _EI_CLASSIFIER_TFLITE_LEARN_840223_110_H_
+#define _EI_CLASSIFIER_TFLITE_LEARN_840223_110_H_
 
 // NOTE: As of February 2025 we've changed the default way to include binary model files.
 // Instead of embedding the file as as a byte array in this file, we now use INCBIN instead;
@@ -51,13 +51,13 @@
 
 #include "edge-impulse-sdk/third_party/incbin/incbin.h"
 
-#define EI_CLASSIFIER_TFLITE_LEARN_839509_110_ARENA_SIZE     8012
-const size_t tflite_learn_839509_110_arena_size = 8012;
+#define EI_CLASSIFIER_TFLITE_LEARN_840223_110_ARENA_SIZE     3443
+const size_t tflite_learn_840223_110_arena_size = 3443;
 
-INCBIN(incbin_tflite_learn_839509_110, "tflite-model/tflite_learn_839509_110.tflite");
+INCBIN(incbin_tflite_learn_840223_110, "tflite-model/tflite_learn_840223_110.tflite");
 
-const unsigned char *tflite_learn_839509_110 = gincbin_tflite_learn_839509_110_data;
-unsigned int tflite_learn_839509_110_len = gincbin_tflite_learn_839509_110_size;
+const unsigned char *tflite_learn_840223_110 = gincbin_tflite_learn_840223_110_data;
+unsigned int tflite_learn_840223_110_len = gincbin_tflite_learn_840223_110_size;
 
-#endif // _EI_CLASSIFIER_TFLITE_LEARN_839509_110_H_
+#endif // _EI_CLASSIFIER_TFLITE_LEARN_840223_110_H_
 

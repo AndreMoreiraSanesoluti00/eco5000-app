@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 import { InferenceResult, ModelInfo } from '../types';
 
 // Safely check for native module
-const EdgeImpulseModule = NativeModules?.EdgeImpulseModule;
+const EdgeImpulseNativeModule = NativeModules?.EdgeImpulseModule;
 
 // Check if we're running in Expo Go (native module won't be available)
 // Use multiple checks to be safe
@@ -13,13 +13,22 @@ const isExpoGo = (() => {
   if (Constants.appOwnership === 'expo') return true;
 
   // Check if native module exists and has the expected methods
-  if (!EdgeImpulseModule) return true;
-  if (typeof EdgeImpulseModule.initializeModel1 !== 'function') return true;
+  if (!EdgeImpulseNativeModule) {
+    console.log('[EdgeImpulse] Native module not found');
+    return true;
+  }
+  if (typeof EdgeImpulseNativeModule.initializeModel1 !== 'function') {
+    console.log('[EdgeImpulse] Native module missing initializeModel1 method');
+    return true;
+  }
 
   return false;
 })();
 
-console.log('[EdgeImpulse] Mode:', isExpoGo ? 'Expo Go (Mock)' : 'Native');
+console.log('[EdgeImpulse] Mode:', isExpoGo ? 'Expo Go (Mock)' : 'Native (TFLite)');
+if (!isExpoGo) {
+  console.log('[EdgeImpulse] Native module available:', Object.keys(EdgeImpulseNativeModule || {}));
+}
 
 export interface EdgeImpulseInterface {
   initializeModel1(): Promise<boolean>;
@@ -65,6 +74,52 @@ function createMockInferenceResult(): InferenceResult {
   };
 }
 
+// Utility function to log uncertainty metrics
+function logUncertaintyMetrics(
+  modelName: string,
+  result: InferenceResult,
+  threshold: number
+): void {
+  const uncertainty = 1 - result.confidence;
+  const isAboveThreshold = result.confidence >= threshold;
+  const marginFromThreshold = result.confidence - threshold;
+
+  // Classify uncertainty level
+  let uncertaintyLevel: string;
+  if (uncertainty < 0.1) {
+    uncertaintyLevel = 'MUITO_BAIXA';
+  } else if (uncertainty < 0.2) {
+    uncertaintyLevel = 'BAIXA';
+  } else if (uncertainty < 0.35) {
+    uncertaintyLevel = 'MODERADA';
+  } else if (uncertainty < 0.5) {
+    uncertaintyLevel = 'ALTA';
+  } else {
+    uncertaintyLevel = 'MUITO_ALTA';
+  }
+
+  console.log(`[Incerteza][${modelName}] ========================================`);
+  console.log(`[Incerteza][${modelName}] Label: ${result.label}`);
+  console.log(`[Incerteza][${modelName}] Confiança: ${(result.confidence * 100).toFixed(2)}%`);
+  console.log(`[Incerteza][${modelName}] Incerteza: ${(uncertainty * 100).toFixed(2)}%`);
+  console.log(`[Incerteza][${modelName}] Nível de Incerteza: ${uncertaintyLevel}`);
+  console.log(`[Incerteza][${modelName}] Threshold do modelo: ${(threshold * 100).toFixed(0)}%`);
+  console.log(`[Incerteza][${modelName}] Acima do threshold: ${isAboveThreshold ? 'SIM' : 'NÃO'}`);
+  console.log(`[Incerteza][${modelName}] Margem do threshold: ${(marginFromThreshold * 100).toFixed(2)}%`);
+
+  // Warning for high uncertainty predictions
+  if (uncertainty >= 0.35) {
+    console.warn(`[Incerteza][${modelName}] ⚠️ ALERTA: Predição com alta incerteza! Resultado pode não ser confiável.`);
+  }
+
+  // Warning for predictions below threshold
+  if (!isAboveThreshold) {
+    console.warn(`[Incerteza][${modelName}] ⚠️ ALERTA: Confiança abaixo do threshold! Considerar resultado inconclusivo.`);
+  }
+
+  console.log(`[Incerteza][${modelName}] ========================================`);
+}
+
 class EdgeImpulseService implements EdgeImpulseInterface {
   private _model1Initialized: boolean = false;
   private _model2Initialized: boolean = false;
@@ -86,8 +141,10 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      const result = await EdgeImpulseModule.initializeModel1();
+      console.log('[EdgeImpulse] Calling native initializeModel1...');
+      const result = await EdgeImpulseNativeModule.initializeModel1();
       this._model1Initialized = Boolean(result);
+      console.log('[EdgeImpulse] Model 1 initialized:', this._model1Initialized);
       return this._model1Initialized;
     } catch (error) {
       console.error('[EdgeImpulse] Failed to initialize Model 1:', error);
@@ -103,8 +160,10 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      const result = await EdgeImpulseModule.initializeModel2();
+      console.log('[EdgeImpulse] Calling native initializeModel2...');
+      const result = await EdgeImpulseNativeModule.initializeModel2();
       this._model2Initialized = Boolean(result);
+      console.log('[EdgeImpulse] Model 2 initialized:', this._model2Initialized);
       return this._model2Initialized;
     } catch (error) {
       console.error('[EdgeImpulse] Failed to initialize Model 2:', error);
@@ -115,19 +174,31 @@ class EdgeImpulseService implements EdgeImpulseInterface {
   async runInferenceModel1(audioData: number[]): Promise<InferenceResult> {
     if (isExpoGo) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      return createMockInferenceResult();
+      const mockResult = createMockInferenceResult();
+      logUncertaintyMetrics('Modelo1-Cético', mockResult, mockModel1Info.threshold);
+      return mockResult;
     }
 
-    return EdgeImpulseModule.runInferenceModel1(audioData);
+    console.log('[EdgeImpulse] Running native inference Model 1 with', audioData.length, 'samples');
+    const result = await EdgeImpulseNativeModule.runInferenceModel1(audioData);
+    console.log('[EdgeImpulse] Model 1 result:', result);
+    logUncertaintyMetrics('Modelo1-Cético', result, mockModel1Info.threshold);
+    return result;
   }
 
   async runInferenceModel2(audioData: number[]): Promise<InferenceResult> {
     if (isExpoGo) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      return createMockInferenceResult();
+      const mockResult = createMockInferenceResult();
+      logUncertaintyMetrics('Modelo2-Paranoico', mockResult, mockModel2Info.threshold);
+      return mockResult;
     }
 
-    return EdgeImpulseModule.runInferenceModel2(audioData);
+    console.log('[EdgeImpulse] Running native inference Model 2 with', audioData.length, 'samples');
+    const result = await EdgeImpulseNativeModule.runInferenceModel2(audioData);
+    console.log('[EdgeImpulse] Model 2 result:', result);
+    logUncertaintyMetrics('Modelo2-Paranoico', result, mockModel2Info.threshold);
+    return result;
   }
 
   async getModel1Info(): Promise<ModelInfo> {
@@ -135,7 +206,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
       return mockModel1Info;
     }
 
-    return EdgeImpulseModule.getModel1Info();
+    return EdgeImpulseNativeModule.getModel1Info();
   }
 
   async getModel2Info(): Promise<ModelInfo> {
@@ -143,7 +214,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
       return mockModel2Info;
     }
 
-    return EdgeImpulseModule.getModel2Info();
+    return EdgeImpulseNativeModule.getModel2Info();
   }
 
   async isModel1Initialized(): Promise<boolean> {
@@ -152,7 +223,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      return Boolean(await EdgeImpulseModule.isModel1Initialized());
+      return Boolean(await EdgeImpulseNativeModule.isModel1Initialized());
     } catch {
       return false;
     }
@@ -164,7 +235,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      return Boolean(await EdgeImpulseModule.isModel2Initialized());
+      return Boolean(await EdgeImpulseNativeModule.isModel2Initialized());
     } catch {
       return false;
     }
