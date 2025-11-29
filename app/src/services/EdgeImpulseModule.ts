@@ -173,7 +173,8 @@ class EdgeImpulseService implements EdgeImpulseInterface {
 
   async runInferenceModel1(audioData: number[]): Promise<InferenceResult> {
     if (isExpoGo) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulating realistic TFLite inference time (50-150ms)
+      await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 100));
       const mockResult = createMockInferenceResult();
       logUncertaintyMetrics('Modelo1-Cético', mockResult, mockModel1Info.threshold);
       return mockResult;
@@ -188,7 +189,8 @@ class EdgeImpulseService implements EdgeImpulseInterface {
 
   async runInferenceModel2(audioData: number[]): Promise<InferenceResult> {
     if (isExpoGo) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulating realistic TFLite inference time (50-150ms)
+      await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 100));
       const mockResult = createMockInferenceResult();
       logUncertaintyMetrics('Modelo2-Paranoico', mockResult, mockModel2Info.threshold);
       return mockResult;

@@ -14,7 +14,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import { Video, ResizeMode, AVPlaybackStatus, Audio } from 'expo-av';
 import { ResultCard, WaveformCard, WaterDropIndicator } from '../components';
 import { useEdgeImpulse } from '../hooks/useEdgeImpulse';
-import { InferenceResult } from '../types';
+import { InferenceResult, AggregatedResult } from '../types';
 import {
   parseAudioFile,
   isSupportedAudioFormat,
@@ -24,6 +24,7 @@ import {
 
 const logoAI = require('../assets/logo_AI.png');
 const waveProgressVideo = require('../assets/Wave Progress.mp4');
+const animacaoRobosGif = require('../assets/animacao_robos.gif');
 const robo1 = require('../assets/robo1.png');
 const robo2 = require('../assets/robo2.png');
 
@@ -32,6 +33,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 export function AIScreen() {
   const [model1Result, setModel1Result] = useState<InferenceResult | null>(null);
   const [model2Result, setModel2Result] = useState<InferenceResult | null>(null);
+  const [aggregatedResult, setAggregatedResult] = useState<AggregatedResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -51,6 +53,7 @@ export function AIScreen() {
   // Logo animation values
   const logoTranslateY = useRef(new Animated.Value(0)).current;
   const logoScale = useRef(new Animated.Value(1)).current;
+  const logoOpacity = useRef(new Animated.Value(1)).current;
   const overlayOpacity = useRef(new Animated.Value(0)).current;
 
   // Video ref using expo-av
@@ -65,12 +68,18 @@ export function AIScreen() {
   // Guard to prevent multiple calls to completeAnimationAfterVideo
   const isCompletingAnimation = useRef(false);
 
+  // Flag to track if inference is complete (used to control animation end)
+  const isInferenceComplete = useRef(false);
+
+  // Flag to track if video has finished playing (reached the end)
+  const isVideoFinished = useRef(false);
+
   const {
     isInitialized,
     isLoading: isModelLoading,
     error: modelError,
     initializeModels,
-    runInference,
+    runSlidingWindowInference,
   } = useEdgeImpulse();
 
   useEffect(() => {
@@ -83,69 +92,78 @@ export function AIScreen() {
     }
   }, [modelError]);
 
-  // Handle video playback status - use a ref to avoid dependency chain issues
-  const handleVideoPlaybackStatus = useCallback((status: AVPlaybackStatus) => {
-    console.log('[AIScreen] Video status:', status.isLoaded ? 'loaded' : 'not loaded', status);
+  // Complete the animation and show results
+  const completeAnimation = useCallback(() => {
+    // Guard against multiple calls
+    if (isCompletingAnimation.current) {
+      console.log('[AIScreen] completeAnimation already in progress, skipping');
+      return;
+    }
+    isCompletingAnimation.current = true;
+    console.log('[AIScreen] Completing animation, removing logo and gif');
 
-    // Only handle the didJustFinish event, ignore unload events
+    // Hide video, logo and gif IMMEDIATELY - no delay
+    setShowVideo(false);
+    setIsAnimating(false);
+
+    // Set the results immediately
+    if (pendingResults.current) {
+      setModel1Result(pendingResults.current.model1);
+      setModel2Result(pendingResults.current.model2);
+      pendingResults.current = null;
+    }
+
+    // Reset logo position for next animation
+    logoTranslateY.setValue(0);
+    logoScale.setValue(1);
+    logoOpacity.setValue(1);
+    overlayOpacity.setValue(0);
+
+    // Animate cards appearing with stagger
+    Animated.stagger(100, [
+      Animated.parallel([
+        Animated.timing(waterDropOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.spring(waterDropScale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+      ]),
+      Animated.parallel([
+        Animated.timing(card1Opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.spring(card1Scale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+      ]),
+      Animated.parallel([
+        Animated.timing(card2Opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.spring(card2Scale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+      ]),
+      Animated.parallel([
+        Animated.timing(spectralCardOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.spring(spectralCardScale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
+      ]),
+    ]).start();
+  }, [logoTranslateY, logoScale, logoOpacity, overlayOpacity, waterDropOpacity, waterDropScale, card1Opacity, card1Scale, card2Opacity, card2Scale, spectralCardOpacity, spectralCardScale]);
+
+  // Handle video playback status - video plays once and stays at end
+  const handleVideoPlaybackStatus = useCallback((status: AVPlaybackStatus) => {
+    // Only handle loaded status
     if (!status.isLoaded) {
       return;
     }
 
+    // Check if video finished (reached the end)
     if (status.didJustFinish) {
-      // Guard against multiple calls
-      if (isCompletingAnimation.current) {
-        console.log('[AIScreen] completeAnimationAfterVideo already in progress, skipping');
-        return;
+      console.log('[AIScreen] Video finished, staying at end frame');
+      // Mark video as finished
+      isVideoFinished.current = true;
+      // Video stays at end frame - don't restart
+      // The GIF of robots keeps animating automatically (GIFs loop by default)
+
+      // If inference is already complete, finish the animation now
+      if (isInferenceComplete.current) {
+        console.log('[AIScreen] Inference already complete, completing animation');
+        completeAnimation();
       }
-      isCompletingAnimation.current = true;
-      console.log('[AIScreen] Video finished, starting completion animation');
-
-      // Use InteractionManager to ensure we're outside the callback stack
-      setTimeout(() => {
-        // Hide video
-        setShowVideo(false);
-
-        // Animate logo back
-        Animated.parallel([
-          Animated.timing(logoTranslateY, { toValue: 0, duration: 500, useNativeDriver: true }),
-          Animated.timing(logoScale, { toValue: 1, duration: 500, useNativeDriver: true }),
-          Animated.timing(overlayOpacity, { toValue: 0, duration: 500, useNativeDriver: true }),
-        ]).start(() => {
-          // Set the results
-          if (pendingResults.current) {
-            setModel1Result(pendingResults.current.model1);
-            setModel2Result(pendingResults.current.model2);
-            pendingResults.current = null;
-          }
-
-          // Animate cards appearing with stagger
-          setTimeout(() => {
-            Animated.stagger(100, [
-              Animated.parallel([
-                Animated.timing(waterDropOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
-                Animated.spring(waterDropScale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
-              ]),
-              Animated.parallel([
-                Animated.timing(card1Opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
-                Animated.spring(card1Scale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
-              ]),
-              Animated.parallel([
-                Animated.timing(card2Opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
-                Animated.spring(card2Scale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
-              ]),
-              Animated.parallel([
-                Animated.timing(spectralCardOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
-                Animated.spring(spectralCardScale, { toValue: 1, tension: 100, friction: 8, useNativeDriver: true }),
-              ]),
-            ]).start(() => {
-              setIsAnimating(false);
-            });
-          }, 50);
-        });
-      }, 50);
+      // Otherwise, we wait - the video stays at end, GIF keeps animating
+      // runAnalysisAnimation will call completeAnimation when inference finishes
     }
-  }, [logoTranslateY, logoScale, overlayOpacity, waterDropOpacity, waterDropScale, card1Opacity, card1Scale, card2Opacity, card2Scale, spectralCardOpacity, spectralCardScale]);
+  }, [completeAnimation]);
 
   // Calculate the Y distance to move logo to center of screen
   const calculateCenterOffset = useCallback(() => {
@@ -168,6 +186,10 @@ export function AIScreen() {
 
     // Reset the animation completion guard
     isCompletingAnimation.current = false;
+    // Reset inference completion flag - will be set to true when inference finishes
+    isInferenceComplete.current = false;
+    // Reset video finished flag
+    isVideoFinished.current = false;
 
     setIsAnimating(true);
 
@@ -213,12 +235,50 @@ export function AIScreen() {
   }, [calculateCenterOffset, logoTranslateY, logoScale, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale]);
 
   // Store results when analysis is complete (video is already playing)
-  const runAnalysisAnimation = useCallback(async (results: { model1Result: InferenceResult | null; model2Result: InferenceResult | null }) => {
-    console.log('[AIScreen] runAnalysisAnimation called, storing results');
-    pendingResults.current = { model1: results.model1Result, model2: results.model2Result };
-    // Video is already playing from startProcessingAnimation
-    // Results will be shown when video finishes (in handleVideoPlaybackStatus)
-  }, []);
+  const runAnalysisAnimation = useCallback(async (aggregated: AggregatedResult) => {
+    console.log('[AIScreen] runAnalysisAnimation called, storing aggregated results');
+
+    // Convert aggregated results to InferenceResult format for display
+    // Model 1 result from aggregated average
+    const model1FromAggregated: InferenceResult = {
+      label: aggregated.model1Average.dominantLabel,
+      confidence: aggregated.model1Average.dominantLabel === 'Leak'
+        ? aggregated.model1Average.leakConfidence
+        : aggregated.model1Average.noLeakConfidence,
+      timing: {
+        dsp: 0,
+        classification: aggregated.processingTimeMs / 2,
+        anomaly: 0,
+      },
+    };
+
+    // Model 2 result from aggregated average
+    const model2FromAggregated: InferenceResult = {
+      label: aggregated.model2Average.dominantLabel,
+      confidence: aggregated.model2Average.dominantLabel === 'Leak'
+        ? aggregated.model2Average.leakConfidence
+        : aggregated.model2Average.noLeakConfidence,
+      timing: {
+        dsp: 0,
+        classification: aggregated.processingTimeMs / 2,
+        anomaly: 0,
+      },
+    };
+
+    pendingResults.current = { model1: model1FromAggregated, model2: model2FromAggregated };
+    // Mark inference as complete
+    isInferenceComplete.current = true;
+    console.log('[AIScreen] Inference complete');
+
+    // If video has already finished, complete the animation now
+    // Otherwise, handleVideoPlaybackStatus will complete it when video ends
+    if (isVideoFinished.current) {
+      console.log('[AIScreen] Video already finished, completing animation now');
+      completeAnimation();
+    } else {
+      console.log('[AIScreen] Waiting for video to finish...');
+    }
+  }, [completeAnimation]);
 
   const handleSelectAudio = useCallback(async () => {
     try {
@@ -249,6 +309,7 @@ export function AIScreen() {
 
       setModel1Result(null);
       setModel2Result(null);
+      setAggregatedResult(null);
       setAudioSamples([]);
       setAudioFileName(file.name);
       setIsProcessing(true);
@@ -266,21 +327,39 @@ export function AIScreen() {
           throw new Error('Modelos nao inicializados');
         }
 
-        const results = await runInference(audioData);
+        // Run sliding window inference (500ms windows every 2.5s)
+        const aggregated = await runSlidingWindowInference(audioData);
+
+        // Store aggregated result for potential future use
+        setAggregatedResult(aggregated);
 
         setIsProcessing(false);
-        runAnalysisAnimation(results);
+        runAnalysisAnimation(aggregated);
       } catch (err) {
+        console.log('[AIScreen] Erro durante processamento:', err);
+
+        // Stop all animations immediately
+        logoTranslateY.stopAnimation();
+        logoScale.stopAnimation();
+        logoOpacity.stopAnimation();
+        overlayOpacity.stopAnimation();
+
+        // Reset all state
         setIsProcessing(false);
         setIsAnimating(false);
         setShowVideo(false);
         setAudioSamples([]);
         setAudioFileName('');
-        // Reset animation guard
+
+        // Reset animation guards
         isCompletingAnimation.current = false;
-        // Reset logo position on error
+        isInferenceComplete.current = false;
+        isVideoFinished.current = false;
+
+        // Reset all animation values to initial state
         logoTranslateY.setValue(0);
         logoScale.setValue(1);
+        logoOpacity.setValue(1);
         overlayOpacity.setValue(0);
         card1Opacity.setValue(1);
         card1Scale.setValue(1);
@@ -290,9 +369,14 @@ export function AIScreen() {
         spectralCardScale.setValue(0.8);
         waterDropOpacity.setValue(0);
         waterDropScale.setValue(0.8);
+
+        // Show error message
+        const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido ao processar o arquivo';
         Alert.alert(
           'Erro de Processamento',
-          err instanceof Error ? err.message : 'Erro desconhecido ao processar o arquivo'
+          errorMessage.includes('Áudio muito curto')
+            ? 'O áudio selecionado é muito curto. Por favor, selecione um áudio com pelo menos 500ms de duração.'
+            : errorMessage
         );
       }
     } catch (err) {
@@ -301,7 +385,7 @@ export function AIScreen() {
         err instanceof Error ? err.message : 'Erro ao selecionar arquivo'
       );
     }
-  }, [isInitialized, runInference, runAnalysisAnimation, startProcessingAnimation, logoTranslateY, logoScale, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale]);
+  }, [isInitialized, runSlidingWindowInference, runAnalysisAnimation, startProcessingAnimation, logoTranslateY, logoScale, logoOpacity, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale, spectralCardOpacity, spectralCardScale, waterDropOpacity, waterDropScale]);
 
   const isButtonDisabled = !isInitialized || isModelLoading || isProcessing || isAnimating;
 
@@ -456,12 +540,13 @@ export function AIScreen() {
         />
       )}
 
-      {/* Animated Logo - above everything */}
+      {/* Animated Logo and Robots Video - above everything */}
       {isAnimating && (
         <Animated.View
           style={[
             styles.animatedLogoContainer,
             {
+              opacity: logoOpacity,
               transform: [
                 { translateY: logoTranslateY },
                 { scale: logoScale },
@@ -473,6 +558,12 @@ export function AIScreen() {
           <Animated.Image
             source={logoAI}
             style={styles.animatedLogo}
+            resizeMode="contain"
+          />
+          {/* Robots animation GIF below logo */}
+          <Animated.Image
+            source={animacaoRobosGif}
+            style={styles.robosGif}
             resizeMode="contain"
           />
         </Animated.View>
@@ -534,6 +625,11 @@ const styles = StyleSheet.create({
   animatedLogo: {
     width: 120,
     height: 120,
+  },
+  robosGif: {
+    width: 200,
+    height: 150,
+    marginTop: 20,
   },
   videoContainer: {
     ...StyleSheet.absoluteFillObject,

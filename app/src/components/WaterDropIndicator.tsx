@@ -116,24 +116,12 @@ export function WaterDropIndicator({ percentage, label = 'Probabilidade de Vazam
               `}
               fill="#0A84FF"
             />
-
-            {/* Highlight/shine on water */}
-            <Path
-              d={`
-                M20 ${fillY + 3}
-                Q35 ${fillY - 2}, 50 ${fillY + 3}
-              `}
-              stroke="rgba(255, 255, 255, 0.5)"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-            />
           </G>
 
-          {/* Shine/highlight on drop */}
+          {/* Shine/highlight on drop - bottom left area */}
           <Path
-            d="M30 25 Q35 35, 32 50"
-            stroke="rgba(255, 255, 255, 0.6)"
+            d="M22 98 Q24 106, 28 114"
+            stroke="rgba(255, 255, 255, 0.7)"
             strokeWidth="4"
             fill="none"
             strokeLinecap="round"

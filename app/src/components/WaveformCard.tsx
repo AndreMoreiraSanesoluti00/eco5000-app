@@ -9,48 +9,12 @@ interface WaveformCardProps {
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const CHART_WIDTH = SCREEN_WIDTH - 64;
 const CHART_HEIGHT = 120;
-const NUM_POINTS = 200;
+const NUM_POINTS = 150;
 
 export function WaveformCard({ audioData, fileName }: WaveformCardProps) {
-  const waveformPoints = useMemo(() => {
-    if (!audioData || audioData.length === 0) {
-      return [];
-    }
-
-    const points: { x: number; yTop: number; yBottom: number }[] = [];
-    const samplesPerPoint = Math.floor(audioData.length / NUM_POINTS);
-    const chartAreaWidth = CHART_WIDTH - 20;
-
-    for (let i = 0; i < NUM_POINTS; i++) {
-      const start = i * samplesPerPoint;
-      const end = Math.min(start + samplesPerPoint, audioData.length);
-
-      let min = Infinity;
-      let max = -Infinity;
-
-      for (let j = start; j < end; j++) {
-        const sample = audioData[j];
-        if (sample < min) min = sample;
-        if (sample > max) max = sample;
-      }
-
-      if (min === Infinity) min = 0;
-      if (max === -Infinity) max = 0;
-
-      const x = (i / NUM_POINTS) * chartAreaWidth;
-      const centerY = CHART_HEIGHT / 2;
-      const yTop = centerY - (max * centerY);
-      const yBottom = centerY - (min * centerY);
-
-      points.push({ x, yTop, yBottom });
-    }
-
-    return points;
-  }, [audioData]);
-
+  // First, find the max amplitude for normalization
   const maxAmplitude = useMemo(() => {
     if (!audioData || audioData.length === 0) return 0;
-    // Use reduce instead of spread to avoid stack overflow with large arrays
     let max = 0;
     for (let i = 0; i < audioData.length; i++) {
       const absValue = Math.abs(audioData[i]);
@@ -58,6 +22,52 @@ export function WaveformCard({ audioData, fileName }: WaveformCardProps) {
     }
     return max;
   }, [audioData]);
+
+  const waveformPoints = useMemo(() => {
+    if (!audioData || audioData.length === 0 || maxAmplitude === 0) {
+      return [];
+    }
+
+    const points: { x: number; yTop: number; yBottom: number }[] = [];
+    const chartAreaWidth = CHART_WIDTH - 20;
+
+    // Adjust number of points based on audio length
+    const numPoints = Math.min(NUM_POINTS, audioData.length);
+    const samplesPerPoint = Math.max(1, Math.floor(audioData.length / numPoints));
+
+    // Normalization factor - ensure we scale to fit the chart
+    const normFactor = maxAmplitude > 0 ? maxAmplitude : 1;
+
+    for (let i = 0; i < numPoints; i++) {
+      const start = i * samplesPerPoint;
+      const end = Math.min(start + samplesPerPoint, audioData.length);
+
+      let min = 0;
+      let max = 0;
+
+      for (let j = start; j < end; j++) {
+        const sample = audioData[j];
+        if (sample < min) min = sample;
+        if (sample > max) max = sample;
+      }
+
+      // Normalize values to -1 to 1 range
+      const normalizedMin = min / normFactor;
+      const normalizedMax = max / normFactor;
+
+      const x = (i / numPoints) * chartAreaWidth;
+      const centerY = CHART_HEIGHT / 2;
+
+      // Scale to use 90% of chart height for better visibility
+      const scaleFactor = 0.9;
+      const yTop = centerY - (normalizedMax * centerY * scaleFactor);
+      const yBottom = centerY - (normalizedMin * centerY * scaleFactor);
+
+      points.push({ x, yTop, yBottom });
+    }
+
+    return points;
+  }, [audioData, maxAmplitude]);
 
   return (
     <View style={styles.container}>
@@ -73,8 +83,10 @@ export function WaveformCard({ audioData, fileName }: WaveformCardProps) {
           {/* Waveform */}
           <View style={styles.waveformContainer}>
             {waveformPoints.map((point, index) => {
-              const height = Math.max(2, point.yBottom - point.yTop);
-              const top = point.yTop;
+              const height = Math.max(2, Math.abs(point.yBottom - point.yTop));
+              const top = Math.min(point.yTop, point.yBottom);
+              // Color based on relative amplitude
+              const relativeHeight = height / CHART_HEIGHT;
 
               return (
                 <View
@@ -85,7 +97,7 @@ export function WaveformCard({ audioData, fileName }: WaveformCardProps) {
                       left: point.x,
                       top: top,
                       height: height,
-                      backgroundColor: getWaveColor(height / CHART_HEIGHT),
+                      backgroundColor: getWaveColor(relativeHeight),
                     },
                   ]}
                 />

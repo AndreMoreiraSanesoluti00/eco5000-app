@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Animated,
   Easing,
+  Text,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -164,6 +165,8 @@ export function LandingScreen() {
           style={styles.topLogo}
           resizeMode="contain"
         />
+        {/* Título Sane.AI */}
+        <Text style={styles.saneAITitle}>Sane.AI</Text>
       </View>
 
       {/* Container central com logo AI e sombra */}
@@ -248,7 +251,6 @@ const styles = StyleSheet.create({
   topLogoContainer: {
     alignItems: 'center',
     paddingTop: 40,
-    paddingBottom: 20,
   },
   topLogo: {
     width: 180,
@@ -276,6 +278,12 @@ const styles = StyleSheet.create({
   logoAI: {
     width: 180,
     height: 180,
+  },
+  saneAITitle: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: '#03A696',
+    marginTop: 10,
   },
   blueOverlay: {
     ...StyleSheet.absoluteFillObject,
