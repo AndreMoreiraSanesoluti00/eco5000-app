@@ -3,7 +3,9 @@
 ## Project Title: Sane.AI
 ## Track Selection: Edge AI Application Track (Focus on practical implementation, code optimization, and inference on low-computing hardware).
 ## Description (Abstract):
-This project proposes the development of an Edge Machine Learning (Edge ML) system optimized for anomalous leak detection in urban pressurized hydraulic infrastructures. The methodology is based on the acquisition and spectral analysis of vibrational signatures from the subsurface. In contrast to traditional acoustic systems, which rely exclusively on amplitude (volume) thresholds or specialized human intervention, the model employs a Deep Learning architecture to discern the low-frequency spectral characteristic ("the rumble of the earth") of a persistent leak against complex and transient urban noises (traffic, industrial operations, pedestrians). Inference processing is performed on an Android device. The data source is primarily the ECO300 and ECO5000 geophone models from Sanesoluti. 
+This project proposes the development of an Edge Machine Learning (Edge ML) system optimized for anomalous leak detection in urban pressurized hydraulic infrastructures. The methodology is based on the acquisition and spectral analysis of vibrational signatures from the subsurface. 
+
+In contrast to traditional acoustic systems, which rely exclusively on amplitude (volume) thresholds or specialized human intervention, the model employs a Deep Learning architecture to discern the low-frequency spectral characteristic ("the rumble of the earth") of a persistent leak against complex and transient urban noises (traffic, industrial operations, pedestrians). Inference processing is performed on an Android device. The data source is primarily the ECO300 and ECO5000 geophone models from Sanesoluti. 
 
 ## Use Case and Market Context:
 Water inefficiency is an economic and social disaster in Brazil. According to the 2025 Water Loss Study (Trata Brasil/GO Associados), the country wastes 40.31% of all potable water produced in its distribution systems. However, this is not just a local problem, but a global one, as shown in the graph below.
@@ -24,15 +26,26 @@ An Edge Device that uses Deep Learning models, created in Edge Impulse, to "list
 
 ### 1. The Predominance of Physical Losses (The Project's Target): 
 Contrary to the common belief that losses are mostly due to fraud, the study points out that 60% of the volume of unaccounted-for water in Brazil corresponds to Physical (Real) Losses, i.e., leaks in the infrastructure. Implication: By using neural networks, Sane.AI attacks the root cause of most of the waste, estimated at more than 3 billion m³ annually.
+
 ### 2. Regional Heterogeneity and the Paradox of Large Urban Centers:
 Sane.AI is vital for both underdeveloped regions and large urban centers. Critical Markets (North/Northeast): The solution is designed to scale in regions where infrastructure is precarious, such as the North (49.78% losses) and Northeast (46.25%). Extreme cases include Maceió (AL), which loses 71.73% of its water, and Macapá (AP), with losses exceeding 1,000 liters per connection/day. 
+
 The Case of Rio de Janeiro: The state of Rio de Janeiro presents a distribution loss of 52.23%. Its capital leads the negative ranking among capitals, wasting 1,292.59 liters per connection/day, highlighting the need for new technologies for leak detection in dense metropolises. 
+
 Volume in São Paulo: Even in more efficient states like São Paulo (32.66% losses), the density of the network requires precision technology to reduce the absolute volume of waste.
+
 ### 3. Economic Impact and Monetization (The Business Case): Financially, inefficiency drains billions of reais. The total annual cost of losses exceeds R$ 13 billion.
 Direct Production Cost (OPEX): Physical losses, the exclusive focus of Sane.AI, represent a "wasteful" production cost of approximately R$ 2.4 billion per year. 
+
 Return: Each leak detected early by the device directly saves R$ 0.79/m³ on the operator's energy and chemical input bill. 
-Reduction of Detection Cost (The Economic Logic): According to the concept of "Economic Level of Leakage," the viability of repairing a leak depends on the cost to detect it. Innovation: Currently, detection depends on expensive equipment or slow human scanning. By implementing edge detection, Sane.AI drastically reduces the marginal cost of detection, making it economically viable to locate micro-leaks that are currently ignored because they are "too expensive" to find. 
-Rationale (Technical Justification): The choice of audio classification based on 1D Convolutional Neural Networks (1D-CNN) was motivated by the demonstrated failure of univariate amplitude analysis to distinguish transient events (volume peaks) from genuine and persistent leaks. The Edge Impulse platform was selected as the MLOps (Machine Learning Operations) tool at the edge, enabling the optimization and quantization of the model for strict hardware constraints (e.g., ultra-low power consumption and limited RAM). 
+
+Reduction of Detection Cost (The Economic Logic): According to the concept of "Economic Level of Leakage," the viability of repairing a leak depends on the cost to detect it.
+
+Innovation: Currently, detection depends on expensive equipment or slow human scanning. By implementing edge detection, Sane.AI drastically reduces the marginal cost of detection, making it economically viable to locate micro-leaks that are currently ignored because they are "too expensive" to find. 
+
+Rationale (Technical Justification): The choice of audio classification based on 1D Convolutional Neural Networks (1D-CNN) was motivated by the demonstrated failure of univariate amplitude analysis to distinguish transient events (volume peaks) from genuine and persistent leaks. 
+The Edge Impulse platform was selected as the MLOps (Machine Learning Operations) tool at the edge, enabling the optimization and quantization of the model for strict hardware constraints (e.g., ultra-low power consumption and limited RAM). 
+
 This is an application that needs to work at the edge because operators move around the city, and two factors necessitate this: first, the low latency required, and second, the lack of cellular coverage in all locations where leaks may occur.
 
 ## 2. Detailed Process and Iteration (The Development Journey)
@@ -51,7 +64,7 @@ Using a high-sensitivity geophone, the team surveyed several strategic locations
 
 The contrast with the laboratory audio recordings and manuals was immediate. In the reference material, the leak was described as a sharp, well-defined "hiss"; simply looking at the high-frequency energy would have solved the problem. When the system went into the street, the story changed.
 
-<img src="./assets/image_2.png" width="33%"> <img src="./assets/image_3.png" width="33%">
+<img src="./assets/image_2.png" width="33%"> <img src="./assets/image_3.png" width="33%"> <img src="./assets/image_3.png" width="33%">
 
 **Real-world environment**: the error of the initial approach
 
@@ -124,6 +137,7 @@ With optimized data input (2s Window + MFE), we refined the system's "brain" int
 * **Hybrid Neural Architecture:** We implemented two distinct classifiers operating in parallel:
    * **Visual:** A 1D-CNN processing the MFE to identify textures.
    * **Statistical:** An MLP (Multilayer Perceptron) processing the Spectral Features to validate the signal energy.
+
 **Safety Logic (AND Gate):** To mitigate errors, the final decision was designed following an AND gate logic ; the system should only trigger an alert if both models detect the target class simultaneously. This algorithmic redundancy aimed to drastically reduce the false positive rate, crucial for avoiding unnecessary operational costs with excavations.
 
 The importance of maintaining both models becomes clear when we look at the validation:
