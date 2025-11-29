@@ -68,7 +68,7 @@ The contrast with the laboratory audio recordings and manuals was immediate. In 
   <img src="./assets/image_2.png" width="45%"> <img src="./assets/image_3.png" width="45%">
 </p>
 <p align="center">
-<img src="./assets/image_maps.png" width="70%">
+<img src="./assets/image_maps.png" width="50%">
 </p>
 
 **Real-world environment**: the error of the initial approach
@@ -171,7 +171,7 @@ Validation of the hybrid architecture (Phase 5) revealed a final challenge. As e
 **Consolidated Result:** This simple logic statistically eliminated false positives caused by transient noises (such as a passing motorcycle, which lasts only 1 or 2 windows). The final system, running on the Galaxy Tab A9+, achieved the operational stability required for the field, with a virtually 100% real detection rate for continuous leaks and zero false alarms for common urban noises.
 
 <p align="center">
-  <img src="./assets/image_14.png" width="50%">
+  <img src="./assets/image_final.png" width="50%">
 </p>
 
 ## 3. Quality and Use of the Dataset
