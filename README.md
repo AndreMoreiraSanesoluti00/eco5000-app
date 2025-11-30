@@ -1,8 +1,15 @@
 # Sane.AI via Edge Impulse 💧🔍
 ## 1. Project Rationale and Definition
 ## Project Title: Sane.AI
-## Track Selection: Edge AI Application Track (Focus on practical implementation, code optimization, and inference on low-computing hardware).
-## Description (Abstract): 
+## ⚡ TL;DR (Edge AI Contest Submission)
+>
+> - **Track:** Edge AI Application Track
+> - **Pitch:** Android + Geophone edge ML system that locates underground leaks in noisy cities by detecting the “rumble of the earth”.
+> - **Hardware:** ECO300/ECO5000 geophones + Samsung Galaxy Tab A9+ (on‑device 1D‑CNN inference, offline capable).
+> - **Edge Impulse:** Data ingestion + labeling, MFE + Spectral Features, 1D‑CNN design, EON Tuner, C++ export, Android integration.
+> - **Impact:** Targets physical water losses (~60% of unaccounted‑for water; billions of m³/year), reducing waste and costs.
+> - **Key results:** ~87.7% overall accuracy, ~92.3% leak recall, zero false positives in field tests after temporal filtering.
+> - **Links:** [Demo video](LINK_DO_SEU_VIDEO) | [Edge Impulse project](https://studio.edgeimpulse.com/public/838800/live) | [GitHub repo](https://github.com/AndreMoreiraSanesoluti00/eco5000-app) | [Dataset](https://studio.edgeimpulse.com/public/838800/live/acquisition/training?page=1)## Description (Abstract): 
 This project delivers a production-grade Edge Machine Learning system designed to detect anomalous leaks in pressurized hydraulic infrastructures. Moving beyond traditional acoustic methods—which struggle with false positives in noisy cities—Sane.AI employs a **1D Convolutional Neural Network (1D-CNN)** optimized for the **Samsung Galaxy Tab A9+**.
 
 By analyzing vibrational signatures directly from the subsurface via geophones, the model isolates the persistent low-frequency "rumble" of a leak against complex transient noises (buses, footsteps, construction). The result is an offline, high-precision detection tool that empowers utility operators to locate physical losses accurately, without relying solely on subjective human hearing.
