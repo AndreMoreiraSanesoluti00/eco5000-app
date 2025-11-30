@@ -322,7 +322,14 @@ The robustness of an AI model is directly proportional to the diversity of its t
 ### [6] ASTERRA, "Recover: Satellite-based Infrastructure Monitoring and Leak Detection," Israel, 2024. [Online]. Available: https://asterra.io/solutions/recover/
 
         	
+## 8. License
 
+This project is licensed under the MIT License - see the full text below.
+
+<details>
+<summary>📄 Click to expand full License text</summary>
+
+```text
 MIT License
 
 Copyright (c) 2025 AndreMoreiraSanesoluti00
@@ -344,3 +351,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+</details>
