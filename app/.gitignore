@@ -38,4 +38,8 @@ yarn-error.*
 
 # generated native folders
 /ios
+<<<<<<< HEAD
 /android
+=======
+/android
+>>>>>>> parent of 8e36fb7 (error)
