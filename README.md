@@ -9,7 +9,7 @@
 > - **Edge Impulse:** Data ingestion + labeling, MFE + Spectral Features, 1D‑CNN design, EON Tuner, C++ export, Android integration.
 > - **Impact:** Targets physical water losses (~60% of unaccounted‑for water; billions of m³/year), reducing waste and costs.
 > - **Key results:** ~87.7% overall accuracy, ~92.3% leak recall, zero false positives in field tests after temporal filtering.
-> - **Links:** [Demo video](https://drive.google.com/drive/folders/1I74jhaHmdUf-Ji6zLWmIi441ptZDMpln?usp=sharing) | [Edge Impulse project](https://studio.edgeimpulse.com/public/838800/live) | [GitHub repo](https://github.com/AndreMoreiraSanesoluti00/eco5000-app) | [Dataset](https://studio.edgeimpulse.com/public/838800/live/acquisition/training?page=1)
+> - **Links:** [Demo video](https://drive.google.com/drive/folders/1qlAPNozYCEmHNzWe-ctPprVAm9xbaoRg) | [Edge Impulse project](https://studio.edgeimpulse.com/public/838800/live) | [GitHub repo](https://github.com/AndreMoreiraSanesoluti00/eco5000-app) | [Dataset](https://studio.edgeimpulse.com/public/838800/live/acquisition/training?page=1)
 
 ## Description (Abstract): 
 This project delivers a production-grade Edge Machine Learning system designed to detect anomalous leaks in pressurized hydraulic infrastructures. Moving beyond traditional acoustic methods—which struggle with false positives in noisy cities—Sane.AI employs a **1D Convolutional Neural Network (1D-CNN)** optimized for the **Samsung Galaxy Tab A9+**.
