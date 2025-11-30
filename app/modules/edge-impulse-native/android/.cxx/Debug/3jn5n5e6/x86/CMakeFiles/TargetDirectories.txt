@@ -1,0 +1,3 @@
+C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/modules/edge-impulse-native/android/.cxx/Debug/3jn5n5e6/x86/CMakeFiles/EdgeImpulseNative.dir
+C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/modules/edge-impulse-native/android/.cxx/Debug/3jn5n5e6/x86/CMakeFiles/edit_cache.dir
+C:/Users/andre/OneDrive/Documentos/GitHub/eco5000-app/app/modules/edge-impulse-native/android/.cxx/Debug/3jn5n5e6/x86/CMakeFiles/rebuild_cache.dir

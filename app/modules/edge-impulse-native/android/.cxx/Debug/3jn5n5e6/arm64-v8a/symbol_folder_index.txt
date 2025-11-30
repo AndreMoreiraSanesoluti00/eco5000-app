@@ -1,0 +1,1 @@
+C:\Users\andre\OneDrive\Documentos\GitHub\eco5000-app\app\modules\edge-impulse-native\android\build\intermediates\cxx\Debug\3jn5n5e6\obj\arm64-v8a
