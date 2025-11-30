@@ -217,7 +217,7 @@ Representativeness was ensured by the diversity of the NO_LEAK class, focusing o
 
 **Openness and License:** The dataset has been curated to anonymize sensitive information (removal of identifiable voices) and will be made available under a permissive license (MIT/Apache) for validation and reproduction.
 
-**Link to the Dataset:** https://studio.edgeimpulse.com/public/833695
+**Link to the Dataset:** https://studio.edgeimpulse.com/public/838800/live/acquisition/training?page=1
 
 # 4. Hardware Components and Reproducibility
 
