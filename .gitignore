@@ -1,0 +1,34 @@
+# Build directories
+build/
+dist/
+.gradle/
+.cxx/
+
+# Build folders inside model directories
+modelo_para_colocar_no_lugar_do_modelo_1/
+modelo_para_colocar_no_lugar_do_modelo_2/
+modelo1/
+modelo2/
+
+# Pipeline preprocessing builds
+pipeline_preprocessamento_dos_audios_para_o_modelo/build/
+
+# Model assets
+app/assets/models/
+
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+local.properties
+
+# OS
+.DS_Store
+Thumbs.db
+*.hprof
+
+# Android specific
+*.jsbundle
