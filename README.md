@@ -2,8 +2,10 @@
 ## 1. Project Rationale and Definition
 ## Project Title: Sane.AI
 ## Track Selection: Edge AI Application Track (Focus on practical implementation, code optimization, and inference on low-computing hardware).
-## Description (Abstract):
-This project proposes the development of an Edge Machine Learning (Edge ML) system optimized for anomalous leak detection in urban pressurized hydraulic infrastructures. The methodology is based on the acquisition and spectral analysis of vibrational signatures from the subsurface. 
+## Description (Abstract): 
+This project delivers a production-grade Edge Machine Learning system designed to detect anomalous leaks in pressurized hydraulic infrastructures. Moving beyond traditional acoustic methods—which struggle with false positives in noisy cities—Sane.AI employs a **1D Convolutional Neural Network (1D-CNN)** optimized for the **Samsung Galaxy Tab A9+**.
+
+By analyzing vibrational signatures directly from the subsurface via geophones, the model isolates the persistent low-frequency "rumble" of a leak against complex transient noises (buses, footsteps, construction). The result is an offline, high-precision detection tool that empowers utility operators to locate physical losses accurately, without relying solely on subjective human hearing.
 
 In contrast to traditional acoustic systems, which rely exclusively on amplitude (volume) thresholds or specialized human intervention, the model employs a Deep Learning architecture to discern the low-frequency spectral characteristic ("the rumble of the earth") of a persistent leak against complex and transient urban noises (traffic, industrial operations, pedestrians). Inference processing is performed on an Android device. The data source is primarily the ECO300 and ECO5000 geophone models from Sanesoluti. 
 
@@ -21,6 +23,32 @@ Every day, Brazil wastes the equivalent of 6,346 Olympic-sized swimming pools of
 ### The Current Failure: 
 Locating leaks in noisy urban environments is imprecise. Traditional acoustic methods generate false positives, and cutting-edge equipment is financially unfeasible for monitoring the extensive network of cities with budget constraints. Currently, technologies exist for leak detection; in some cases, leaks can even be detected by satellite, but detecting a leak is different from locating it, and that's where the real challenge arises. Technologies like Asterra ( https://asterra.io/solutions/recover/ ) can detect the existence of leaks, but the work involved in moving from a POI (Point of Interest) to an exact location and repairing the leak is crucial. The main current methods require experienced and highly trained operators, and even these operators rely solely on their ears to locate the leaks.
 
+## Edge Impulse Usage
+
+We used Edge Impulse Studio as the core MLOps platform for Sane.AI:
+
+1. **Data ingestion & labeling**
+   - Imported field recordings from ECO300/ECO5000 geophones.
+   - Labeled LEAK / NO_LEAK classes directly in the Studio.
+
+2. **Signal processing blocks**
+   - **MFE (Mel-Filterbank Energy)** for audio features.
+   - **Spectral Features** for statistical descriptors.
+   - Explored **Spectrograms** during earlier iterations.
+
+3. **Model design & optimization**
+   - Designed and trained a **1D-CNN** architecture for leak detection.
+   - Used **EON Tuner / model search** to explore accuracy vs. memory on MCU targets.
+   - Applied **quantization** and deployment optimization.
+
+4. **Deployment**
+   - Exported the model as an **Edge Impulse C++ library**.
+   - Integrated it into our Android C++ layer to run inference on the Galaxy Tab A9+.
+
+5. **Public project & dataset**
+   - Edge Impulse project: https://studio.edgeimpulse.com/public/838800/live
+   - Public dataset (permissive license, see “License” section
+     
 ### The Sane.AI Solution: 
 An Edge Device that uses Deep Learning models, created in Edge Impulse, to "listen" for real leaks amidst urban chaos, tackling the largest share of waste in the Brazilian case. The system focuses on confirming the leak's location by combining the use of a machine learning model with a digital geophone for data collection; the models act as assistants capable of guiding the user. Data-Based Justification (The Brazilian Scenario): The relevance of this model is corroborated by data from the 2025 Water Loss Study, which highlights three critical pillars for the implementation of hardware focused on physical losses:
 
@@ -189,7 +217,7 @@ Representativeness was ensured by the diversity of the NO_LEAK class, focusing o
 
 **Openness and License:** The dataset has been curated to anonymize sensitive information (removal of identifiable voices) and will be made available under a permissive license (MIT/Apache) for validation and reproduction.
 
-**Link to the Dataset:** https://studio.edgeimpulse.com/public/833695
+**Link to the Dataset:** https://studio.edgeimpulse.com/public/838800/live/acquisition/training?page=1
 
 # 4. Hardware Components and Reproducibility
 
@@ -244,6 +272,22 @@ Our technical conclusion is that the robustness needed for the chaotic urban env
 Furthermore, a pivotal decision in this project was the hardware transition from the microcontroller to a Tablet-based architecture. The primary driver for this shift was to enable **remote data collection for continuous retraining**.
 
 During the hackathon, we developed a dedicated Android application to facilitate this **Active Learning** cycle. Unlike the isolated microcontroller, this application allows us to capture, tag, and upload real-world audio directly from the field back to the training pipeline. This connectivity ensures that every inference contributes to making the model smarter. Additionally, this migration resolved the memory constraints encountered in earlier phases, providing the computational headroom needed for the future implementation of more complex models while solving the global water loss crisis. 
+
+### How Sane.AI is used in the field
+
+1. The operator connects the ECO300/ECO5000 geophone to the Galaxy Tab A9+.
+2. The app shows a simple interface:
+   - Live leak probability indicator
+   - Spectrogram / signal visualization
+   - Visual + audio alerts when a persistent leak is detected
+3. The operator walks along the pipe route, stopping at inspection points.
+4. Sane.AI continuously:
+   - Captures 5-second vibration windows
+   - Runs the 1D-CNN model on-device (no cloud)
+   - Applies the 3-window (6s) confirmation logic to avoid false positives
+5. When a leak is confirmed:
+   - The app pins a GPS-tagged marker
+   - The operator logs the location for maintenance teams.
 
 ## 6. Future Roadmap & Next Steps
 
