@@ -1,34 +1,16 @@
-import { NativeModules, Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { InferenceResult, ModelInfo } from '../types';
+import { edgeImpulseTFLiteService } from './EdgeImpulseTFLite';
 
-// Safely check for native module
-const EdgeImpulseNativeModule = NativeModules?.EdgeImpulseModule;
-
-// Check if we're running in Expo Go (native module won't be available)
-// Use multiple checks to be safe
+// Check if we're running in Expo Go (TFLite won't be available)
 const isExpoGo = (() => {
   // Check Constants first
   if (Constants.executionEnvironment === 'storeClient') return true;
   if (Constants.appOwnership === 'expo') return true;
-
-  // Check if native module exists and has the expected methods
-  if (!EdgeImpulseNativeModule) {
-    console.log('[EdgeImpulse] Native module not found');
-    return true;
-  }
-  if (typeof EdgeImpulseNativeModule.initializeModel1 !== 'function') {
-    console.log('[EdgeImpulse] Native module missing initializeModel1 method');
-    return true;
-  }
-
   return false;
 })();
 
-console.log('[EdgeImpulse] Mode:', isExpoGo ? 'Expo Go (Mock)' : 'Native (TFLite)');
-if (!isExpoGo) {
-  console.log('[EdgeImpulse] Native module available:', Object.keys(EdgeImpulseNativeModule || {}));
-}
+console.log('[EdgeImpulse] Mode:', isExpoGo ? 'Expo Go (Mock)' : 'Development Build (TFLite)');
 
 /**
  * Edge Impulse Service Interface
@@ -166,8 +148,8 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      console.log('[EdgeImpulse] Calling native initializeModel1...');
-      const result = await EdgeImpulseNativeModule.initializeModel1();
+      console.log('[EdgeImpulse] Initializing Model 1 with TFLite...');
+      const result = await edgeImpulseTFLiteService.initializeModel1();
       this._model1Initialized = Boolean(result);
       console.log('[EdgeImpulse] Model 1 initialized:', this._model1Initialized);
       return this._model1Initialized;
@@ -185,8 +167,8 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      console.log('[EdgeImpulse] Calling native initializeModel2...');
-      const result = await EdgeImpulseNativeModule.initializeModel2();
+      console.log('[EdgeImpulse] Initializing Model 2 with TFLite...');
+      const result = await edgeImpulseTFLiteService.initializeModel2();
       this._model2Initialized = Boolean(result);
       console.log('[EdgeImpulse] Model 2 initialized:', this._model2Initialized);
       return this._model2Initialized;
@@ -205,8 +187,8 @@ class EdgeImpulseService implements EdgeImpulseInterface {
       return mockResult;
     }
 
-    console.log('[EdgeImpulse] Running native inference Model 1 with', audioData.length, 'samples');
-    const result = await EdgeImpulseNativeModule.runInferenceModel1(audioData);
+    console.log('[EdgeImpulse] Running TFLite inference Model 1 with', audioData.length, 'samples');
+    const result = await edgeImpulseTFLiteService.runInferenceModel1(audioData);
     console.log('[EdgeImpulse] Model 1 result:', result);
     logUncertaintyMetrics('Modelo1-Cético', result, mockModel1Info.threshold);
     return result;
@@ -221,8 +203,8 @@ class EdgeImpulseService implements EdgeImpulseInterface {
       return mockResult;
     }
 
-    console.log('[EdgeImpulse] Running native inference Model 2 with', audioData.length, 'samples');
-    const result = await EdgeImpulseNativeModule.runInferenceModel2(audioData);
+    console.log('[EdgeImpulse] Running TFLite inference Model 2 with', audioData.length, 'samples');
+    const result = await edgeImpulseTFLiteService.runInferenceModel2(audioData);
     console.log('[EdgeImpulse] Model 2 result:', result);
     logUncertaintyMetrics('Modelo2-Paranoico', result, mockModel2Info.threshold);
     return result;
@@ -233,7 +215,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
       return mockModel1Info;
     }
 
-    return EdgeImpulseNativeModule.getModel1Info();
+    return edgeImpulseTFLiteService.getModel1Info();
   }
 
   async getModel2Info(): Promise<ModelInfo> {
@@ -241,7 +223,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
       return mockModel2Info;
     }
 
-    return EdgeImpulseNativeModule.getModel2Info();
+    return edgeImpulseTFLiteService.getModel2Info();
   }
 
   async isModel1Initialized(): Promise<boolean> {
@@ -250,7 +232,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      return Boolean(await EdgeImpulseNativeModule.isModel1Initialized());
+      return Boolean(await edgeImpulseTFLiteService.isModel1Initialized());
     } catch {
       return false;
     }
@@ -262,7 +244,7 @@ class EdgeImpulseService implements EdgeImpulseInterface {
     }
 
     try {
-      return Boolean(await EdgeImpulseNativeModule.isModel2Initialized());
+      return Boolean(await edgeImpulseTFLiteService.isModel2Initialized());
     } catch {
       return false;
     }

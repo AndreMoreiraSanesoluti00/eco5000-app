@@ -35,7 +35,8 @@
         {
           "microphonePermission": "Permitir $(PRODUCT_NAME) acessar o microfone para análise de áudio."
         }
-      ]
+      ],
+      "react-native-fast-tflite"
     ]
   }
 }
