@@ -1,6 +1,7 @@
 import { loadTensorflowModel } from 'react-native-fast-tflite';
 import RNFS from 'react-native-fs';
 import { InferenceResult, ModelInfo } from '../types';
+import { DSPPreprocessor, MFEProcessor, MFEConfig } from './dsp-preprocessing';
 
 /**
  * Edge Impulse TFLite Service using react-native-fast-tflite
@@ -48,9 +49,14 @@ export class EdgeImpulseTFLiteService {
 
       if (!exists) {
         console.log('[TFLite] Copying model from assets to cache...');
-        // Copy from assets to cache
-        await RNFS.copyFileAssets(modelAssetPath, modelDestPath);
-        console.log('[TFLite] Model copied to:', modelDestPath);
+        try {
+          // Copy from assets to cache
+          await RNFS.copyFileAssets(modelAssetPath, modelDestPath);
+          console.log('[TFLite] Model copied to:', modelDestPath);
+        } catch (copyError) {
+          console.error('[TFLite] Failed to copy model from assets:', copyError);
+          throw new Error(`Failed to copy model1.tflite from assets. Ensure the file exists in android/app/src/main/assets/${modelAssetPath}`);
+        }
       } else {
         console.log('[TFLite] Model already exists in cache:', modelDestPath);
       }
@@ -64,7 +70,9 @@ export class EdgeImpulseTFLiteService {
 
       return true;
     } catch (error) {
-      console.error('[TFLite] Failed to initialize Model 1:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('[TFLite] Failed to initialize Model 1:', errorMessage);
+      console.error('[TFLite] Error details:', error);
       return false;
     }
   }
@@ -85,9 +93,14 @@ export class EdgeImpulseTFLiteService {
 
       if (!exists) {
         console.log('[TFLite] Copying model from assets to cache...');
-        // Copy from assets to cache
-        await RNFS.copyFileAssets(modelAssetPath, modelDestPath);
-        console.log('[TFLite] Model copied to:', modelDestPath);
+        try {
+          // Copy from assets to cache
+          await RNFS.copyFileAssets(modelAssetPath, modelDestPath);
+          console.log('[TFLite] Model copied to:', modelDestPath);
+        } catch (copyError) {
+          console.error('[TFLite] Failed to copy model from assets:', copyError);
+          throw new Error(`Failed to copy model2.tflite from assets. Ensure the file exists in android/app/src/main/assets/${modelAssetPath}`);
+        }
       } else {
         console.log('[TFLite] Model already exists in cache:', modelDestPath);
       }
@@ -101,13 +114,15 @@ export class EdgeImpulseTFLiteService {
 
       return true;
     } catch (error) {
-      console.error('[TFLite] Failed to initialize Model 2:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('[TFLite] Failed to initialize Model 2:', errorMessage);
+      console.error('[TFLite] Error details:', error);
       return false;
     }
   }
 
   /**
-   * Run inference on Model 1
+   * Run inference on Model 1 (MFE - Skeptic)
    */
   async runInferenceModel1(audioData: number[]): Promise<InferenceResult> {
     if (!model1) {
@@ -115,21 +130,52 @@ export class EdgeImpulseTFLiteService {
     }
 
     try {
+      console.log('[EdgeImpulse] Running TFLite inference Model 1 with', audioData.length, 'samples');
       const startTime = performance.now();
 
+      // Pré-processamento: Mel-frequency Energy (MFE)
+      const dspStartTime = performance.now();
+      const features = DSPPreprocessor.processSpecktral(audioData, model1Info.frequency);
+      const dspEndTime = performance.now();
+      const dspTime = Math.round(dspEndTime - dspStartTime);
+
+      console.log('[TFLite][Model1] DSP extracted', features.length, 'features in', dspTime, 'ms');
+      console.log('[TFLite][Model1] Expected input shape:', model1.inputs[0].shape);
+
+      // Verificar se o número de features está correto
+      const expectedFeatures = model1.inputs[0].shape[1];
+      if (features.length !== expectedFeatures) {
+        throw new Error(`Feature mismatch: got ${features.length}, expected ${expectedFeatures}`);
+      }
+
       // Prepare input tensor
-      // Edge Impulse models expect Float32Array input
-      const inputData = new Float32Array(audioData);
+      const inputData = new Float32Array(features);
 
-      // Run inference
-      const outputs = model1.run([inputData]);
+      console.log('[TFLite][Model1] Input data type:', inputData.constructor.name);
+      console.log('[TFLite][Model1] Input data length:', inputData.length);
+      console.log('[TFLite][Model1] First 5 values:', Array.from(inputData.slice(0, 5)));
 
-      const endTime = performance.now();
-      const inferenceTime = Math.round(endTime - startTime);
+      // Run inference (using runSync for synchronous execution)
+      const inferenceStartTime = performance.now();
+      const outputs = model1.runSync([inputData]);
+      const inferenceEndTime = performance.now();
+      const inferenceTime = Math.round(inferenceEndTime - inferenceStartTime);
+
+      console.log('[TFLite][Model1] Outputs:', outputs);
+      console.log('[TFLite][Model1] Outputs type:', typeof outputs);
+      console.log('[TFLite][Model1] Outputs is array:', Array.isArray(outputs));
+
+      if (!outputs || !Array.isArray(outputs) || outputs.length === 0) {
+        throw new Error('Model returned invalid output');
+      }
 
       // Parse outputs
-      // TFLite output is typically a Float32Array with probabilities for each class
+      // TFLite output is a TypedArray with probabilities for each class
       const probabilities = outputs[0] as Float32Array;
+
+      console.log('[TFLite][Model1] Probabilities:', probabilities);
+      console.log('[TFLite][Model1] Probabilities type:', typeof probabilities);
+      console.log('[TFLite][Model1] Probabilities length:', probabilities?.length);
 
       // Find the class with highest probability
       let maxProb = 0;
@@ -143,17 +189,19 @@ export class EdgeImpulseTFLiteService {
 
       const label = model1Info.labels[maxIndex];
 
+      const totalTime = Math.round(performance.now() - startTime);
+
       const result: InferenceResult = {
         label,
         confidence: maxProb,
         timing: {
-          dsp: 0, // TFLite doesn't separate DSP time
+          dsp: dspTime,
           classification: inferenceTime,
           anomaly: 0,
         },
       };
 
-      console.log(`[TFLite][Model1] Result: ${label} (${(maxProb * 100).toFixed(2)}%) in ${inferenceTime}ms`);
+      console.log(`[TFLite][Model1] Result: ${label} (${(maxProb * 100).toFixed(2)}%) - DSP: ${dspTime}ms, Inference: ${inferenceTime}ms, Total: ${totalTime}ms`);
 
       return result;
     } catch (error) {
@@ -163,7 +211,7 @@ export class EdgeImpulseTFLiteService {
   }
 
   /**
-   * Run inference on Model 2
+   * Run inference on Model 2 (Wavelet - Paranoid)
    */
   async runInferenceModel2(audioData: number[]): Promise<InferenceResult> {
     if (!model2) {
@@ -171,21 +219,52 @@ export class EdgeImpulseTFLiteService {
     }
 
     try {
+      console.log('[EdgeImpulse] Running TFLite inference Model 2 with', audioData.length, 'samples');
       const startTime = performance.now();
 
+      // Pré-processamento: Wavelet Transform
+      const dspStartTime = performance.now();
+      const features = DSPPreprocessor.processParanoico(audioData, model2Info.frequency);
+      const dspEndTime = performance.now();
+      const dspTime = Math.round(dspEndTime - dspStartTime);
+
+      console.log('[TFLite][Model2] DSP extracted', features.length, 'features in', dspTime, 'ms');
+      console.log('[TFLite][Model2] Expected input shape:', model2.inputs[0].shape);
+
+      // Verificar se o número de features está correto
+      const expectedFeatures = model2.inputs[0].shape[1];
+      if (features.length !== expectedFeatures) {
+        throw new Error(`Feature mismatch: got ${features.length}, expected ${expectedFeatures}`);
+      }
+
       // Prepare input tensor
-      // Edge Impulse models expect Float32Array input
-      const inputData = new Float32Array(audioData);
+      const inputData = new Float32Array(features);
 
-      // Run inference
-      const outputs = model2.run([inputData]);
+      console.log('[TFLite][Model2] Input data type:', inputData.constructor.name);
+      console.log('[TFLite][Model2] Input data length:', inputData.length);
+      console.log('[TFLite][Model2] First 5 values:', Array.from(inputData.slice(0, 5)));
 
-      const endTime = performance.now();
-      const inferenceTime = Math.round(endTime - startTime);
+      // Run inference (using runSync for synchronous execution)
+      const inferenceStartTime = performance.now();
+      const outputs = model2.runSync([inputData]);
+      const inferenceEndTime = performance.now();
+      const inferenceTime = Math.round(inferenceEndTime - inferenceStartTime);
+
+      console.log('[TFLite][Model2] Outputs:', outputs);
+      console.log('[TFLite][Model2] Outputs type:', typeof outputs);
+      console.log('[TFLite][Model2] Outputs is array:', Array.isArray(outputs));
+
+      if (!outputs || !Array.isArray(outputs) || outputs.length === 0) {
+        throw new Error('Model returned invalid output');
+      }
 
       // Parse outputs
-      // TFLite output is typically a Float32Array with probabilities for each class
+      // TFLite output is a TypedArray with probabilities for each class
       const probabilities = outputs[0] as Float32Array;
+
+      console.log('[TFLite][Model2] Probabilities:', probabilities);
+      console.log('[TFLite][Model2] Probabilities type:', typeof probabilities);
+      console.log('[TFLite][Model2] Probabilities length:', probabilities?.length);
 
       // Find the class with highest probability
       let maxProb = 0;
@@ -199,17 +278,19 @@ export class EdgeImpulseTFLiteService {
 
       const label = model2Info.labels[maxIndex];
 
+      const totalTime = Math.round(performance.now() - startTime);
+
       const result: InferenceResult = {
         label,
         confidence: maxProb,
         timing: {
-          dsp: 0, // TFLite doesn't separate DSP time
+          dsp: dspTime,
           classification: inferenceTime,
           anomaly: 0,
         },
       };
 
-      console.log(`[TFLite][Model2] Result: ${label} (${(maxProb * 100).toFixed(2)}%) in ${inferenceTime}ms`);
+      console.log(`[TFLite][Model2] Result: ${label} (${(maxProb * 100).toFixed(2)}%) - DSP: ${dspTime}ms, Inference: ${inferenceTime}ms, Total: ${totalTime}ms`);
 
       return result;
     } catch (error) {
