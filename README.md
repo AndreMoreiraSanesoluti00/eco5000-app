@@ -263,7 +263,7 @@ All the application's source code, including the optimized library exported from
 **GitHub:** https://github.com/AndreMoreiraSanesoluti00/eco5000-app
 
 ### Reproduction Protocol for this Project
-* **Clone the Project: Access and clone the public project on the Edge Impulse platform:** https://studio.edgeimpulse.com/studio/833889
+* **Clone the Project: Access and clone the public project on the Edge Impulse platform:** https://studio.edgeimpulse.com/studio/838800
 * **Exporting the Model:** Export the trained model as an Edge-optimized C++ library.
 * **Application Build & Deployment:** Use the source code provided in the GitHub repository to build the Android application package (APK) and install it on the target device (Samsung Galaxy Tab A9+ 5G).
 * **Validation Test:** Use a low-frequency white noise generator to simulate the leak signature and impulsive inputs (e.g., touching or hitting the sensor) to simulate "No Leak" events, validating the classifier's robustness.
