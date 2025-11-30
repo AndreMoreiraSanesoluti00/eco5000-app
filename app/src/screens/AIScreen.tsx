@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Animated,
   Dimensions,
+  InteractionManager,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as DocumentPicker from 'expo-document-picker';
@@ -39,6 +40,7 @@ export function AIScreen() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [audioSamples, setAudioSamples] = useState<number[]>([]);
   const [audioFileName, setAudioFileName] = useState<string>('');
+  const [isComponentReady, setIsComponentReady] = useState(false);
 
   // Animation values
   const card1Opacity = useRef(new Animated.Value(1)).current;
@@ -74,6 +76,9 @@ export function AIScreen() {
   // Flag to track if video has finished playing (reached the end)
   const isVideoFinished = useRef(false);
 
+  // Flag to prevent multiple simultaneous document picker calls
+  const isPickerOpen = useRef(false);
+
   const {
     isInitialized,
     isLoading: isModelLoading,
@@ -91,6 +96,15 @@ export function AIScreen() {
       Alert.alert('Erro do Modelo', modelError);
     }
   }, [modelError]);
+
+  // Mark component as ready after a short delay to ensure Activity is attached
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsComponentReady(true);
+      console.log('[AIScreen] Component is ready for file picker');
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Complete the animation and show results
   const completeAnimation = useCallback(() => {
@@ -282,17 +296,50 @@ export function AIScreen() {
 
   const handleSelectAudio = useCallback(async () => {
     try {
+      // Prevent multiple simultaneous calls
+      if (isPickerOpen.current) {
+        console.log('[AIScreen] Picker already open, ignoring additional click');
+        return;
+      }
+
+      // Check if component is ready
+      if (!isComponentReady) {
+        console.log('[AIScreen] Component not ready yet, waiting...');
+        Alert.alert(
+          'Aguarde',
+          'O aplicativo ainda está inicializando. Tente novamente em alguns segundos.'
+        );
+        return;
+      }
+
+      // Mark picker as open
+      isPickerOpen.current = true;
       console.log('[AIScreen] Abrindo seletor de arquivos...');
+
+      // Wait for all interactions to complete before opening the picker
+      // This ensures the Activity is fully ready
+      await new Promise<void>((resolve) => {
+        InteractionManager.runAfterInteractions(() => {
+          resolve();
+        });
+      });
+
+      // Add a small delay to ensure Activity is attached
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       const result = await DocumentPicker.getDocumentAsync({
         type: AUDIO_MIME_TYPES,
         copyToCacheDirectory: true,
       });
 
+      // Mark picker as closed
+      isPickerOpen.current = false;
+
       console.log('[AIScreen] Resultado do picker:', JSON.stringify(result));
 
       if (result.canceled) {
         console.log('[AIScreen] Seleção cancelada pelo usuário');
+        isPickerOpen.current = false;
         return;
       }
 
@@ -304,6 +351,7 @@ export function AIScreen() {
           'Formato Invalido',
           `Por favor, selecione um arquivo de áudio suportado.\n\nFormatos aceitos: ${getSupportedFormatsString()}`
         );
+        isPickerOpen.current = false;
         return;
       }
 
@@ -380,12 +428,27 @@ export function AIScreen() {
         );
       }
     } catch (err) {
-      Alert.alert(
-        'Erro',
-        err instanceof Error ? err.message : 'Erro ao selecionar arquivo'
-      );
+      console.error('[AIScreen] Erro ao abrir seletor:', err);
+
+      // Reset picker state on error
+      isPickerOpen.current = false;
+
+      const errorMessage = err instanceof Error ? err.message : 'Erro ao selecionar arquivo';
+
+      // Check if it's the "not attached to Activity" error or "Different document picking in progress"
+      if (errorMessage.includes('not attached to an Activity')) {
+        Alert.alert(
+          'Erro',
+          'Por favor, tente novamente em alguns segundos. O aplicativo ainda está inicializando.'
+        );
+      } else if (errorMessage.includes('Different document picking in progress')) {
+        console.log('[AIScreen] Seletor já está aberto, ignorando');
+        // Don't show alert for this case - it's expected when user double-clicks
+      } else {
+        Alert.alert('Erro', errorMessage);
+      }
     }
-  }, [isInitialized, runSlidingWindowInference, runAnalysisAnimation, startProcessingAnimation, logoTranslateY, logoScale, logoOpacity, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale, spectralCardOpacity, spectralCardScale, waterDropOpacity, waterDropScale]);
+  }, [isComponentReady, isInitialized, runSlidingWindowInference, runAnalysisAnimation, startProcessingAnimation, logoTranslateY, logoScale, logoOpacity, overlayOpacity, card1Opacity, card1Scale, card2Opacity, card2Scale, spectralCardOpacity, spectralCardScale, waterDropOpacity, waterDropScale]);
 
   const isButtonDisabled = !isInitialized || isModelLoading || isProcessing || isAnimating;
 

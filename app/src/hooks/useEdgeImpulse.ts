@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { edgeImpulseService } from '../services/EdgeImpulseModule';
+// Import the NEW native module service that uses Edge Impulse SDK with DSP
+import { edgeImpulseNativeService as edgeImpulseService } from '../services/EdgeImpulseNativeModule';
 import { InferenceResult, ModelInfo, WindowResult, AggregatedResult, SlidingWindowConfig } from '../types';
 import { segmentAudio, validateAudioForSegmentation, DEFAULT_SLIDING_WINDOW_CONFIG } from '../utils/audioSegmentation';
 
@@ -230,18 +231,13 @@ export function useEdgeImpulse(): UseEdgeImpulseResult {
 
     try {
       const startTime = Date.now();
-      console.log('[useEdgeImpulse] Inicializando Modelo 1 (Cético) e Modelo 2 (Paranoico)...');
+      console.log('[useEdgeImpulse] Inicializando Modelo 1 (Cético) e Modelo 2 (Paranoico) com Edge Impulse SDK nativo...');
 
-      const [model1Init, model2Init] = await Promise.all([
-        edgeImpulseService.initializeModel1(),
-        edgeImpulseService.initializeModel2(),
-      ]);
+      // Initialize native service (fetches model metadata)
+      const initialized = await edgeImpulseService.initialize();
 
-      console.log('[useEdgeImpulse] Modelo 1 inicializado:', model1Init);
-      console.log('[useEdgeImpulse] Modelo 2 inicializado:', model2Init);
-
-      if (!model1Init || !model2Init) {
-        throw new Error('Falha ao inicializar modelos');
+      if (!initialized) {
+        throw new Error('Falha ao inicializar modelos nativos');
       }
 
       const [info1, info2] = await Promise.all([
