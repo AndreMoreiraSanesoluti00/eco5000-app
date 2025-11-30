@@ -54,6 +54,7 @@ expo-env.d.ts
 *.tmp
 *.temp
 .cache/
+nul
 
 # OS files
 .DS_Store
