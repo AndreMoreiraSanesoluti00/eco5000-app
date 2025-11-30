@@ -1,7 +1,16 @@
 # Sane.AI via Edge Impulse 💧🔍
 ## 1. Project Rationale and Definition
 ## Project Title: Sane.AI
-## Track Selection: Edge AI Application Track (Focus on practical implementation, code optimization, and inference on low-computing hardware).
+## ⚡ TL;DR (Edge AI Contest Submission)
+>
+> - **Track:** Edge AI Application Track
+> - **Pitch:** Android + Geophone edge ML system that locates underground leaks in noisy cities by detecting the “rumble of the earth”.
+> - **Hardware:** ECO300/ECO5000 geophones + Samsung Galaxy Tab A9+ (on‑device 1D‑CNN inference, offline capable).
+> - **Edge Impulse:** Data ingestion + labeling, MFE + Spectral Features, 1D‑CNN design, EON Tuner, C++ export, Android integration.
+> - **Impact:** Targets physical water losses (~60% of unaccounted‑for water; billions of m³/year), reducing waste and costs.
+> - **Key results:** ~87.7% overall accuracy, ~92.3% leak recall, zero false positives in field tests after temporal filtering.
+> - **Links:** [Demo video](LINK_DO_SEU_VIDEO) | [Edge Impulse project](https://studio.edgeimpulse.com/public/838800/live) | [GitHub repo](https://github.com/AndreMoreiraSanesoluti00/eco5000-app) | [Dataset](https://studio.edgeimpulse.com/public/838800/live/acquisition/training?page=1)
+
 ## Description (Abstract): 
 This project delivers a production-grade Edge Machine Learning system designed to detect anomalous leaks in pressurized hydraulic infrastructures. Moving beyond traditional acoustic methods—which struggle with false positives in noisy cities—Sane.AI employs a **1D Convolutional Neural Network (1D-CNN)** optimized for the **Samsung Galaxy Tab A9+**.
 
@@ -256,7 +265,7 @@ All the application's source code, including the optimized library exported from
 **GitHub:** https://github.com/AndreMoreiraSanesoluti00/eco5000-app
 
 ### Reproduction Protocol for this Project
-* **Clone the Project: Access and clone the public project on the Edge Impulse platform:** https://studio.edgeimpulse.com/studio/833889
+* **Clone the Project: Access and clone the public project on the Edge Impulse platform:** https://studio.edgeimpulse.com/studio/838800
 * **Exporting the Model:** Export the trained model as an Edge-optimized C++ library.
 * **Application Build & Deployment:** Use the source code provided in the GitHub repository to build the Android application package (APK) and install it on the target device (Samsung Galaxy Tab A9+ 5G).
 * **Validation Test:** Use a low-frequency white noise generator to simulate the leak signature and impulsive inputs (e.g., touching or hitting the sensor) to simulate "No Leak" events, validating the classifier's robustness.
@@ -315,4 +324,33 @@ The robustness of an AI model is directly proportional to the diversity of its t
 ### [6] ASTERRA, "Recover: Satellite-based Infrastructure Monitoring and Leak Detection," Israel, 2024. [Online]. Available: https://asterra.io/solutions/recover/
 
         	
+## 8. License
+
+This project is licensed under the MIT License - see the full text below.
+
+<details>
+<summary>📄 Click to expand full License text</summary>
+
+```text
+MIT License
+
+Copyright (c) 2025 AndreMoreiraSanesoluti00
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
